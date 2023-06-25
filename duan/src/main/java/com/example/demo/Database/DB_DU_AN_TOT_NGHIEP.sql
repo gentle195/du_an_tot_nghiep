@@ -36,7 +36,7 @@ GO
 CREATE TABLE ram(
   id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
   ma VARCHAR(30) NULL,
-  dung_luong int NULL,
+  dung_luong VARCHAR(30) NULL,
   ngay_tao DATE DEFAULT GETDATE(),
   ngay_cap_nhat DATE NULL,
   tinh_nrang int DEFAULT 0,
@@ -50,7 +50,7 @@ GO
 CREATE TABLE rom(
   id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
   ma VARCHAR(30) NULL,
-  dung_luong int NULL,
+  dung_luong VARCHAR(30) NULL,
   ngay_tao DATE DEFAULT GETDATE(),
   ngay_cap_nhat DATE NULL,
   tinh_trang int DEFAULT 0,
@@ -218,10 +218,12 @@ CREATE TABLE nhan_vien (
   ma VARCHAR(30) NULL,
   ho_ten NVARCHAR(50) NULL,
   gioi_tinh BIT DEFAULT 1,
+  url_anh VARCHAR(255) NULL,
   email VARCHAR(255) NULL,
   sdt VARCHAR(30) null,
   que_quan NVARCHAR(255) NULL,
   ngay_sinh DATE NULL,
+  can_cuoc_con_dan VARCHAR(30) null,
   tai_khoan VARCHAR(50) NOT NULL,
   mat_khau VARCHAR(255) NOT NULL,
   ngay_tao DATE DEFAULT GETDATE(),
@@ -336,7 +338,7 @@ CREATE TABLE hoa_don (
   ngay_cap_nhat DATE NULL,
   ngay_nhan DATE NULL,
   ngay_ship DATE NULL,
-  ghiChu NVARCHAR(MAX) NULL,
+  ghi_chu NVARCHAR(MAX) NULL,
   FOREIGN KEY (id_khach_hang) REFERENCES khach_hang(id),
   FOREIGN KEY (id_nhan_vien) REFERENCES Nhan_vien(id),
   FOREIGN KEY (id_dia_chi) REFERENCES quy_doi(id),
@@ -362,7 +364,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE ngat_ky (
+CREATE TABLE nhat_ky (
   id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
   diem_da_dung int DEFAULT 0,
   diem_cong_them int DEFAULT 0,
@@ -381,7 +383,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE baoHanh(
+CREATE TABLE phieu_bao_hanh(
  id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
  ma VARCHAR(30) NULL,
  id_khach_hang UNIQUEIDENTIFIER NULL,
@@ -451,6 +453,8 @@ CREATE TABLE danh_gia(
 id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
 id_chi_tiet_san_pham UNIQUEIDENTIFIER null,
 id_khach_hang UNIQUEIDENTIFIER NULL,
+ghi_chu NVARCHAR(MAX) NULL,
 FOREIGN KEY (id_khach_hang) REFERENCES khach_hang(id),
 FOREIGN KEY (id_chi_tiet_san_pham) REFERENCES chi_tiet_san_pham(id)
 );
+drop database DB_DU_AN_TOT_NGHIEP

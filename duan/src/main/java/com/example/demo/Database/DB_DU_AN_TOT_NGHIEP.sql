@@ -456,5 +456,5 @@ id_khach_hang UNIQUEIDENTIFIER NULL,
 ghi_chu NVARCHAR(MAX) NULL,
 FOREIGN KEY (id_khach_hang) REFERENCES khach_hang(id),
 FOREIGN KEY (id_chi_tiet_san_pham) REFERENCES chi_tiet_san_pham(id)
-);
-drop database DB_DU_AN_TOT_NGHIEP
+)
+select * from chi_tiet_san_pham

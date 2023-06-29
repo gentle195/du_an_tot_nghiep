@@ -60,4 +60,13 @@ public class DiaChi {
     @ManyToOne
     @JoinColumn(name = "id_khach_hang")
     private KhachHang khachHang;
+
+
+    public String tt() {
+        if (tinhTrang == 0) {
+            return "YES";
+        }
+        return "NO";
+
+    }
 }

@@ -69,4 +69,21 @@ public class KhachHang {
     @ManyToOne
     @JoinColumn(name = "id_hang_khach_hang")
     private HangKhachHang hangKhachHang;
+
+
+    public String tt() {
+        if (tinhTrang == 0) {
+            return "YES";
+        }
+        return "NO";
+
+    }
+
+    public String goitinh() {
+        if (gioiTinh == true) {
+            return "nam";
+        }
+        return "nu";
+
+    }
 }

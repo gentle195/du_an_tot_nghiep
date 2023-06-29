@@ -32,7 +32,7 @@ public class DungLuongPin {
     private String ma;
 
     @Column(name = "thong_so")
-    private String thong_so;
+    private String thongSo;
 
     @Column(name = "ngay_tao")
     private Date ngayTao;

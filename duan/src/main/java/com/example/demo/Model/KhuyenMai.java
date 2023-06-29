@@ -61,4 +61,11 @@ public class KhuyenMai {
 
     @Column(name = "mo_ta")
     private String moTa;
+    public String tinhTrang() {
+        if (tinhTrang == 0) {
+            return "Không hoạt động";
+        }
+        return "Còn hoạt động";
+
+    }
 }

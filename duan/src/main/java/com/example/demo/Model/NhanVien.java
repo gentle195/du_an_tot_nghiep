@@ -15,6 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -49,7 +50,7 @@ public class NhanVien {
     private String sdt;
 
     @Column(name = "ngay_sinh")
-    private Date ngaySinh;
+    private LocalDate ngaySinh;
 
     @Column(name = "can_cuoc_con_dan")
     private String canCuoc;
@@ -61,10 +62,10 @@ public class NhanVien {
     private String matKhau;
 
     @Column(name = "ngay_tao")
-    private Date ngayTao;
+    private LocalDate ngayTao;
 
     @Column(name = "ngay_cap_nhat")
-    private Date ngayCapNhat;
+    private LocalDate ngayCapNhat;
 
     @Column(name = "tinh_trang")
     private int tinhTrang;

@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.MauSac;
 import org.springframework.data.domain.Page;
@@ -8,10 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface MauSacService {
-    Page<MauSac> getAllByPages(Pageable pageable);
-    List<MauSac> getAllMauSac();
-    MauSac getOne(UUID id);
-    void addOrUpdate(MauSac mauSac);
-    void remove(UUID id);
+    public Page<MauSac> getAll(Pageable pageable);
 
+    public List<MauSac> findAll();
+
+    public MauSac findById(UUID id);
+
+    public MauSac add(MauSac mauSac);
+
+    public MauSac update(UUID id, MauSac mauSac);
+
+    public Boolean delete(UUID id);
 }
+
+

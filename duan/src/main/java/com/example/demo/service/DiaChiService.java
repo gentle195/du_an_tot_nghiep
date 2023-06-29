@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.DiaChi;
 import org.springframework.data.domain.Page;
@@ -8,9 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface DiaChiService {
-    Page<DiaChi> getAllByPages(Pageable pageable);
-    List<DiaChi> getAllDC();
-    DiaChi getOne(UUID id);
-    void addOrUpdate(DiaChi diaChi);
-    void remove(UUID id);
+    public Page<DiaChi> getAll(Pageable pageable);
+
+    public List<DiaChi> findAll();
+
+    public DiaChi findById(UUID id);
+
+    public DiaChi add(DiaChi diaChi);
+
+    public DiaChi update(UUID id, DiaChi diaChi);
+
+    public Boolean delete(UUID id);
 }
+
+

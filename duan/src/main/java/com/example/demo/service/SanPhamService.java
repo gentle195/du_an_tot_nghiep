@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.SanPham;
 import org.springframework.data.domain.Page;
@@ -8,9 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SanPhamService {
-    public List<SanPham> getAlll();
     public Page<SanPham> getAll(Pageable pageable);
-    public SanPham getOne(UUID id);
-    public void addvsupdate(SanPham sp);
-    public void delete(UUID id);
+
+    public List<SanPham> findAll();
+
+    public SanPham findById(UUID id);
+
+    public SanPham add(SanPham sanPham);
+
+    public SanPham update(UUID id, SanPham sanPham);
+
+    public Boolean delete(UUID id);
 }
+
+

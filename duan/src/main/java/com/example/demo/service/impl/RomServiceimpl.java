@@ -1,9 +1,9 @@
-package com.example.demo.service.impl;
+package com.example.demo.Service.impl;
 
 import com.example.demo.Model.Rom;
-
+import com.example.demo.Service.RomService;
 import com.example.demo.repository.RomRepository;
-import com.example.demo.service.RomService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,27 +13,54 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class RomServiceimpl implements RomService {
+
+public class RomServiceImpl implements RomService {
+
     @Autowired
     RomRepository romRepository;
+
+
     @Override
-    public List<Rom> getAlll(){
-        return romRepository.findAll();
-    }
-    @Override
-    public Page<Rom> getAll(Pageable pageable){
+    public Page<Rom> getAll(Pageable pageable) {
         return romRepository.findAll(pageable);
     }
+
     @Override
-    public Rom getOne(UUID id){
+    public List<Rom> findAll() {
+        return romRepository.findAll();
+    }
+
+    @Override
+    public Rom findById(UUID id) {
         return romRepository.findById(id).orElse(null);
     }
+
     @Override
-    public void  AddandUpdate(Rom rom){
-        romRepository.save(rom);
+    public Rom add(Rom rom) {
+        return romRepository.save(rom);
     }
+
     @Override
-    public void delete(UUID id){
-        romRepository.deleteById(id);
+    public Rom update(UUID id, Rom rom) {
+        if (id != null) {
+            Rom romUpdate = romRepository.findById(id).orElse(null);
+            if (romUpdate != null) {
+                BeanUtils.copyProperties(rom, romUpdate);
+                romRepository.save(romUpdate);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean delete(UUID id) {
+        if (id != null) {
+            Rom rom = romRepository.findById(id).orElse(null);
+            if (rom != null) {
+                romRepository.delete(rom);
+                return true;
+            }
+        }
+        return false;
     }
 }

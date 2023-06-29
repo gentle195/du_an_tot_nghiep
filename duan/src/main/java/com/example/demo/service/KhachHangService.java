@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.KhachHang;
 import org.springframework.data.domain.Page;
@@ -8,9 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface KhachHangService {
-    Page<KhachHang> getAllByPages(Pageable pageable);
-    List<KhachHang> getAllKH();
-    KhachHang getOne(UUID id);
-    void addOrUpdate(KhachHang khachHang);
-    void remove(UUID id);
+    public Page<KhachHang> getAll(Pageable pageable);
+
+    public List<KhachHang> findAll();
+
+    public KhachHang findById(UUID id);
+
+    public KhachHang add(KhachHang khachHang);
+
+    public KhachHang update(UUID id, KhachHang khachHang);
+
+    public Boolean delete(UUID id);
 }
+
+

@@ -1,7 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.Chip;
-import com.example.demo.Model.Pin;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,16 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ChipService {
-    Page<Chip> getAllByPages(Pageable pageable);
+    public Page<Chip> getAll(Pageable pageable);
 
-    List<Chip> getAllCTSP();
+    public List<Chip> findAll();
 
-    Chip getOne(UUID id);
+    public Chip findById(UUID id);
 
-    void add(Chip chip);
+    public Chip add(Chip chip);
 
-    void update(Chip chip, UUID id);
+    public Chip update(UUID id, Chip chip);
 
-    void remove(UUID id);
-
+    public Boolean delete(UUID id);
 }
+
+

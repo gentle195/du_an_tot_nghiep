@@ -1,20 +1,24 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.NhanVien;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface NhanVienService {
+    public Page<NhanVien> getAll(Pageable pageable);
 
-    Page<NhanVien> getAll(Pageable pageable);
+    public List<NhanVien> findAll();
 
-    void add(NhanVien nhanVien);
+    public NhanVien findById(UUID id);
 
-    void update(NhanVien nhanVien);
+    public NhanVien add(NhanVien nhanVien);
 
-    void delete(UUID id);
+    public NhanVien update(UUID id, NhanVien nhanVien);
 
-    NhanVien getById(UUID id);
+    public Boolean delete(UUID id);
 }
+
+

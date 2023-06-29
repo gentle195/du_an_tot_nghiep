@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,29 +29,27 @@ public class Ram {
     @Column(name = "id")
     private UUID id;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ma")
     private String ma;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "dung_luong")
     private String dungLuong;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "mo_ta")
     private String moTa;
-
-    public String tinhTrang() {
-        if (tinhTrang == 0) {
-            return "Không hoạt động";
-        }
-        return "Còn hoạt động";
-
-    }
 }

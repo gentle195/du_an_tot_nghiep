@@ -1,21 +1,24 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
-import com.example.demo.Model.ChiTietSanPham;
 import com.example.demo.Model.ChucVu;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ChucVuService {
+    public Page<ChucVu> getAll(Pageable pageable);
 
-    Page<ChucVu> getAll(Pageable pageable);
+    public List<ChucVu> findAll();
 
-    void add(ChucVu chucVu);
+    public ChucVu findById(UUID id);
 
-    void update(ChucVu chucVu);
+    public ChucVu add(ChucVu chucVu);
 
-    void delete(UUID id);
+    public ChucVu update(UUID id, ChucVu chucVu);
 
-    ChucVu getById(UUID id);
+    public Boolean delete(UUID id);
 }
+
+

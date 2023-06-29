@@ -1,8 +1,9 @@
-package com.example.demo.service.impl;
+package com.example.demo.Service.impl;
 
 import com.example.demo.Model.ChiTietSanPham;
 import com.example.demo.repository.ChiTietSanPhamRepository;
 import com.example.demo.service.ChiTietSanPhamService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,27 +20,46 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 
 
     @Override
-    public Page<ChiTietSanPham> getAllByPages(Pageable pageable) {
+    public Page<ChiTietSanPham> getAll(Pageable pageable) {
         return chiTietSanPhamRepository.findAll(pageable);
     }
 
     @Override
-    public List<ChiTietSanPham> getAllCTSP() {
+    public List<ChiTietSanPham> findAll() {
         return chiTietSanPhamRepository.findAll();
     }
 
     @Override
-    public ChiTietSanPham getOne(UUID id) {
-        return chiTietSanPhamRepository.findById(id).get();
+    public ChiTietSanPham findById(UUID id) {
+        return chiTietSanPhamRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void addOrUpdate(ChiTietSanPham chiTietSanPham) {
-        chiTietSanPhamRepository.save(chiTietSanPham);
+    public ChiTietSanPham add(ChiTietSanPham chiTietSanPham) {
+        return chiTietSanPhamRepository.save(chiTietSanPham);
     }
 
     @Override
-    public void remove(UUID id) {
-        chiTietSanPhamRepository.deleteById(id);
+    public ChiTietSanPham update(UUID id, ChiTietSanPham chiTietSanPham) {
+        if(id != null){
+            ChiTietSanPham chiTietSanPhamUpdate = chiTietSanPhamRepository.findById(id).orElse(null);
+            if(chiTietSanPhamUpdate != null){
+                BeanUtils.copyProperties(chiTietSanPham, chiTietSanPhamUpdate);
+                chiTietSanPhamRepository.save(chiTietSanPhamUpdate);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean delete(UUID id) {
+        if(id != null){
+            ChiTietSanPham chiTietSanPham = chiTietSanPhamRepository.findById(id).orElse(null);
+            if(chiTietSanPham != null){
+                chiTietSanPhamRepository.delete(chiTietSanPham);
+                return true;
+            }
+        }
+        return false;
     }
 }

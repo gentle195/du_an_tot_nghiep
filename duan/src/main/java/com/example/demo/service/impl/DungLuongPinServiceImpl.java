@@ -1,11 +1,8 @@
-package com.example.demo.service.impl;
+package com.example.demo.Service.impl;
 
 import com.example.demo.Model.DungLuongPin;
-import com.example.demo.Model.Pin;
-import com.example.demo.repository.DungLuongPinRepository;
-import com.example.demo.repository.PinRepository;
-import com.example.demo.service.DungLuongPinService;
-import com.example.demo.service.PinService;
+import com.example.demo.Repository.DungLuongPinRepository;
+import com.example.demo.Service.DungLuongPinService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,44 +15,52 @@ import java.util.UUID;
 @Service
 
 public class DungLuongPinServiceImpl implements DungLuongPinService {
+
     @Autowired
-    DungLuongPinRepository repository;
+    DungLuongPinRepository dungLuongPinRepository;
 
 
     @Override
-    public Page<DungLuongPin> getAllByPages(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<DungLuongPin> getAll(Pageable pageable) {
+        return dungLuongPinRepository.findAll(pageable);
     }
 
     @Override
-    public List<DungLuongPin> getAllCTSP() {
-        return repository.findAll();
+    public List<DungLuongPin> findAll() {
+        return dungLuongPinRepository.findAll();
     }
 
     @Override
-    public DungLuongPin getOne(UUID id) {
-        return repository.findById(id).get();
+    public DungLuongPin findById(UUID id) {
+        return dungLuongPinRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void add(DungLuongPin pin) {
-        repository.save(pin);
+    public DungLuongPin add(DungLuongPin dungLuongPin) {
+        return dungLuongPinRepository.save(dungLuongPin);
     }
 
     @Override
-    public void update(DungLuongPin pin, UUID id) {
-        DungLuongPin dungLuongPin =  repository.getOne(id);
-        BeanUtils.copyProperties(pin, dungLuongPin);
-        repository.save(dungLuongPin);
+    public DungLuongPin update(UUID id, DungLuongPin dungLuongPin) {
+        if (id != null) {
+            DungLuongPin dungLuongPinUpdate = dungLuongPinRepository.findById(id).orElse(null);
+            if (dungLuongPinUpdate != null) {
+                BeanUtils.copyProperties(dungLuongPin, dungLuongPinUpdate);
+                dungLuongPinRepository.save(dungLuongPinUpdate);
+            }
+        }
+        return null;
     }
 
     @Override
-    public void remove(UUID id) {
-        repository.deleteById(id);
-    }
-
-    @Override
-    public List<DungLuongPin> getList() {
-        return repository.findAll();
+    public Boolean delete(UUID id) {
+        if (id != null) {
+            DungLuongPin dungLuongPin = dungLuongPinRepository.findById(id).orElse(null);
+            if (dungLuongPin != null) {
+                dungLuongPinRepository.delete(dungLuongPin);
+                return true;
+            }
+        }
+        return false;
     }
 }

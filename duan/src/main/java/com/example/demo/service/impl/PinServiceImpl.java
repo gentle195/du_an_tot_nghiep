@@ -1,11 +1,8 @@
-package com.example.demo.service.impl;
+package com.example.demo.Service.impl;
 
-import com.example.demo.Model.ChiTietSanPham;
 import com.example.demo.Model.Pin;
-import com.example.demo.repository.ChiTietSanPhamRepository;
-import com.example.demo.repository.PinRepository;
-import com.example.demo.service.ChiTietSanPhamService;
-import com.example.demo.service.PinService;
+import com.example.demo.Repository.PinRepository;
+import com.example.demo.Service.PinService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,40 +15,52 @@ import java.util.UUID;
 @Service
 
 public class PinServiceImpl implements PinService {
+
     @Autowired
-    PinRepository repository;
+    PinRepository pinRepository;
 
 
     @Override
-    public Page<Pin> getAllByPages(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<Pin> getAll(Pageable pageable) {
+        return pinRepository.findAll(pageable);
     }
 
     @Override
-    public List<Pin> getAllCTSP() {
-        return repository.findAll();
+    public List<Pin> findAll() {
+        return pinRepository.findAll();
     }
 
     @Override
-    public Pin getOne(UUID id) {
-        return repository.findById(id).get();
+    public Pin findById(UUID id) {
+        return pinRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void add(Pin pin) {
-        repository.save(pin);
+    public Pin add(Pin pin) {
+        return pinRepository.save(pin);
     }
 
     @Override
-    public void update(Pin pin, UUID id) {
-        Pin pin1 = repository.getOne(id);
-        BeanUtils.copyProperties(pin, pin1);
-        repository.save(pin1);
+    public Pin update(UUID id, Pin pin) {
+        if (id != null) {
+            Pin pinUpdate = pinRepository.findById(id).orElse(null);
+            if (pinUpdate != null) {
+                BeanUtils.copyProperties(pin, pinUpdate);
+                pinRepository.save(pinUpdate);
+            }
+        }
+        return null;
     }
 
-
     @Override
-    public void remove(UUID id) {
-        repository.deleteById(id);
+    public Boolean delete(UUID id) {
+        if (id != null) {
+            Pin pin = pinRepository.findById(id).orElse(null);
+            if (pin != null) {
+                pinRepository.delete(pin);
+                return true;
+            }
+        }
+        return false;
     }
 }

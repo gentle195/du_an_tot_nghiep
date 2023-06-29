@@ -48,4 +48,14 @@ public class HangKhachHang {
 
     @Column(name = "mo_ta")
     private String moTa;
+
+
+
+    public String tt() {
+        if (tinhTrang == 0) {
+            return "YES";
+        }
+            return "NO";
+
+    }
 }

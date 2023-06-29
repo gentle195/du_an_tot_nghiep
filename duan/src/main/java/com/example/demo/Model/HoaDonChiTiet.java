@@ -2,12 +2,14 @@ package com.example.demo.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,20 +32,23 @@ public class HoaDonChiTiet {
     @Column(name = "id")
     private UUID id;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "so_luong")
     private int soLuong;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "don_gia")
     private BigDecimal donGia;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hoa_don")
     private HoaDon hoaDon;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_imei")
     private IMEI imei;
 }

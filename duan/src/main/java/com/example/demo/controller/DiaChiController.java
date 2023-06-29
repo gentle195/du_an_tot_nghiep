@@ -28,69 +28,49 @@ public class DiaChiController {
     @GetMapping("/hien-thi")
     public String hienThi(
             Model model,
-            @ModelAttribute("dc")DiaChi diaChi
-
-
-            ) {
+            @ModelAttribute("dc") DiaChi diaChi
+    ) {
         diaChi.setTinhTrang(0);
-
-
-
-        model.addAttribute("dulieu",diaChiService.getAllDC());
-        model.addAttribute("kh",khachHangService.getAllKH());
+        model.addAttribute("dulieu", diaChiService.getAllDC());
+        model.addAttribute("kh", khachHangService.getAllKH());
         return "dia-chi/dia-chi";
     }
 
 
     @GetMapping("/remove/{id}")
-
     public String remove(Model model,
                          @PathVariable("id") UUID id
-
     ) {
         diaChiService.remove(id);
         return "redirect:/dia-chi/hien-thi";
     }
 
-
     @GetMapping("/view-update/{id}")
-
     public String viewUpdate(Model model,
                              @PathVariable("id") UUID id,
                              @ModelAttribute("dc") DiaChi diaChi
 
     ) {
         diaChi.setTinhTrang(0);
-
         model.addAttribute("dc", diaChiService.getOne(id));
-        model.addAttribute("kh",khachHangService.getAllKH());
+        model.addAttribute("kh", khachHangService.getAllKH());
         return "dia-chi/dia-chi-update";
     }
 
 
     @PostMapping("/update")
     public String updateDongSP(Model model,
-
                                @ModelAttribute("dc") DiaChi diaChi
     ) {
-
-
-
         diaChiService.addOrUpdate(diaChi);
-
         return "redirect:/dia-chi/hien-thi";
     }
-
-
-
 
 
     @PostMapping("/add")
     public String updateadd(Model model,
                             @ModelAttribute("dc") DiaChi diaChi
     ) {
-
-
         diaChiService.addOrUpdate(diaChi);
         return "redirect:/dia-chi/hien-thi";
     }

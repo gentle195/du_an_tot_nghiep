@@ -1,8 +1,9 @@
-package com.example.demo.service.impl;
+package com.example.demo.Service.impl;
 
 import com.example.demo.Model.KhuyenMai;
-import com.example.demo.repository.KhuyenMaiRepository;
-import com.example.demo.service.KhuyenMaiService;
+import com.example.demo.Repository.KhuyenMaiRepository;
+import com.example.demo.Service.KhuyenMaiService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,33 +13,54 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+
 public class KhuyenMaiServiceImpl implements KhuyenMaiService {
+
     @Autowired
     KhuyenMaiRepository khuyenMaiRepository;
+
+
     @Override
-    public Page<KhuyenMai> getAllByPages(Pageable pageable) {
+    public Page<KhuyenMai> getAll(Pageable pageable) {
         return khuyenMaiRepository.findAll(pageable);
     }
 
     @Override
-    public List<KhuyenMai> getAllKhuyenMai() {
+    public List<KhuyenMai> findAll() {
         return khuyenMaiRepository.findAll();
     }
 
     @Override
-    public KhuyenMai getOne(UUID id) {
-        return khuyenMaiRepository.getReferenceById(id);
+    public KhuyenMai findById(UUID id) {
+        return khuyenMaiRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void addOrUpdate(KhuyenMai khuyenMai) {
-        khuyenMaiRepository.save(khuyenMai);
-
+    public KhuyenMai add(KhuyenMai khuyenMai) {
+        return khuyenMaiRepository.save(khuyenMai);
     }
 
     @Override
-    public void remove(UUID id) {
-        khuyenMaiRepository.deleteById(id);
+    public KhuyenMai update(UUID id, KhuyenMai khuyenMai) {
+        if (id != null) {
+            KhuyenMai khuyenMaiUpdate = khuyenMaiRepository.findById(id).orElse(null);
+            if (khuyenMaiUpdate != null) {
+                BeanUtils.copyProperties(khuyenMai, khuyenMaiUpdate);
+                khuyenMaiRepository.save(khuyenMaiUpdate);
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public Boolean delete(UUID id) {
+        if (id != null) {
+            KhuyenMai khuyenMai = khuyenMaiRepository.findById(id).orElse(null);
+            if (khuyenMai != null) {
+                khuyenMaiRepository.delete(khuyenMai);
+                return true;
+            }
+        }
+        return false;
     }
 }

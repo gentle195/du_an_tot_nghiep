@@ -1,19 +1,24 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.MucQuyDoi;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface MucQuyDoiService {
-    Page<MucQuyDoi> getAll(Pageable pageable);
+    public Page<MucQuyDoi> getAll(Pageable pageable);
 
-    void add(MucQuyDoi mucQuyDoi);
+    public List<MucQuyDoi> findAll();
 
-    void update(MucQuyDoi mucQuyDoi);
+    public MucQuyDoi findById(UUID id);
 
-    void delete(UUID id);
+    public MucQuyDoi add(MucQuyDoi mucQuyDoi);
 
-    MucQuyDoi getById(UUID id);
+    public MucQuyDoi update(UUID id, MucQuyDoi mucQuyDoi);
+
+    public Boolean delete(UUID id);
 }
+
+

@@ -1,7 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.DungLuongPin;
-import com.example.demo.Model.Pin;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,17 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface DungLuongPinService {
-    Page<DungLuongPin> getAllByPages(Pageable pageable);
+    public Page<DungLuongPin> getAll(Pageable pageable);
 
-    List<DungLuongPin> getAllCTSP();
+    public List<DungLuongPin> findAll();
 
-    DungLuongPin getOne(UUID id);
+    public DungLuongPin findById(UUID id);
 
-    void add(DungLuongPin pin);
+    public DungLuongPin add(DungLuongPin dungLuongPin);
 
-    void update(DungLuongPin pin, UUID id);
+    public DungLuongPin update(UUID id, DungLuongPin dungLuongPin);
 
-    void remove(UUID id);
-
-    List<DungLuongPin> getList();
+    public Boolean delete(UUID id);
 }
+
+

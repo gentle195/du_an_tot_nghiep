@@ -1,11 +1,8 @@
-package com.example.demo.service.impl;
+package com.example.demo.Service.impl;
 
 import com.example.demo.Model.Chip;
-import com.example.demo.Model.Pin;
+import com.example.demo.Service.ChipService;
 import com.example.demo.repository.ChipRepository;
-import com.example.demo.repository.PinRepository;
-import com.example.demo.service.ChipService;
-import com.example.demo.service.PinService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,40 +15,52 @@ import java.util.UUID;
 @Service
 
 public class ChipServiceImpl implements ChipService {
+
     @Autowired
-    ChipRepository repository;
+    ChipRepository chipRepository;
 
 
     @Override
-    public Page<Chip> getAllByPages(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<Chip> getAll(Pageable pageable) {
+        return chipRepository.findAll(pageable);
     }
 
     @Override
-    public List<Chip> getAllCTSP() {
-        return repository.findAll();
+    public List<Chip> findAll() {
+        return chipRepository.findAll();
     }
 
     @Override
-    public Chip getOne(UUID id) {
-        return repository.findById(id).get();
+    public Chip findById(UUID id) {
+        return chipRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void add(Chip pin) {
-        repository.save(pin);
+    public Chip add(Chip chip) {
+        return chipRepository.save(chip);
     }
 
     @Override
-    public void update(Chip chip, UUID id) {
-        Chip chip1 = repository.getOne(id);
-        BeanUtils.copyProperties(chip, chip1);
-        repository.save(chip1);
+    public Chip update(UUID id, Chip chip) {
+        if (id != null) {
+            Chip chipUpdate = chipRepository.findById(id).orElse(null);
+            if (chipUpdate != null) {
+                BeanUtils.copyProperties(chip, chipUpdate);
+                chipRepository.save(chipUpdate);
+            }
+        }
+        return null;
     }
 
-
     @Override
-    public void remove(UUID id) {
-        repository.deleteById(id);
+    public Boolean delete(UUID id) {
+        if (id != null) {
+            Chip chip = chipRepository.findById(id).orElse(null);
+            if (chip != null) {
+                chipRepository.delete(chip);
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -2,12 +2,14 @@ package com.example.demo.Model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,33 +33,39 @@ public class DoiTra {
     @Column(name = "id")
     private UUID id;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ma")
     private String ma;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_doi_tra")
     private Date ngayDoiTra;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_hoan_tra")
     private Date ngayHoanTra;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ly_do_doi_tra")
     private String lyDo;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tien_doi_tra")
     private BigDecimal tienDoiTra;
 
+    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_khach_hang")
     private KhachHang khachHang;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hoa_don")
     private HoaDon hoaDon;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_nhan_vien")
     private NhanVien nhanVien;
 }

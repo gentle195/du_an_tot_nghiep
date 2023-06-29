@@ -1,5 +1,4 @@
-package com.example.demo.service;
-
+package com.example.demo.Service;
 
 import com.example.demo.Model.KhuyenMai;
 import org.springframework.data.domain.Page;
@@ -9,9 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface KhuyenMaiService {
-    Page<KhuyenMai> getAllByPages(Pageable pageable);
-    List<KhuyenMai> getAllKhuyenMai();
-   KhuyenMai getOne(UUID id);
-    void addOrUpdate(KhuyenMai khuyenMai);
-    void remove(UUID id);
+    public Page<KhuyenMai> getAll(Pageable pageable);
+
+    public List<KhuyenMai> findAll();
+
+    public KhuyenMai findById(UUID id);
+
+    public KhuyenMai add(KhuyenMai khuyenMai);
+
+    public KhuyenMai update(UUID id, KhuyenMai khuyenMai);
+
+    public Boolean delete(UUID id);
 }
+
+

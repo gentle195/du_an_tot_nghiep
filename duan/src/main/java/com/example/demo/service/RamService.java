@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.Model.Ram;
 import org.springframework.data.domain.Page;
@@ -8,9 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RamService {
-    Page<Ram> getAllByPages(Pageable pageable);
-    List<Ram> getAllRam();
-    Ram getOne(UUID id);
-    void addOrUpdate(Ram ram);
-    void remove(UUID id);
+    public Page<Ram> getAll(Pageable pageable);
+
+    public List<Ram> findAll();
+
+    public Ram findById(UUID id);
+
+    public Ram add(Ram ram);
+
+    public Ram update(UUID id, Ram ram);
+
+    public Boolean delete(UUID id);
 }
+
+

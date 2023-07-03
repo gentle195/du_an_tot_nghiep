@@ -21,7 +21,7 @@ public class ChucVuServiceImpl implements ChucVuService {
 
 
     @Override
-    public Page<ChucVu> getAll(Pageable pageable) {
+    public Page<ChucVu> getAllByPages(Pageable pageable) {
         return chucVuRepository.findAll(pageable);
     }
 
@@ -31,7 +31,7 @@ public class ChucVuServiceImpl implements ChucVuService {
     }
 
     @Override
-    public ChucVu findById(UUID id) {
+    public ChucVu getById(UUID id) {
         return chucVuRepository.findById(id).orElse(null);
     }
 

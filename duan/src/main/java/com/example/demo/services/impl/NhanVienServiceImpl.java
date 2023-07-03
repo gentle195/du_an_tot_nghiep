@@ -21,7 +21,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 
     @Override
-    public Page<NhanVien> getAll(Pageable pageable) {
+    public Page<NhanVien> getAllNhanVien(Pageable pageable) {
         return nhanVienRepository.findAll(pageable);
     }
 
@@ -31,7 +31,7 @@ public class NhanVienServiceImpl implements NhanVienService {
     }
 
     @Override
-    public NhanVien findById(UUID id) {
+    public NhanVien getById(UUID id) {
         return nhanVienRepository.findById(id).orElse(null);
     }
 
@@ -62,5 +62,10 @@ public class NhanVienServiceImpl implements NhanVienService {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean existsByPhoneNumber(String sdt) {
+        return existsByPhoneNumber(sdt);
     }
 }

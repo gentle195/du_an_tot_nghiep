@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.UUID;
 
 public interface MucQuyDoiService {
-    public Page<MucQuyDoi> getAll(Pageable pageable);
+
+    public Page<MucQuyDoi> getAllMucQuyDoi(Pageable pageable);
 
     public List<MucQuyDoi> findAll();
 
-    public MucQuyDoi findById(UUID id);
+    public MucQuyDoi getById(UUID id);
 
     public MucQuyDoi add(MucQuyDoi mucQuyDoi);
 

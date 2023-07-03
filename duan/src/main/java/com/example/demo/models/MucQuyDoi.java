@@ -6,7 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,27 +32,28 @@ public class MucQuyDoi {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
+    @Min(value = 0, message = "Giá trị phải lớn hơn hoặc bằng 0")
     @Column(name = "so_diem")
     private int soDiem;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "so_tien")
     private BigDecimal soTien;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
     @NotBlank(message = "Không để trống thông tin")
-    @Column(name = "mo_ta")
-    private String moTa;
+    @Column(name = "ghi_chu")
+    private String ghiChu;
 }

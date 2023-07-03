@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ChucVuService {
-    public Page<ChucVu> getAll(Pageable pageable);
+
+    public Page<ChucVu> getAllByPages(Pageable pageable);
 
     public List<ChucVu> findAll();
 
-    public ChucVu findById(UUID id);
+    public ChucVu getById(UUID id);
 
     public ChucVu add(ChucVu chucVu);
 

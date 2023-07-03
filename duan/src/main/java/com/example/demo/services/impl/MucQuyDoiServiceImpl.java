@@ -21,7 +21,7 @@ public class MucQuyDoiServiceImpl implements MucQuyDoiService {
 
 
     @Override
-    public Page<MucQuyDoi> getAll(Pageable pageable) {
+    public Page<MucQuyDoi> getAllMucQuyDoi(Pageable pageable) {
         return mucQuyDoiRepository.findAll(pageable);
     }
 
@@ -31,7 +31,7 @@ public class MucQuyDoiServiceImpl implements MucQuyDoiService {
     }
 
     @Override
-    public MucQuyDoi findById(UUID id) {
+    public MucQuyDoi getById(UUID id) {
         return mucQuyDoiRepository.findById(id).orElse(null);
     }
 

@@ -2,15 +2,24 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Ram;
 import com.example.demo.services.RamService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -21,18 +30,40 @@ public class RamController {
     RamService ramService;
 
     @GetMapping("/hien-thi")
-    public String hienThi(Model model, @ModelAttribute("r") Ram ram
-    ) {
+    public String hienThi(Model model, @ModelAttribute("r") Ram ram, @RequestParam("pageNum") Optional<Integer> pageNum,
+                          @RequestParam("num") Optional<Integer> num,
+                          @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu) {
+        Sort sort = Sort.by("ma").ascending();
+
+        Pageable pageable = PageRequest.of(num.orElse(0), tongDuLieu);
+
         ram.setTinhTrang(0);
-        model.addAttribute("duLieu", ramService.getAllRam());
+        Page<Ram> list = ramService.getAll(pageable);
+        model.addAttribute("tongSoTrang", list.getTotalPages());
+        model.addAttribute("duLieu", list.getContent());
         return "ram/ram";
     }
 
 
     @PostMapping("add-ram")
-    public String addMauSac(Model model, @ModelAttribute("r") Ram ram
+    public String addMauSac(Model model, @ModelAttribute("r")@Valid Ram ram,
+                            BindingResult bindingResult
     ) {
-        ramService.addOrUpdate(ram);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("duLieu", ramService.getAll0());
+            return "/ram/ram";
+        }
+
+        String maR = "R" + ramService.findAll().size();
+        ram.setMa(maR);
+        long millis = System.currentTimeMillis();
+        Date date = new java.sql.Date(millis);
+        ram.setNgayTao(date);
+        ram.setNgayCapNhat(date);
+
+        ram.setTinhTrang(0);
+
+        ramService.add(ram);
 
         return "redirect:/ram/hien-thi";
     }
@@ -40,22 +71,32 @@ public class RamController {
     @GetMapping("/view-update-ram/{id}")
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("r") Ram ram) {
 
-        ram.setTinhTrang(0);
-        model.addAttribute("r", ramService.getOne(id));
+
+        model.addAttribute("r", ramService.findById(id));
         return "/ram/ram-update";
     }
 
     @PostMapping("/update-ram")
-    public String updateRam(Model model, @ModelAttribute("r") Ram ram) {
+    public String updateRam(Model model, @ModelAttribute("r") @Valid Ram ram,
+                            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            ram = ramService.findById(ram.getId());
+            return "ram/ram-update";
+        }
 
-        ramService.addOrUpdate(ram);
+        long millis = System.currentTimeMillis();
+        Date date = new java.sql.Date(millis);
+        ram.setNgayTao(date);
+        ram.setNgayCapNhat(date);
+        Ram ram1 = ramService.findById(ram.getId());
 
+        ramService.update(ram1.getId(), ram);
         return "redirect:/ram/hien-thi";
     }
 
     @GetMapping("/remove-ram/{id}")
     public String delete(Model model, @PathVariable("id") UUID id) {
-        ramService.remove(id);
+        ramService.delete(id);
         return "redirect:/ram/hien-thi";
     }
 

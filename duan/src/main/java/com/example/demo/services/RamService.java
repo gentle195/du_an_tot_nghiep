@@ -12,6 +12,8 @@ public interface RamService {
 
     public List<Ram> findAll();
 
+    public List<Ram> getAll0();
+
     public Ram findById(UUID id);
 
     public Ram add(Ram ram);

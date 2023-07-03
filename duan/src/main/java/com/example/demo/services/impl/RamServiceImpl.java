@@ -31,6 +31,11 @@ public class RamServiceImpl implements RamService {
     }
 
     @Override
+    public List<Ram> getAll0() {
+        return ramRepository.getAll0();
+    }
+
+    @Override
     public Ram findById(UUID id) {
         return ramRepository.findById(id).orElse(null);
     }

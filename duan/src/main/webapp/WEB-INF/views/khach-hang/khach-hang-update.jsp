@@ -15,14 +15,19 @@
 <body>
 
 <form:form action="/khach-hang/update" method="post" modelAttribute="kh">
+    <div  >
+        <p scope="col">
+            Mã
+        </p>
+        <p scope="col">
+            <form:input path="ma"  readonly="true"></form:input>
+        </p>
+    </div>
     <table class="table">
-        <P style="display: none">
-            <form:input path="id"></form:input>
-        </P>
         <thead>
         <tr>
 
-            <th scope="col">MA</th>
+
             <th scope="col">HO TEN</th>
             <th scope="col">GIOI TINH</th>
             <th scope="col">EMAIL</th>
@@ -32,12 +37,10 @@
         </thead>
         <thead>
         <tr>
-            <th scope="col">
-                <form:input path="ma"></form:input>
-            </th>
 
             <th scope="col">
-                <form:input path="hoTen"></form:input>
+                <form:input path="hoTen"></form:input><br>
+                <form:errors path="hoTen" cssClass="error text-danger" />
             </th>
 
 
@@ -46,7 +49,8 @@
                 <form:radiobutton path="gioiTinh" label="nu" value="false"></form:radiobutton>
             </th>
             <th scope="col">
-                <form:input path="email"></form:input>
+                <form:input path="email"></form:input><br>
+                <form:errors path="email" cssClass="error text-danger" />
             </th>
         </tr>
         </thead>
@@ -58,101 +62,111 @@
             <th scope="col">SDT</th>
             <th scope="col">NGAY SINH</th>
             <th scope="col">TAI KHOAN</th>
+
+
+
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+
+
+            <th scope="col">
+                <form:input path="sdt" type="number"></form:input><br>
+                <form:errors path="sdt" cssClass="error text-danger" />
+            </th>
+            <th scope="col">
+                <form:input path="ngaySinh" type="date" id="ns"/>
+                <br>
+                <P id="tb" style="color: crimson"></P>
+                    <%--                <form:errors path="ngaySinh" cssClass="error-message" />--%>
+            </th>
+            <th scope="col">
+                <form:input path="taiKhoan"  ></form:input><br>
+                <form:errors path="taiKhoan" cssClass="error text-danger" />
+            </th>
+
+        </tr>
+        </thead>
+
+
+        <thead>
+        <tr>
+
+
             <th scope="col">MAT KHAU</th>
-
-
-        </tr>
-        </thead>
-        <thead>
-        <tr>
-
-
-            <th scope="col">
-                <form:input path="sdt" type="number"></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="ngaySinh" type="date" ></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="taiKhoan"  ></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="matKhau"  ></form:input>
-            </th>
-        </tr>
-        </thead>
-
-
-        <thead>
-        <tr>
-
-            <th scope="col">NGAY TAO</th>
-            <th scope="col">NGAY CAP NHAT</th>
-            <th scope="col">TINH TRANG</th>
             <th scope="col">DIEM</th>
-
-
-        </tr>
-        </thead>
-        <thead>
-        <tr>
-
-
-            <th scope="col">
-                <form:input path="ngayTao" type="date"></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="ngayCapNhat" type="date"></form:input>
-            </th>
-            <th scope="col">
-                <form:radiobutton path="tinhTrang" label="YES" value="0"></form:radiobutton><br>
-                <form:radiobutton path="tinhTrang" label="NO" value="1"></form:radiobutton>
-            </th>
-            <th scope="col">
-                <form:input path="diem" ></form:input>
-            </th>
-
-        </tr>
-        </thead>
-
-        <thead>
-        <tr>
-
             <th scope="col">HANG KHACH HANG</th>
 
-            <th></th>
-            <th></th>
-            <th></th>
+
         </tr>
-
         </thead>
-
         <thead>
         <tr>
+
+
+
+            <th scope="col">
+                <form:input path="matKhau"  ></form:input><br>
+                <form:errors path="matKhau" cssClass="error text-danger" />
+            </th>
+            <th scope="col">
+                <form:input path="diem"  type="number"></form:input><br>
+                <form:errors path="diem" cssClass="error text-danger" />
+            </th>
             <th>
 
                 <form:select path="hangKhachHang"  items="${hkh}" itemValue="id" itemLabel="ten">
 
                 </form:select>
+                <br>
+                <form:errors path="hangKhachHang" cssClass="error text-danger" />
             </th>
-            <th></th>
-            <th></th>
-            <th></th>
+
         </tr>
 
         </thead>
 
 
 
-
+        <P style="display: none">
+            <form:input path="id"></form:input>
+        </P>
+        <th scope="col" style="display: none">
+            <form:input path="ngayTao" type="date"></form:input>
+        </th>
 
     </table>
-    <BUTTON type="submit"  style="margin-left: 5cm">update</BUTTON>
+
+
+    <BUTTON type="submit"  style="margin-left: 5cm" id="bt" onclick="return thongbao()">update</BUTTON>
 </form:form>
 
 
 
 
+
+<script>
+
+    function thongbao() {
+        var ns=document.getElementById("ns").value;
+        if(confirm("Bạn muốn dùng trức năng")==true){
+            if(ns.trim()===''){
+                document.getElementById("tb").innerHTML="Không để trống ngày sinh";
+                document.getElementById("bt").type="button"
+                return false;
+            }else {
+                document.getElementById("bt").type="submit";
+                return true;
+            }
+        }else {
+            return false;
+        }
+
+
+    }
+
+</script>
 
 
 

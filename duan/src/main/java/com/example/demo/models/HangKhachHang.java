@@ -6,7 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +34,7 @@ public class HangKhachHang {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ma")
     private String ma;
 
@@ -39,23 +43,34 @@ public class HangKhachHang {
     @Column(name = "ten")
     private String ten;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @Positive(message = "Điểm tối thiểu phải là số nguyên dương")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "diem_toi_thieu")
-    private int diem_toi_thieu;
+    private Integer diem_toi_thieu;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "mo_ta")
     private String moTa;
+
+
+
+
+    public String tt(){
+        if(tinhTrang== 0 ){
+            return "Còn dùng";
+        }return "Không còn dùng";
+    }
+
 }

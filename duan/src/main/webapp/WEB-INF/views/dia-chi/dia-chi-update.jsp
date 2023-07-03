@@ -15,7 +15,6 @@
 <body>
 
 
-
 <form:form action="/dia-chi/update" method="post" modelAttribute="dc">
     <table class="table">
         <P style="display: none"><form:input path="id"></form:input></P>
@@ -33,19 +32,22 @@
         <thead>
         <tr>
             <th scope="col">
-                <form:input path="ma"></form:input>
+                <form:input path="ma" readonly="true"></form:input>
             </th>
 
             <th scope="col">
-                <form:input path="diaChi"></form:input>
+                <form:input path="diaChi"></form:input> <br>
+                <form:errors path="diaChi" cssClass="error text-danger"/>
             </th>
 
             <th scope="col">
-                <form:input path="quan"></form:input>
+                <form:input path="quan"></form:input> <br>
+                <form:errors path="quan" cssClass="error text-danger"/>
             </th>
 
             <th scope="col">
-                <form:input path="huyen"></form:input>
+                <form:input path="huyen"></form:input> <br>
+                <form:errors path="huyen" cssClass="error text-danger"/>
             </th>
         </tr>
         </thead>
@@ -55,44 +57,10 @@
         <tr>
 
             <th scope="col">THANH PHO</th>
-            <th scope="col">NGAY TAO</th>
-            <th scope="col">NGAY CAP NHAT</th>
-            <th scope="col">TINH TRANG</th>
-
-
-        </tr>
-        </thead>
-        <thead>
-        <tr>
-
-
-            <th scope="col">
-                <form:input path="thanhPho" ></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="ngayTao" type="date" ></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="ngayCapNhat" type="date" ></form:input>
-            </th>
-
-            <th scope="col">
-                <form:radiobutton path="tinhTrang" label="YES" value="0"></form:radiobutton><br>
-                <form:radiobutton path="tinhTrang" label="NO" value="1"></form:radiobutton>
-
-            </th>
-        </tr>
-        </thead>
-
-
-        <thead>
-        <tr>
-
             <th scope="col">MO TA</th>
             <th scope="col">KHACH HANG</th>
 
 
-
         </tr>
         </thead>
         <thead>
@@ -100,33 +68,47 @@
 
 
             <th scope="col">
-                <form:input path="moTa" ></form:input>
+                <form:input path="thanhPho"></form:input> <br>
+                <form:errors path="thanhPho" cssClass="error text-danger"/>
+            </th>
+            <th scope="col" style="display: none">
+                <form:input path="ngayTao" type="date"></form:input>
+            </th>
+            <th scope="col" style="display: none">
+                <form:input path="ngayCapNhat" type="date"></form:input>
+            </th>
+
+
+            <th scope="col">
+                <form:input path="moTa"></form:input>
+                <br>
+                <form:errors path="moTa" cssClass="error text-danger"/>
             </th>
 
             <th>
 
-                <form:select path="khachHang"  items="${kh}" itemValue="id" itemLabel="hoTen">
+                <form:select path="khachHang" items="${kh}" itemValue="id" itemLabel="hoTen">
 
-                </form:select>
+                </form:select> <br>
+                <form:errors path="khachHang" cssClass="error text-danger"/>
             </th>
         </tr>
         </thead>
 
 
-
-
-
-
-
-
-
     </table>
-    <BUTTON type="submit"  style="margin-left: 5cm">UPDATE</BUTTON>
+    <BUTTON type="submit" style="margin-left: 5cm" onclick="return tb()">UPDATE</BUTTON>
 </form:form>
 
 
-
-
+<script>
+    function tb() {
+        if (confirm("Bạn muốn dùng chức năng") == true) {
+            return true;
+        }
+        return false;
+    }
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

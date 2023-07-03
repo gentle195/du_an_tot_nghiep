@@ -20,7 +20,7 @@
         <thead>
         <tr>
 
-            <th scope="col">MA</th>
+
             <th scope="col">DIA CHI</th>
             <th scope="col">QUAN</th>
             <th scope="col">HUYEN</th>
@@ -30,20 +30,20 @@
         </thead>
         <thead>
         <tr>
+
             <th scope="col">
-                <form:input path="ma"></form:input>
+                <form:input path="diaChi"></form:input><br>
+                <form:errors path="diaChi" cssClass="error text-danger"/>
             </th>
 
             <th scope="col">
-                <form:input path="diaChi"></form:input>
+                <form:input path="quan"></form:input><br>
+                <form:errors path="quan" cssClass="error text-danger"/>
             </th>
 
             <th scope="col">
-                <form:input path="quan"></form:input>
-            </th>
-
-            <th scope="col">
-                <form:input path="huyen"></form:input>
+                <form:input path="huyen"></form:input><br>
+                <form:errors path="huyen" cssClass="error text-danger"/>
             </th>
         </tr>
         </thead>
@@ -53,44 +53,10 @@
         <tr>
 
             <th scope="col">THANH PHO</th>
-            <th scope="col">NGAY TAO</th>
-            <th scope="col">NGAY CAP NHAT</th>
-            <th scope="col">TINH TRANG</th>
-
-
-        </tr>
-        </thead>
-        <thead>
-        <tr>
-
-
-            <th scope="col">
-                <form:input path="thanhPho" ></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="ngayTao" type="date" ></form:input>
-            </th>
-            <th scope="col">
-                <form:input path="ngayCapNhat" type="date" ></form:input>
-            </th>
-
-            <th scope="col">
-                <form:radiobutton path="tinhTrang" label="YES" value="0"></form:radiobutton><br>
-                <form:radiobutton path="tinhTrang" label="NO" value="1"></form:radiobutton>
-
-            </th>
-        </tr>
-        </thead>
-
-
-        <thead>
-        <tr>
-
             <th scope="col">MO TA</th>
             <th scope="col">KHACH HANG</th>
 
 
-
         </tr>
         </thead>
         <thead>
@@ -98,35 +64,35 @@
 
 
             <th scope="col">
-                <form:input path="moTa" ></form:input>
+                <form:input path="thanhPho"></form:input><br>
+                <form:errors path="thanhPho" cssClass="error text-danger"/>
+            </th>
+
+            <th scope="col">
+                <form:textarea path="moTa"></form:textarea><br>
+                <form:errors path="moTa" cssClass="error text-danger"/>
             </th>
 
             <th>
 
-                <form:select path="khachHang"  items="${kh}" itemValue="id" itemLabel="hoTen">
+                <form:select path="khachHang" items="${kh}" itemValue="id" itemLabel="hoTen">
 
                 </form:select>
+                <br>
+                <form:errors path="khachHang" cssClass="error text-danger"/>
             </th>
         </tr>
         </thead>
 
 
-
-
-
-
-
-
-
     </table>
-    <BUTTON type="submit"  style="margin-left: 5cm">ADD</BUTTON>
+    <BUTTON type="submit" onclick="return tb()" style="margin-left: 5cm">ADD</BUTTON>
 </form:form>
-
 
 
 <br><br><br>
 
-<table class="table">
+<table class="table" id="bang">
     <thead>
     <tr>
         <th>STT</th>
@@ -164,14 +130,38 @@
             <td> ${ht.khachHang.hoTen} </td>
 
             <td>
-                <a href="/dia-chi/remove/${ht.id}" class="btn btn-success">REMOVE</a>
+                <a href="/dia-chi/remove/${ht.id}" class="btn btn-success" onclick="return tb()">REMOVE</a>
             </td>
             <td>
-                <a href="/dia-chi/view-update/${ht.id}" class="btn btn-success">VIEW UPDATE</a>
+                <a href="/dia-chi/view-update/${ht.id}" class="btn btn-success" onclick="return tb()">VIEW UPDATE</a>
             </td>
         </tr>
     </c:forEach>
 </table>
+
+<%--<div>--%>
+<%--    <fieldset>--%>
+<%--        <legend >General Information</legend>--%>
+
+<%--    </fieldset>--%>
+<%--</div>--%>
+<P id="bc" style="color: crimson"></P>
+<script>
+    if ("${tong}" <= 0) {
+        document.getElementById("bang").style.display = "none"
+        document.getElementById("bc").innerText = "Hết để xóa rồi cu"
+    } else {
+        document.getElementById("bang").style.display = ""
+        document.getElementById("bc").innerText = ""
+    }
+
+    function tb() {
+        if (confirm("Bạn muốn dùng chức năng") == true) {
+            return true;
+        }
+        return false;
+    }
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -182,6 +172,6 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-<%--        crossorigin="anonymous"></script>--%>
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -31,6 +31,11 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
     }
 
     @Override
+    public List<KhuyenMai> getAll0() {
+        return khuyenMaiRepository.getAll0();
+    }
+
+    @Override
     public KhuyenMai findById(UUID id) {
         return khuyenMaiRepository.findById(id).orElse(null);
     }

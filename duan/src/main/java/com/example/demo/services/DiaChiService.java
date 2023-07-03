@@ -11,6 +11,7 @@ public interface DiaChiService {
     public Page<DiaChi> getAll(Pageable pageable);
 
     public List<DiaChi> findAll();
+    public List<DiaChi> getAll0();
 
     public DiaChi findById(UUID id);
 

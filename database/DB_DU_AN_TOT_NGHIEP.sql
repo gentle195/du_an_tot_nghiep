@@ -24,7 +24,7 @@ CREATE TABLE chip(
   ma VARCHAR(30) NULL,
   ten VARCHAR(50) NULL,
   ngay_tao DATE DEFAULT GETDATE(),
-  ngayCap_nhat DATE NULL,
+  ngay_cap_nhat DATE NULL,
   tinh_trang int DEFAULT 0,
   mo_ta NVARCHAR(MAX) NULL
 );

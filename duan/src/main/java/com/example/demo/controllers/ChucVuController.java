@@ -2,12 +2,15 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.ChucVu;
 import com.example.demo.services.impl.ChucVuServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -24,9 +27,10 @@ public class ChucVuController {
     @GetMapping("/hien-thi")
     public String viewAll(Model model,
                           @RequestParam(defaultValue = "0", name = "page") int page) {
+        Sort sort = Sort.by("ma").ascending();
         if (page < 1) page = 1;
-        Pageable pageable = PageRequest.of(page - 1, 5);
-        listChucVu = chucVuService.getAll(pageable);
+        Pageable pageable = PageRequest.of(page - 1, 5, sort);
+        listChucVu = chucVuService.getAllByPages(pageable);
         model.addAttribute("listChucVu", listChucVu);
         return "chuc-vu/chuc-vu";
     }
@@ -34,11 +38,14 @@ public class ChucVuController {
     @GetMapping("/view-add")
     public String viewAdd(Model model){
         model.addAttribute("chucVu", new ChucVu());
-        return "chuc-vu/add-chuc-vu";
+        return "chuc-vu/chuc-vu-add";
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute(name = "chucVu") ChucVu chucVu){
+    public String add(@Valid @ModelAttribute(name = "chucVu") ChucVu chucVu, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "chuc-vu/chuc-vu-add";
+        }
         chucVuService.add(chucVu);
         return "redirect:/chuc-vu/hien-thi";
     }
@@ -49,12 +56,14 @@ public class ChucVuController {
         ChucVu chucVu = chucVuService.getById(id);
         System.out.println(chucVu.toString());
         model.addAttribute("chucVu", chucVu);
-        return "chuc-vu/detail-chuc-vu";
+        return "chuc-vu/chuc-vu-detail";
     }
 
     @PostMapping("/update/{id}")
-    public String update(@ModelAttribute(name = "chucVu") ChucVu chucVu){
-        chucVuService.update(chucVu);
+    public String update(@ModelAttribute(name = "chucVu") ChucVu chucVu,
+                         @PathVariable(name = "id") UUID id){
+        chucVu.setId(id);
+        chucVuService.update(id, chucVu);
         return "redirect:/chuc-vu/hien-thi";
     }
 

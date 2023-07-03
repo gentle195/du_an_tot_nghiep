@@ -17,55 +17,57 @@
             <thead>
             <tr>
                 <th><form:label path="ma">Mã màu : </form:label></th>
-                <th><form:input path="ma"></form:input></th>
+                <th><form:input path="ma" readonly="true"></form:input></th>
             </tr>
             </thead>
             <thead>
             <tr>
                 <th><form:label path="ten">Tên màu : </form:label></th>
-                <th><form:input path="ten"></form:input></th>
+                <th><form:input path="ten"></form:input>
+                    <form:errors path="ten"></form:errors>
+                </th>
             </tr>
             </thead>
             <thead>
-            <tr>
+            <tr style="display: none">
                 <th>
                     <form:label path="ngayTao">Ngày tạo </form:label>
                 <th><form:input path="ngayTao" type="date"></form:input></th>
             </tr>
             </thead>
 
-            <thead>
-            <tr>
-                <th><form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>
-                <th><form:input path="ngayCapNhat" type="date"></form:input></th>
-            </tr>
-            </thead>
+                <%--            <thead>--%>
+                <%--            <tr>--%>
+                <%--                <th><form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>--%>
+                <%--                <th><form:input path="ngayCapNhat" type="date"></form:input></th>--%>
+                <%--            </tr>--%>
+                <%--            </thead>--%>
 
-            <thead>
-            <tr>
-                <th><form:label path="tinhTrang">Tình trạng</form:label></th>
-                <th><form:radiobutton path="tinhTrang" label="Không hoạt động" value="0"></form:radiobutton>
-                    <form:radiobutton path="tinhTrang" label="Còn hoạt động" value="1"></form:radiobutton>
-                </th>
+                <%--            <thead>--%>
+                <%--            <tr>--%>
+                <%--                <th><form:label path="tinhTrang">Tình trạng</form:label></th>--%>
+                <%--                <th>       <form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>--%>
+                <%--                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton></th>--%>
+                <%--                </th>--%>
 
-            </tr>
-            </thead>
-            <thead>
+                <%--            </tr>--%>
+                <%--            </thead>--%>
+                <%--            <thead>--%>
 
-            <tr>
-                <th>
-                    <form:label path="moTa">Mô tả</form:label></th>
-                <th><form:textarea path="moTa"></form:textarea></th>
-            </tr>
-            </thead>
+        <tr>
+            <th>
+                <form:label path="moTa">Mô tả</form:label></th>
+            <th><form:textarea path="moTa"></form:textarea>
+                <form:errors path="moTa"></form:errors></th>
+        </tr>
+        </thead>
 
-            <thead>
-            <tr>
-                <button type="submit" class="btn btn-primary">
-                    Thêm màu sắc
-                </button>
-            </tr>
-            </thead>
+        <thead>
+        <tr>
+
+            <button type="submit" class="btn btn-primary" onclick="validateForm()">Thêm màu sắc</button>
+        </tr>
+        </thead>
         </tr>
     </table>
 </form:form>
@@ -98,7 +100,7 @@
             <td>${mauSac.ten}</td>
             <td>${mauSac.ngayTao}</td>
             <td>${mauSac.ngayCapNhat}</td>
-            <td>${mauSac.tinhTrang()}</td>
+            <td>${mauSac.trangThai()}</td>
             <td>${mauSac.moTa}</td>
 
 
@@ -109,8 +111,42 @@
         </tr>
         </tbody>
     </c:forEach>
-
 </table>
+
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="/mau-sac/hien-thi?num=0">Previous</a>
+        </li>
+
+        <c:forEach begin="1" end="${tongSoTrang}" varStatus="STT">
+            <li class="page-item"><a class="page-link" href="/mau-sac/hien-thi?num=${STT.index-1}">${STT.index}</a>
+            </li>
+        </c:forEach>
+
+        <li class="page-item">
+
+            <a class="page-link" href="/mau-sac/hien-thi?num=${tongSoTrang-1}">Next</a>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    function validateForm() {
+        var tenValue = document.querySelector('input[name="ten"]').value;
+        var moTaValue = document.querySelector('textarea[name="moTa"]').value;
+
+        if (tenValue.trim() === '') {
+            alert('Vui lòng không để trống trường Tên màu');
+            return false;
+        }
+
+        if (moTaValue.trim() === '') {
+            alert('Vui lòng không để trống trường Mô tả');
+            return false;
+        }
+    }
+</script>
 
 </body>
 

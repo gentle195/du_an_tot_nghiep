@@ -12,6 +12,7 @@ public interface HangKhachHangService {
 
     public List<HangKhachHang> findAll();
 
+    public List<HangKhachHang> getALL0();
     public HangKhachHang findById(UUID id);
 
     public HangKhachHang add(HangKhachHang hangKhachHang);

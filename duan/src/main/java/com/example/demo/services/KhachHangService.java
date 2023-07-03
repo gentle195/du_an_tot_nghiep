@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.models.HangKhachHang;
 import com.example.demo.models.KhachHang;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,8 @@ public interface KhachHangService {
     public KhachHang update(UUID id, KhachHang khachHang);
 
     public Boolean delete(UUID id);
+
+    public List<KhachHang> getALL0();
 }
 
 

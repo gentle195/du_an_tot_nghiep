@@ -9,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 </head>
 <body>
-
 
 
 <br>
@@ -28,7 +29,7 @@
 
             <th scope="col">MA</th>
             <th scope="col">
-                <form:input path="ma"></form:input>
+                <P><form:input path="ma" readonly="true"></form:input></P>
             </th>
 
         </tr>
@@ -38,7 +39,8 @@
 
             <th scope="col">TEN</th>
             <th scope="col">
-                <form:input path="ten"></form:input>
+                <form:input path="ten"></form:input><br>
+                <form:errors path="ten" cssClass="error text-danger"/>
             </th>
 
         </tr>
@@ -48,25 +50,28 @@
 
             <th scope="col">DIEM TOI THIEU</th>
             <th scope="col">
-                <form:input path="diem_toi_thieu" type="number"></form:input>
+                <form:input path="diem_toi_thieu" type="number" id="dtt"></form:input><br>
+                <form:errors path="diem_toi_thieu" cssClass="error text-danger"/>
             </th>
 
         </tr>
         </thead>
 
         <thead>
-        <tr>
+        <tr style="display: none">
 
             <th scope="col">NGAY TAO</th>
             <th scope="col">
-                <form:input path="ngayTao" type="date"></form:input>
+                <form:input path="ngayTao" type="date"></form:input><br>
+
+
             </th>
 
         </tr>
         </thead>
 
         <thead>
-        <tr>
+        <tr style="display: none">
 
             <th scope="col">NGAY CAP NHAT</th>
             <th scope="col">
@@ -77,7 +82,7 @@
         </thead>
 
         <thead>
-        <tr>
+        <tr style="display: none">
 
             <th scope="col">TINH TRANG</th>
             <th scope="col">
@@ -91,7 +96,8 @@
         <tr>
             <th scope="col">Mo TA</th>
             <th scope="col">
-                <form:input path="moTa" type="text"></form:input>
+                <form:textarea path="moTa" type="text"></form:textarea><br>
+                <form:errors path="moTa" cssClass="error text-danger"/>
             </th>
         </tr>
         </thead>
@@ -100,7 +106,7 @@
 
             <th scope="col"></th>
             <th scope="col">
-                <BUTTON type="submit">UPDATE</BUTTON>
+                <BUTTON type="submit" class="btn btn-primary" onclick="return tb()">UPDATE</BUTTON>
             </th>
 
         </tr>
@@ -109,8 +115,18 @@
 </form:form>
 
 
+<script>
+    function tb() {
+        var dtt = document.getElementById("dtt").value;
+        if (confirm("Bạn muốn dùng chức năng") == true) {
 
+            return true;
 
+        }
+        return false;
+    }
+
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

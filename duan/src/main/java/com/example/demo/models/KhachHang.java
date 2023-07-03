@@ -10,6 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +35,7 @@ public class KhachHang {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ma")
     private String ma;
 
@@ -40,19 +43,21 @@ public class KhachHang {
     @Column(name = "ho_ten")
     private String hoTen;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "gioi_tinh")
     private Boolean gioiTinh;
 
     @NotBlank(message = "Không để trống thông tin")
+    @Pattern(regexp = "^.{8,}@gmail\\.com$", message = "Email phải có ít nhất 8 ký tự và phải có đuôi @gmail.com")
     @Column(name = "email")
     private String email;
 
     @NotBlank(message = "Không để trống thông tin")
+    @Pattern(regexp = "^0[0-9]{11}$", message = "Sdt phải 12 số và bắt đầu bằng 0")
     @Column(name = "sdt")
     private String sdt;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin ngày sinh")
     @Column(name = "ngay_sinh")
     private Date ngaySinh;
 
@@ -64,23 +69,38 @@ public class KhachHang {
     @Column(name = "mat_khau")
     private String matKhau;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @Positive(message = "Điểm tối thiểu phải là số nguyên dương")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "diem")
-    private int diem;
+    private Integer diem;
 
+    @NotNull(message = "Không để trống thông tin")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hang_khach_hang")
     private HangKhachHang hangKhachHang;
+
+
+    public  String goitinh(){
+        if (gioiTinh==true){
+            return "nam";
+        }
+        return "nu";
+    }
+    public String tt(){
+        if(tinhTrang== 0 ){
+            return "Còn dùng";
+        }return "Không còn dùng";
+    }
 }

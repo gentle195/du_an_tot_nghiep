@@ -11,7 +11,7 @@ public interface MauSacService {
     public Page<MauSac> getAll(Pageable pageable);
 
     public List<MauSac> findAll();
-
+    public List<MauSac> getAll0();
     public MauSac findById(UUID id);
 
     public MauSac add(MauSac mauSac);

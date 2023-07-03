@@ -17,7 +17,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/khach-hang")
 public class KhachHangController {
-  
+
 
     @Autowired
     KhachHangService khachHangService;

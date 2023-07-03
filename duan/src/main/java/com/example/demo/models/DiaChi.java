@@ -32,7 +32,7 @@ public class DiaChi {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ma")
     private String ma;
 
@@ -52,15 +52,15 @@ public class DiaChi {
     @Column(name = "thanh_pho")
     private String thanhPho;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
@@ -71,4 +71,11 @@ public class DiaChi {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_khach_hang")
     private KhachHang khachHang;
+
+    public String tt(){
+        if(tinhTrang== 0 ){
+            return "Còn dùng";
+        }return "Không còn dùng";
+    }
+
 }

@@ -12,6 +12,7 @@ public interface KhuyenMaiService {
 
     public List<KhuyenMai> findAll();
 
+    public List<KhuyenMai> getAll0();
     public KhuyenMai findById(UUID id);
 
     public KhuyenMai add(KhuyenMai khuyenMai);
@@ -19,6 +20,8 @@ public interface KhuyenMaiService {
     public KhuyenMai update(UUID id, KhuyenMai khuyenMai);
 
     public Boolean delete(UUID id);
+
+
 }
 
 

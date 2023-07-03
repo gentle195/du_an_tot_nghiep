@@ -30,7 +30,7 @@ public class MauSac {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ma")
     private String ma;
 
@@ -39,19 +39,24 @@ public class MauSac {
     @Column(name = "ten")
     private String ten;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "mo_ta")
     private String moTa;
+    public String trangThai(){
+        if(tinhTrang== 0 ){
+            return "Còn dùng";
+        }return "Không còn dùng";
+
+    }
 }

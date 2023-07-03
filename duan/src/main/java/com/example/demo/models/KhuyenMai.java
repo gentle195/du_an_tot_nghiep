@@ -31,7 +31,7 @@ public class KhuyenMai {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ma")
     private String ma;
 
@@ -40,23 +40,23 @@ public class KhuyenMai {
     @Column(name = "ten")
     private String ten;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_bat_dau")
     private Date ngayBatDau;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_ket_thuc")
     private Date ngayKetThuc;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
@@ -68,11 +68,17 @@ public class KhuyenMai {
     @Column(name = "hinh_thuc_giam_gia")
     private String hinhThucGiamGia;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "so_tien_giam")
     private BigDecimal soTienGiam;
 
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "mo_ta")
     private String moTa;
+    public String trangThai(){
+        if(tinhTrang== 0 ){
+            return "Còn dùng";
+        }return "Không còn dùng";
+
+    }
 }

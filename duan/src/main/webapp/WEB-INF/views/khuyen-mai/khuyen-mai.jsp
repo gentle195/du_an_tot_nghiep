@@ -13,82 +13,97 @@
 <body>
 <form:form action="/khuyen-mai/add-khuyen-mai" method="post" modelAttribute="km">
     <table class="tb">
-
+        <tr style="text-align: center">
             <thead>
             <tr>
                 <th>
                     <form:label path="ma">Mã khuyến mãi : </form:label></th>
-                <th><form:input path="ma"></form:input></th>
+                <th><form:input path="ma" readonly="true"></form:input></th>
             </tr>
             </thead>
+
             <thead>
             <tr>
                 <th>
                     <form:label path="ten">Tên khuyến mãi: </form:label></th>
                 <th><form:input path="ten"></form:input>
+                    <form:errors path="ten"></form:errors>
                 </th>
             </tr>
             </thead>
-            <thead>
-            <tr>
-                <th><form:label path="ngayTao">Ngày tạo </form:label></th>
-                <th><form:input path="ngayTao" type="date"></form:input></th>
-            </tr>
-            </thead>
-            <thead>
-            <tr>
-                <th><form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>
-                <th><form:input path="ngayCapNhat" type="date"></form:input></th>
-            </tr>
-            </thead>
+
+                <%--            <thead>--%>
+                <%--            <tr>--%>
+                <%--                <th><form:label path="ngayTao">Ngày tạo </form:label></th>--%>
+                <%--                <th><form:input path="ngayTao" type="date"></form:input></th>--%>
+                <%--            </tr>--%>
+                <%--            </thead>--%>
+
+                <%--            <thead>--%>
+                <%--            <tr>--%>
+                <%--                <th><form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>--%>
+                <%--                <th><form:input path="ngayCapNhat" type="date"></form:input></th>--%>
+                <%--            </tr>--%>
+                <%--            </thead>--%>
             <thead>
             <tr>
                 <th><form:label path="ngayBatDau">Ngày bắt đầu</form:label></th>
                 <th><form:input path="ngayBatDau" type="date"></form:input></th>
             </tr>
             </thead>
+
             <thead>
             <tr>
-                <th><form:label path="ngayKetThuc">Ngày cập nhật</form:label></th>
+                <th><form:label path="ngayKetThuc">Ngày kết thúc:</form:label></th>
                 <th><form:input path="ngayKetThuc" type="date"></form:input></th>
             </tr>
             </thead>
+
             <thead>
             <tr>
                 <th><form:label path="loaiGiamGia">Loại giảm giá : </form:label></th>
-                <th><form:input path="loaiGiamGia"></form:input></th>
+                <th><form:input path="loaiGiamGia"></form:input>
+                    <form:errors path="loaiGiamGia"></form:errors></th>
             </tr>
             </thead>
+
             <thead>
             <tr>
 
                 <th><form:label path="hinhThucGiamGia">Hình thức giảm giá : </form:label></th>
-                <th><form:input path="hinhThucGiamGia"></form:input></th>
+                <th><form:input path="hinhThucGiamGia"></form:input>
+                    <form:errors path="hinhThucGiamGia"></form:errors></th>
             </tr>
             </thead>
+
             <thead>
             <tr>
                 <th><form:label path="soTienGiam">So tien giam : </form:label></th>
-                <th><form:input path="soTienGiam"></form:input></th>
+                <th><form:input path="soTienGiam"></form:input>
+                    <form:errors path="soTienGiam"></form:errors></th>
             </tr>
             </thead>
-            <thead>
-            <tr>
-                <th><form:label path="tinhTrang">Tình trạng</form:label></th>
-                <th>
-                    <form:radiobutton path="tinhTrang" label="Không hoạt động" value="0"></form:radiobutton>
-                    <form:radiobutton path="tinhTrang" label="Còn hoạt động" value="1"></form:radiobutton></th>
-            </tr>
-            </thead>
+
+                <%--            <thead>--%>
+                <%--            <tr>--%>
+                <%--                <th><form:label path="tinhTrang">Tình trạng</form:label></th>--%>
+                <%--                <th>--%>
+                <%--                    <form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>--%>
+                <%--                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton></th>--%>
+                <%--            </tr>--%>
+                <%--            </thead>--%>
             <thead>
             <tr>
                 <th>
                     <form:label path="moTa">Mô tả</form:label></th>
-                <th><form:textarea path="moTa"></form:textarea></th>
+                <th><form:textarea path="moTa"></form:textarea>
+                    <form:errors path="moTa"></form:errors></th>
 
                 <button type="submit" class="btn btn-primary">ADD</button>
             </tr>
+
             </thead>
+        </tr>
 
     </table>
 </form:form>
@@ -135,7 +150,7 @@
             <td>${khuyenMai.hinhThucGiamGia}</td>
             <td>${khuyenMai.soTienGiam}</td>
 
-            <td>${khuyenMai.tinhTrang()}</td>
+            <td>${khuyenMai.trangThai()}</td>
             <td>${khuyenMai.moTa}</td>
 
 
@@ -149,6 +164,24 @@
     </c:forEach>
 
 </table>
+</table>
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="/khuyen-mai/hien-thi?num=0">Previous</a>
+        </li>
+
+        <c:forEach begin="1" end="${tongSoTrang}" varStatus="STT">
+            <li class="page-item"><a class="page-link" href="/khuyen-mai/hien-thi?num=${STT.index-1}">${STT.index}</a>
+            </li>
+        </c:forEach>
+
+        <li class="page-item">
+
+            <a class="page-link" href="/khuyen-mai/hien-thi?num=${tongSoTrang-1}">Next</a>
+        </li>
+    </ul>
+</nav>
 
 
 </body>

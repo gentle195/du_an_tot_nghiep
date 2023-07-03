@@ -25,7 +25,7 @@
             <tr>
                 <td> Mã:</td>
                 <th>
-                    <form:input path="ma" id="mat"></form:input>
+                    <form:input path="ma" id="mat" disabled="true"></form:input>
 
                 </th>
             </tr>
@@ -35,22 +35,23 @@
             <tr>
                 <td> Tên:</td>
                 <th><form:input path="ten" id="tent"></form:input></th>
+                <th><form:errors path="ten" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
 
-            <tbody>
-            <tr>
-                <td> Ngay tao:</td>
-                <th><form:input path="ngayTao" type="date"></form:input></th>
-            </tr>
-            </tbody>
+                <%--            <tbody>--%>
+                <%--            <tr>--%>
+                <%--                <td> Ngay tao:</td>--%>
+                <%--                <th><form:input path="ngayTao" type="date"></form:input></th>--%>
+                <%--            </tr>--%>
+                <%--            </tbody>--%>
 
-            <tbody>
-            <tr>
-                <td> Ngay cap nhat:</td>
-                <th><form:input path="ngayCapNhat" type="date" value="<%= java.time.LocalDate.now() %>" ></form:input></th>
-            </tr>
-            </tbody>
+                <%--            <tbody>--%>
+                <%--            <tr>--%>
+                <%--                <td> Ngay cap nhat:</td>--%>
+                <%--                <th><form:input path="ngayCapNhat" type="date" value="<%= java.time.LocalDate.now() %>" ></form:input></th>--%>
+                <%--            </tr>--%>
+                <%--            </tbody>--%>
 
             <tbody>
             <tr>
@@ -65,7 +66,8 @@
             <tbody>
             <tr>
                 <td>Mo ta:</td>
-                <th><form:input path="moTa" ></form:input></th>
+                <th><form:textarea path="moTa" ></form:textarea></th>
+                <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
 
@@ -80,7 +82,7 @@
                 <td>
 
                     <button type="submit" style="float: right" class="btn btn-success"
-                            id="btt">UPDATE
+                            id="btt" onclick="return myFunction2()">UPDATE
                     </button>
                 </td>
                 <th></th>
@@ -91,4 +93,47 @@
     </form:form>
 </div>
 </body>
+<script>
+    function myFunction1() {
+        let text = "Bạn chắc chắn muốn thêm";
+        let kt = confirm(text);
+        if (kt == true) {
+            confirm("Thêm thành công");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function myFunction2() {
+        let text = "Bạn chắc chắn muốn sửa";
+        let kt = confirm(text);
+        if (kt == true) {
+            return true
+        } else {
+            return false;
+        }
+    }
+
+    function myFunction3() {
+        let text = "Bạn chắc chắn muốn sửa";
+        let kt = confirm(text);
+        if (kt == true) {
+            return true
+        } else {
+            return false;
+        }
+    }
+
+    function myFunction4() {
+        let text = "Bạn chắc chắn muốn xóa";
+        let kt = confirm(text);
+        if (kt == true) {
+            return true
+        } else {
+            return false;
+        }
+    }
+
+</script>
 </html>

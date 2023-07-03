@@ -56,7 +56,7 @@ public class NhanVienController {
                          Model model){
         List<ChucVu> listChucVu = chucVuRepository.findAll();
         model.addAttribute("listChucVu", listChucVu);
-        nhanVienService.getById(id);
+        nhanVienService.findById(id);
         return "nhan-vien/detail-nhan-vien";
     }
 
@@ -68,7 +68,7 @@ public class NhanVienController {
 
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute(name = "nhanVien") NhanVien nhanVien){
-        nhanVienService.update(nhanVien);
+        nhanVienService.add(nhanVien);
         return "redirect:/nhan-vien/hien-thi";
     }
 }

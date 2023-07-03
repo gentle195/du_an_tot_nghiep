@@ -36,8 +36,8 @@ public class KhachHangController {
         khachHang.setGioiTinh(true);
 
 
-        model.addAttribute("dulieu", khachHangService.getAllKH());
-        model.addAttribute("hkh",hangKhachHangService.getAllHKH());
+        model.addAttribute("dulieu", khachHangService.findAll());
+        model.addAttribute("hkh",hangKhachHangService.findAll());
         return "khach-hang/khach-hang";
     }
 
@@ -48,7 +48,7 @@ public class KhachHangController {
                          @PathVariable("id") UUID id
 
     ) {
-        khachHangService.remove(id);
+        khachHangService.delete(id);
         return "redirect:/khach-hang/hien-thi";
     }
 
@@ -62,8 +62,8 @@ public class KhachHangController {
     ) {
         khachHang.setTinhTrang(0);
         khachHang.setGioiTinh(true);
-        model.addAttribute("kh", khachHangService.getOne(id));
-        model.addAttribute("hkh",hangKhachHangService.getAllHKH());
+        model.addAttribute("kh", khachHangService.findById(id));
+        model.addAttribute("hkh",hangKhachHangService.findAll());
         return "khach-hang/khach-hang-update";
     }
 
@@ -76,7 +76,7 @@ public class KhachHangController {
 
 
 
-        khachHangService.addOrUpdate(khachHang);
+        khachHangService.add(khachHang);
 
         return "redirect:/khach-hang/hien-thi";
     }
@@ -91,7 +91,7 @@ public class KhachHangController {
     ) {
 
 
-        khachHangService.addOrUpdate(khachHang);
+        khachHangService.add(khachHang);
         return "redirect:/khach-hang/hien-thi";
     }
 

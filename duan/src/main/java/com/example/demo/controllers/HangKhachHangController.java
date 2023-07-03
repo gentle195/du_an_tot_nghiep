@@ -29,7 +29,7 @@ public class HangKhachHangController {
             ) {
 hangKhachHang.setTinhTrang(0);
 
-        model.addAttribute("dulieu", hangKhachHangService.getAllHKH());
+        model.addAttribute("dulieu", hangKhachHangService.findAll());
 
         return "hang-khach-hang/hang-khach-hang";
     }
@@ -41,7 +41,7 @@ hangKhachHang.setTinhTrang(0);
                          @PathVariable("id") UUID id
 
     ) {
-        hangKhachHangService.remove(id);
+        hangKhachHangService.delete(id);
         return "redirect:/hang-khach-hang/hien-thi";
     }
 
@@ -54,7 +54,7 @@ hangKhachHang.setTinhTrang(0);
 
     ) {
 hangKhachHang.setTinhTrang(0);
-        model.addAttribute("hkh", hangKhachHangService.getOne(id));
+        model.addAttribute("hkh", hangKhachHangService.findById(id));
 
         return "hang-khach-hang/hang-khach-hang-update";
     }
@@ -68,7 +68,7 @@ hangKhachHang.setTinhTrang(0);
 
 
 
-       hangKhachHangService.addOrUpdate(hangKhachHang);
+       hangKhachHangService.add(hangKhachHang);
 
         return "redirect:/hang-khach-hang/hien-thi";
     }
@@ -83,7 +83,7 @@ hangKhachHang.setTinhTrang(0);
     ) {
 
 
-        hangKhachHangService.addOrUpdate(hangKhachHang);
+        hangKhachHangService.add(hangKhachHang);
         return "redirect:/hang-khach-hang/hien-thi";
     }
 

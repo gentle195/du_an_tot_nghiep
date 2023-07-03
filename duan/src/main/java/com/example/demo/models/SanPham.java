@@ -33,7 +33,6 @@ public class SanPham {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ma")
     private String ma;
 
@@ -42,15 +41,12 @@ public class SanPham {
     @Column(name = "ten")
     private String ten;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

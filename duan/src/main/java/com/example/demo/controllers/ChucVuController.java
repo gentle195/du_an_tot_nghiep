@@ -46,7 +46,7 @@ public class ChucVuController {
     @GetMapping("/detail/{id}")
     public String detail(Model model,
             @PathVariable(name = "id") UUID id){
-        ChucVu chucVu = chucVuService.getById(id);
+        ChucVu chucVu = chucVuService.findById(id);
         System.out.println(chucVu.toString());
         model.addAttribute("chucVu", chucVu);
         return "chuc-vu/detail-chuc-vu";
@@ -54,7 +54,7 @@ public class ChucVuController {
 
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute(name = "chucVu") ChucVu chucVu){
-        chucVuService.update(chucVu);
+        chucVuService.add(chucVu);
         return "redirect:/chuc-vu/hien-thi";
     }
 

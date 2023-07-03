@@ -46,14 +46,14 @@ public class MucQuyDoiController {
     @GetMapping("/detail/{id}")
     public String detail(Model model,
                          @PathVariable(name = "id") UUID id){
-        MucQuyDoi mucQuyDoi = mucQuyDoiService.getById(id);
+        MucQuyDoi mucQuyDoi = mucQuyDoiService.findById(id);
         model.addAttribute("mucQuyDoi", mucQuyDoi);
         return "muc-quy-doi/detail-muc-quy-doi";
     }
 
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute(name = "mucQuyDoi") MucQuyDoi mucQuyDoi){
-        mucQuyDoiService.update(mucQuyDoi);
+        mucQuyDoiService.add(mucQuyDoi);
         return "redirect:/muc-quy-doi/hien-thi";
     }
 

@@ -24,7 +24,7 @@ public class RamController {
     public String hienThi(Model model, @ModelAttribute("r") Ram ram
     ) {
         ram.setTinhTrang(0);
-        model.addAttribute("duLieu", ramService.getAllRam());
+        model.addAttribute("duLieu", ramService.findAll());
         return "ram/ram";
     }
 
@@ -32,7 +32,7 @@ public class RamController {
     @PostMapping("add-ram")
     public String addMauSac(Model model, @ModelAttribute("r") Ram ram
     ) {
-        ramService.addOrUpdate(ram);
+        ramService.add(ram);
 
         return "redirect:/ram/hien-thi";
     }
@@ -41,21 +41,21 @@ public class RamController {
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("r") Ram ram) {
 
         ram.setTinhTrang(0);
-        model.addAttribute("r", ramService.getOne(id));
+        model.addAttribute("r", ramService.findById(id));
         return "/ram/ram-update";
     }
 
     @PostMapping("/update-ram")
     public String updateRam(Model model, @ModelAttribute("r") Ram ram) {
 
-        ramService.addOrUpdate(ram);
+        ramService.add(ram);
 
         return "redirect:/ram/hien-thi";
     }
 
     @GetMapping("/remove-ram/{id}")
     public String delete(Model model, @PathVariable("id") UUID id) {
-        ramService.remove(id);
+        ramService.delete(id);
         return "redirect:/ram/hien-thi";
     }
 

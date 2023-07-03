@@ -26,7 +26,7 @@ public class KhuyenMaiController {
     ) {
 
         khuyenMai.setTinhTrang(0);
-        model.addAttribute("duLieu", khuyenMaiService.getAllKhuyenMai());
+        model.addAttribute("duLieu", khuyenMaiService.findAll());
         return "khuyen-mai/khuyen-mai";
     }
 
@@ -36,7 +36,7 @@ public class KhuyenMaiController {
 
     ) {
 
-        khuyenMaiService.addOrUpdate(khuyenMai);
+        khuyenMaiService.add(khuyenMai);
         return "redirect:/khuyen-mai/hien-thi";
     }
 
@@ -45,14 +45,14 @@ public class KhuyenMaiController {
 
 
         khuyenMai.setTinhTrang(0);
-        model.addAttribute("km", khuyenMaiService.getOne(id));
+        model.addAttribute("km", khuyenMaiService.findById(id));
         return "khuyen-mai/khuyen-mai-update";
     }
 
     @PostMapping("/update-khuyen-mai")
     public String updateKhuyenMai(Model model, @ModelAttribute("km") KhuyenMai khuyenMai) {
 
-        khuyenMaiService.addOrUpdate(khuyenMai);
+        khuyenMaiService.add(khuyenMai);
 
         return "redirect:/khuyen-mai/hien-thi";
     }
@@ -61,7 +61,7 @@ public class KhuyenMaiController {
     public String delete(Model model, @PathVariable("id") UUID id,
                          @ModelAttribute("khuyenMai") KhuyenMai khuyenMai) {
 
-        khuyenMaiService.remove(id);
+        khuyenMaiService.delete(id);
 
         return "redirect:/khuyen-mai/hien-thi";
     }

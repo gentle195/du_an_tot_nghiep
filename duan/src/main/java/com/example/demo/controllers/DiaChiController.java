@@ -30,8 +30,8 @@ public class DiaChiController {
             @ModelAttribute("dc") DiaChi diaChi
     ) {
         diaChi.setTinhTrang(0);
-        model.addAttribute("dulieu", diaChiService.getAllDC());
-        model.addAttribute("kh", khachHangService.getAllKH());
+        model.addAttribute("dulieu", diaChiService.findAll());
+        model.addAttribute("kh", khachHangService.findAll());
         return "dia-chi/dia-chi";
     }
 
@@ -40,7 +40,7 @@ public class DiaChiController {
     public String remove(Model model,
                          @PathVariable("id") UUID id
     ) {
-        diaChiService.remove(id);
+        diaChiService.delete(id);
         return "redirect:/dia-chi/hien-thi";
     }
 
@@ -51,8 +51,8 @@ public class DiaChiController {
 
     ) {
         diaChi.setTinhTrang(0);
-        model.addAttribute("dc", diaChiService.getOne(id));
-        model.addAttribute("kh", khachHangService.getAllKH());
+        model.addAttribute("dc", diaChiService.findById(id));
+        model.addAttribute("kh", khachHangService.findAll());
         return "dia-chi/dia-chi-update";
     }
 
@@ -61,7 +61,7 @@ public class DiaChiController {
     public String updateDongSP(Model model,
                                @ModelAttribute("dc") DiaChi diaChi
     ) {
-        diaChiService.addOrUpdate(diaChi);
+        diaChiService.add(diaChi);
         return "redirect:/dia-chi/hien-thi";
     }
 
@@ -70,7 +70,7 @@ public class DiaChiController {
     public String updateadd(Model model,
                             @ModelAttribute("dc") DiaChi diaChi
     ) {
-        diaChiService.addOrUpdate(diaChi);
+        diaChiService.add(diaChi);
         return "redirect:/dia-chi/hien-thi";
     }
 }

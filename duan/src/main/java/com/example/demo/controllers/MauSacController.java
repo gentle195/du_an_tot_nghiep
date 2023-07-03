@@ -26,7 +26,7 @@ public class MauSacController {
     ) {
 
         mauSac.setTinhTrang(0);
-        model.addAttribute("duLieu", mauSacService.getAllMauSac());
+        model.addAttribute("duLieu", mauSacService.findAll());
 
         return "mau-sac/mau-sac";
     }
@@ -34,7 +34,7 @@ public class MauSacController {
     @PostMapping("/add-mau-sac")
     public String addMauSac(Model model, @ModelAttribute("ms") MauSac mauSac
     ) {
-        mauSacService.addOrUpdate(mauSac);
+        mauSacService.add(mauSac);
         return "redirect:/mau-sac/hien-thi";
     }
 
@@ -42,7 +42,7 @@ public class MauSacController {
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("ms") MauSac mauSac) {
 
 //        mauSac.setTinhTrang(0);
-        model.addAttribute("ms", mauSacService.getOne(id));
+        model.addAttribute("ms", mauSacService.findById(id));
 
         return "mau-sac/mau-sac-update";
     }
@@ -51,7 +51,7 @@ public class MauSacController {
     public String updateMauSac(Model model, @ModelAttribute("ms") MauSac mauSac) {
 
 
-        mauSacService.addOrUpdate(mauSac);
+        mauSacService.add(mauSac);
 
         return "redirect:/mau-sac/hien-thi";
     }
@@ -60,7 +60,7 @@ public class MauSacController {
     public String delete(Model model, @PathVariable("id") UUID id,
                          @ModelAttribute("ms") MauSac mauSac) {
 
-        mauSacService.remove(id);
+        mauSacService.delete(id);
         return "redirect:/mau-sac/hien-thi";
     }
 

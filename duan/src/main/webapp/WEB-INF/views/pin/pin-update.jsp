@@ -15,40 +15,42 @@
 <hr>
 <form:form action="/pin/update-pin/${Pin.id}" method="post" modelAttribute="Pin">
     <div class="row">
-        <div class="col">
+        <div class="col" style="display: none">
             <form:label path="ma"><b>Mã:</b></form:label>
             <form:input path="ma" class="form-control"></form:input>
         </div>
         <div class="col">
             <form:label path="loaiPin"><b>Loại Pin:</b></form:label>
             <form:input path="loaiPin" class="form-control"></form:input>
+            <form:errors path="loaiPin"></form:errors>
         </div>
 
-        <div class="col">
+        <div class="col" style="display: none">
             <form:label path="ngayTao"><b>Ngày Tạo:</b></form:label>
             <form:input path="ngayTao" class="form-control" type="date"></form:input>
         </div>
 
-        <div class="col">
-            <form:label path="ngayCapNhat"><b>Ngày Cập nhật:</b></form:label>
-            <form:input path="ngayCapNhat" class="form-control" type="date"></form:input>
-        </div>
+<%--        <div class="col">--%>
+<%--            <form:label path="ngayCapNhat"><b>Ngày Cập nhật:</b></form:label>--%>
+<%--            <form:input path="ngayCapNhat" class="form-control" type="date"></form:input>--%>
+<%--        </div>--%>
 
-        <div class="col">
-            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
-            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>
-            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>
-        </div>
+<%--        <div class="col">--%>
+<%--            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>--%>
+<%--            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>--%>
+<%--            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>--%>
+<%--        </div>--%>
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>
-            <form:input path="moTa" class="form-control"></form:input>
+            <form:textarea path="moTa" class="form-control"></form:textarea>
+            <form:errors path="moTa"></form:errors>
         </div>
         <div class="col">
             <form:label path="dungLuongPin"><b>Dung Lượng:</b></form:label>
             <form:select path="dungLuongPin" items="${dungLuongPin}" class="form-control" itemLabel="thongSo" itemValue="id"></form:select>
         </div>
-        <div>
-            <button type="submit" class="btn btn-primary">SAVE</button>
+        <div style="margin-top: 20px; margin-bottom: 20px">
+            <button type="submit" class="btn btn-primary" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">SAVE</button>
         </div>
     </div>
 </form:form>

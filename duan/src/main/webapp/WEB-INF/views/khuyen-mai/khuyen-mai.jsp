@@ -155,8 +155,8 @@
 
 
             <td>
-                <a href="/khuyen-mai/view-update-khuyen-mai/${khuyenMai.id}">Update</a>
-                <a href="/khuyen-mai/remove-khuyen-mai/${khuyenMai.id}">Delete</a>
+                <a href="/khuyen-mai/view-update-khuyen-mai/${khuyenMai.id}"  onclick="return tb()">Update</a>
+                <a href="/khuyen-mai/remove-khuyen-mai/${khuyenMai.id}"  onclick="return tb()">Delete</a>
             </td>
         </tr>
         </tbody>
@@ -183,6 +183,30 @@
     </ul>
 </nav>
 
+<P id="bc" style="color: crimson"></P>
+<script>
+    if ("${DLtable}" <= 0) {
+        document.getElementById("bang").style.display = "none"
+        document.getElementById("bc").innerText = "HẾT DỮ LIỆU"
+    } else {
+        document.getElementById("bang").style.display = ""
+        document.getElementById("bc").innerText = ""
+    }
+
+    function tb() {
+        var dtt = document.getElementById("dtt").value;
+        if (confirm("Bạn muốn dùng chức năng") == true) {
+            return true;
+        }
+        return false;
+    }
+    function tbxd() {
+        if (confirm("Bạn muốn dùng chức năng") == true) {
+            return true;
+        }
+        return false;
+    }
+</script>
 
 </body>
 

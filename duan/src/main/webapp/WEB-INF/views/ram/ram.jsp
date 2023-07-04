@@ -60,7 +60,7 @@
             </thead>
             <thead>
             <tr>
-                <button type="submit" class="btn btn-primary">ADD</button>
+                <button type="submit" class="btn btn-primary" onclick="return tb()">ADD</button>
             </tr>
             </thead>
         </tr>
@@ -94,8 +94,8 @@
 
 
             <td>
-                <a href="/ram/view-update-ram/${ram.id}">Update</a>
-                <a href="/ram/remove-ram/${ram.id}">Delete</a>
+                <a href="/ram/view-update-ram/${ram.id}" onclick="return tb()">Update</a>
+                <a href="/ram/remove-ram/${ram.id}" onclick="return tb()">Delete</a>
             </td>
         </tr>
     </c:forEach>
@@ -119,6 +119,27 @@
         </li>
     </ul>
 </nav>
+
+
+<P id="bc" style="color: crimson"></P>
+<script>
+    if ("${DLtable}" <= 0) {
+        document.getElementById("bang").style.display = "none"
+        document.getElementById("bc").innerText = "HẾT DỮ LIỆU"
+    } else {
+        document.getElementById("bang").style.display = ""
+        document.getElementById("bc").innerText = ""
+    }
+
+    function tb() {
+        var dtt = document.getElementById("dtt").value;
+        if (confirm("Bạn muốn dùng chức năng") == true) {
+            return true;
+        }
+        return false;
+    }
+
+</script>
 
 </body>
 

@@ -42,27 +42,34 @@ public class KhuyenMaiController {
         Page<KhuyenMai> list = khuyenMaiService.getAll(pageable);
         model.addAttribute("tongSoTrang", list.getTotalPages());
         model.addAttribute("duLieu", list.getContent());
+        model.addAttribute("DLtable", khuyenMaiService.getAll0().size());
+
         return "khuyen-mai/khuyen-mai";
     }
 
 
     @PostMapping("/add-khuyen-mai")
     public String addMauSac(Model model, @ModelAttribute("km") @Valid KhuyenMai khuyenMai,
+                          @RequestParam("num") Optional<Integer> num,
+                            @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu ,
                             BindingResult bindingResult
     ) {
+
+        long millis = System.currentTimeMillis();
+        Date date = new java.sql.Date(millis);
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", khuyenMaiService.getAll0());
-            return "/khuyen-mai/khuyen-mai";
+//            return "khuyen-mai/khuyen-mai";
         }
 
         String maKM = "MKM" + khuyenMaiService.findAll().size();
         khuyenMai.setMa(maKM);
-        long millis = System.currentTimeMillis();
-        Date date = new java.sql.Date(millis);
+
         khuyenMai.setNgayTao(date);
         khuyenMai.setNgayCapNhat(date);
-//        khuyenMai.setNgayBatDau(date);
-//        khuyenMai.setNgayKetThuc(date);
+        khuyenMai.setNgayBatDau(date);
+        khuyenMai.setNgayKetThuc(date);
 
         khuyenMai.setTinhTrang(0);
         khuyenMaiService.add(khuyenMai);

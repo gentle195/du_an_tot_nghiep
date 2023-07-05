@@ -60,7 +60,7 @@
         <h4>Không có sản phẩm !</h4>
     </div>
 </c:if>
-<c:if test="${not listChucVu.isEmpty()}">
+<c:if test="${not list.isEmpty()}">
 <form action="">
     <table class="table table-bordered border-dark">
         <tr style="text-align: center">

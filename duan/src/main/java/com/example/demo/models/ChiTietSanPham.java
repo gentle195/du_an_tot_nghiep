@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -46,6 +47,7 @@ public class ChiTietSanPham {
     @Column(name = "gia_ban")
     private BigDecimal giaBan;
 
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 

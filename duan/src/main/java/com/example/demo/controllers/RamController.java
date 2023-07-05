@@ -30,13 +30,11 @@ public class RamController {
     RamService ramService;
 
     @GetMapping("/hien-thi")
-    public String hienThi(Model model, @ModelAttribute("r") Ram ram, @RequestParam("pageNum") Optional<Integer> pageNum,
+    public String hienThi(Model model, @ModelAttribute("r") Ram ram,
                           @RequestParam("num") Optional<Integer> num,
                           @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu) {
         Sort sort = Sort.by("ma").ascending();
-
-        Pageable pageable = PageRequest.of(num.orElse(0), tongDuLieu);
-
+        Pageable pageable = PageRequest.of(num.orElse(0), tongDuLieu,sort);
         ram.setTinhTrang(0);
         Page<Ram> list = ramService.getAll(pageable);
         model.addAttribute("tongSoTrang", list.getTotalPages());
@@ -46,32 +44,27 @@ public class RamController {
 
 
     @PostMapping("add-ram")
-    public String addMauSac(Model model, @ModelAttribute("r")@Valid Ram ram,
+    public String addMauSac(Model model, @ModelAttribute("r") @Valid Ram ram,
                             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", ramService.getAll0());
-            return "/ram/ram";
+            return "ram/ram";
         }
-
         String maR = "R" + ramService.findAll().size();
         ram.setMa(maR);
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
         ram.setNgayTao(date);
         ram.setNgayCapNhat(date);
-
         ram.setTinhTrang(0);
-
+        System.out.println(ram.toString());
         ramService.add(ram);
-
         return "redirect:/ram/hien-thi";
     }
 
     @GetMapping("/view-update-ram/{id}")
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("r") Ram ram) {
-
-
         model.addAttribute("r", ramService.findById(id));
         return "/ram/ram-update";
     }
@@ -89,7 +82,6 @@ public class RamController {
         ram.setNgayTao(date);
         ram.setNgayCapNhat(date);
         Ram ram1 = ramService.findById(ram.getId());
-
         ramService.update(ram1.getId(), ram);
         return "redirect:/ram/hien-thi";
     }

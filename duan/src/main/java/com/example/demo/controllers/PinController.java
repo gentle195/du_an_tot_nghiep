@@ -39,7 +39,7 @@ public class PinController {
                           @RequestParam("pageNum") Optional<Integer> pageNum,
                           @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
 
-        Sort sort = Sort.by("ma").ascending();
+        Sort sort = Sort.by("ngayTao").descending();
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         Page<Pin> page = pinService.getAll(pageable);
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
@@ -60,6 +60,7 @@ public class PinController {
             model.addAttribute("list", page.getContent());
             model.addAttribute("page", page.getNumber());
             model.addAttribute("total", page.getTotalPages());
+            model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
             return "pin/pin";
         }
 
@@ -67,7 +68,7 @@ public class PinController {
         Date date = new java.sql.Date(millis);
         String ma = "CHIP"+pinService.findAll().size();
         pin.setMa(ma);
-        pin.setNgayTao(date);
+//        pin.setNgayTao(date);
         pin.setTinhTrang(0);
         pinService.add(pin);
 

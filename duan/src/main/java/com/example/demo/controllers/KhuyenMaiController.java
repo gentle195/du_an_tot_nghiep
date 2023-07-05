@@ -52,7 +52,7 @@ public class KhuyenMaiController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", khuyenMaiService.getAll0());
-            return "/khuyen-mai/khuyen-mai";
+            return "khuyen-mai/khuyen-mai";
         }
 
         String maKM = "MKM" + khuyenMaiService.findAll().size();

@@ -36,7 +36,7 @@ public class ChipController {
                           @RequestParam("pageNum") Optional<Integer> pageNum,
                           @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
 
-        Sort sort = Sort.by("ngayTao").ascending();
+        Sort sort = Sort.by("ngayTao").descending();
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         Page<Chip> page = chipService.getAll(pageable);
         model.addAttribute("list", page.getContent());

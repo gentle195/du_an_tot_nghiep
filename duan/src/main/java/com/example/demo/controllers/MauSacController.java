@@ -52,7 +52,7 @@ public class MauSacController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", mauSacService.getAll0());
-            return "/mau-sac/mau-sac";
+            return "mau-sac/mau-sac";
         }
 
         String maMS = "MMS" + mauSacService.findAll().size();

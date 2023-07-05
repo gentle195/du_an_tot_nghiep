@@ -42,7 +42,6 @@ public class MauSacController {
         Page<MauSac> list = mauSacService.getAll(pageable);
         model.addAttribute("tongSoTrang", list.getTotalPages());
         model.addAttribute("duLieu", list.getContent());
-        model.addAttribute("DDLtable", mauSacService.getAll0().size());
 
         return "mau-sac/mau-sac";
     }
@@ -53,7 +52,7 @@ public class MauSacController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", mauSacService.getAll0());
-//            return "mau-sac/khuyen-mai";
+            return "/mau-sac/mau-sac";
         }
 
         String maMS = "MMS" + mauSacService.findAll().size();

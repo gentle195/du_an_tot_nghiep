@@ -105,9 +105,9 @@ public class HangKhachHangController {
         }
 
 
+         Integer sl= hangKhachHangService.findAll().size()+1;
 
-
-        String mhd = "MHKH" + hangKhachHangService.findAll().size();
+        String mhd = "MHKH" +sl;
         hangKhachHang.setMa(mhd);
         hangKhachHang.setNgayTao(date);
         hangKhachHang.setNgayCapNhat(date);

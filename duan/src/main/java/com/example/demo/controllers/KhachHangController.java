@@ -123,9 +123,9 @@ public class KhachHangController {
             return "khach-hang/khach-hang";
         }
 
+        Integer sl= khachHangService.findAll().size()+1;
 
-
-        String mhd = "MKH" + khachHangService.findAll().size();
+        String mhd = "MKH" + sl;
         khachHang.setMa(mhd);
         khachHang.setNgayTao(date);
         khachHang.setNgayCapNhat(date);

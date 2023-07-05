@@ -114,7 +114,7 @@
 
     <c:forEach items="${dulieu}" var="ht" varStatus="stt">
         <tr>
-            <td>${stt.index}</td>
+            <td>${stt.index+1}</td>
             <td>${ht.ma}</td>
             <td>${ht.diaChi} </td>
             <td>${ht.quan}</td>

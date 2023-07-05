@@ -109,9 +109,9 @@ public class DiaChiController {
             return "dia-chi/dia-chi";
         }
 
+       Integer sl= khachHangService.findAll().size()+1;
 
-
-        String mhd = "MDC" + diaChiService.findAll().size();
+        String mhd = "MDC" + sl;
         diaChi.setMa(mhd);
         diaChi.setNgayTao(date);
         diaChi.setNgayCapNhat(date);

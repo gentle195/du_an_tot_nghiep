@@ -25,19 +25,21 @@
             <form:errors path="ten"></form:errors>
         </div>
 
-            <%--        <div class="col">--%>
-            <%--            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>--%>
-            <%--            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>--%>
-            <%--            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>--%>
-            <%--        </div>--%>
+        <div class="col">
+            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
+            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>
+            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>
+        </div>
 
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>
             <form:textarea path="moTa" class="form-control"></form:textarea>
             <form:errors path="moTa"></form:errors>
         </div>
-        <div style="margin-top: 20px;margin-bottom: 20px" >
-            <button type="submit" class="btn btn-primary" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD</button>
+        <div style="margin-top: 20px;margin-bottom: 20px">
+            <button type="submit" class="btn btn-primary"
+                    onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD
+            </button>
         </div>
     </div>
 
@@ -47,53 +49,55 @@
         <h4>Không có sản phẩm !</h4>
     </div>
 </c:if>
-<c:if test="${not listChucVu.isEmpty()}">
-<form action="">
-    <table class="table table-bordered border-dark">
-        <tr style="text-align: center">
-            <th scope="col">Mã</th>
-            <th scope="col">Tên</th>
-            <th scope="col">Ngày Tạo</th>
-            <th scope="col">Ngày Cập Nhật</th>
-            <th scope="col">Tình Trạng</th>
-            <th scope="col">Mô Tả</th>
-            <th scope="col">Action</th>
-        </tr>
-        <c:forEach items="${list}" var="chip">
-            <tr>
-                <td>${chip.ma}</td>
-                <td>${chip.ten}</td>
-                <td>${chip.ngayTao}</td>
-                <td>${chip.ngayCapNhat}</td>
-                <td>
-                    <c:if test="${chip.tinhTrang == 0}">Yes</c:if>
-                    <c:if test="${chip.tinhTrang == 1}">No</c:if>
-                </td>
-                <td>${chip.moTa}</td>
-                <td>
-                    <a href="/chip/detail-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
-                       role="button" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Detail</a>
-                    <a href="/chip/remove-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
-                       role="button" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Delete</a>
-                    <a href="/chip/view-update-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
-                       role="button">Update</a>
-                </td>
+<c:if test="${not list.isEmpty()}">
+    <form action="">
+        <table class="table table-bordered border-dark">
+            <tr style="text-align: center">
+                <th scope="col">Mã</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Ngày Tạo</th>
+                <th scope="col">Ngày Cập Nhật</th>
+                <th scope="col">Tình Trạng</th>
+                <th scope="col">Mô Tả</th>
+                <th scope="col">Action</th>
             </tr>
-        </c:forEach>
-    </table>
-</form>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center pagination-lg">
-        <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=0">First</a></li>
-        <c:forEach begin="1" end="${total}" varStatus="status">
-            <li class="page-item">
-                <a href="${pageContext.request.contextPath}/chip/hien-thi?pageNum=${status.index -1}"
-                   class="page-link">${status.index}</a>
-            </li>
-        </c:forEach>
-        <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=${total-1}">Last</a></li>
-    </ul>
-</nav>
+            <c:forEach items="${list}" var="chip">
+                <tr>
+                    <td>${chip.ma}</td>
+                    <td>${chip.ten}</td>
+                    <td>${chip.ngayTao}</td>
+                    <td>${chip.ngayCapNhat}</td>
+                    <td>
+                        <c:if test="${chip.tinhTrang == 0}">Yes</c:if>
+                        <c:if test="${chip.tinhTrang == 1}">No</c:if>
+                    </td>
+                    <td>${chip.moTa}</td>
+                    <td>
+                        <a href="/chip/detail-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
+                           role="button"
+                           onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Detail</a>
+                        <a href="/chip/remove-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
+                           role="button"
+                           onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Delete</a>
+                        <a href="/chip/view-update-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
+                           role="button">Update</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </form>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center pagination-lg">
+            <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=0">First</a></li>
+            <c:forEach begin="1" end="${total}" varStatus="status">
+                <li class="page-item">
+                    <a href="${pageContext.request.contextPath}/chip/hien-thi?pageNum=${status.index -1}"
+                       class="page-link">${status.index}</a>
+                </li>
+            </c:forEach>
+            <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=${total-1}">Last</a></li>
+        </ul>
+    </nav>
 </c:if>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"

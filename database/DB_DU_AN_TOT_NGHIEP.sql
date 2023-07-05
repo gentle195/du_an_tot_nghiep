@@ -19,22 +19,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE anh(
-  id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
-  ma VARCHAR(30) NULL,
-  ten VARCHAR(50) NULL,
-   url_anh VARCHAR(MAX) NULL,
-  ngay_tao DATE DEFAULT GETDATE(),
-  ngay_cap_nhat DATE NULL,
-  tinh_trang int DEFAULT 0,
-  mo_ta NVARCHAR(MAX) NULL
-);
-
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE chip(
   id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID() NOT NULL,
   ma VARCHAR(30) NULL,
@@ -55,7 +39,7 @@ CREATE TABLE ram(
   dung_luong VARCHAR(30) NULL,
   ngay_tao DATE DEFAULT GETDATE(),
   ngay_cap_nhat DATE NULL,
-  tinh_trang int DEFAULT 0,
+  tinh_nrang int DEFAULT 0,
   mo_ta NVARCHAR(MAX) NULL
 );
 
@@ -100,9 +84,7 @@ CREATE TABLE san_pham (
   tinh_trang INT DEFAULT 0,
   mo_ta NVARCHAR(MAX) NULL,
   id_hang UNIQUEIDENTIFIER NULL,
-  id_anh UNIQUEIDENTIFIER NULL,
-  FOREIGN KEY (id_hang) REFERENCES hang_dien_thoai(id),
-  FOREIGN KEY (id_anh) REFERENCES anh(id)
+  FOREIGN KEY (id_hang) REFERENCES hang_dien_thoai(id)
 );
 
 SET ANSI_NULLS ON
@@ -474,5 +456,5 @@ id_khach_hang UNIQUEIDENTIFIER NULL,
 ghi_chu NVARCHAR(MAX) NULL,
 FOREIGN KEY (id_khach_hang) REFERENCES khach_hang(id),
 FOREIGN KEY (id_chi_tiet_san_pham) REFERENCES chi_tiet_san_pham(id)
-);
-drop database DB_DU_AN_TOT_NGHIEP
+)
+select * from chi_tiet_san_pham

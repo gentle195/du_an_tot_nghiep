@@ -84,7 +84,7 @@ public class NhanVien {
     private Date ngayTao;
 
     @NotNull(message = "Không để trống thông tin")
-    @DateTimeFormat(pattern = "mm/dd/yyyy")
+//    @DateTimeFormat(pattern = "mm/dd/yyyy")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 

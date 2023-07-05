@@ -39,7 +39,7 @@ public class SanPhamGiamGia {
     @JoinColumn(name = "id_khuyen_mai")
     private KhuyenMai khuyenMai;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

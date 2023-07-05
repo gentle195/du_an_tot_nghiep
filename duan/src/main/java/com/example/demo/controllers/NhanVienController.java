@@ -56,9 +56,9 @@ public class NhanVienController {
             model.addAttribute("listChucVu", listChucVu);
             return "nhan-vien/nhan-vien-add";
         }
-        if(nhanVienService.existsByPhoneNumber(nhanVien.getSdt())){
-            return "nhan-vien/nhan-vien-add";
-        }
+//        if(nhanVienService.existsByPhoneNumber(nhanVien.getSdt())){
+//            return "nhan-vien/nhan-vien-add";
+//        }
         nhanVienService.add(nhanVien);
         return "redirect:/nhan-vien/hien-thi";
     }

@@ -14,65 +14,52 @@
     <title>Document</title>
 </head>
 <body>
-<h3 style="color: black; text-align: center"><b>Chi Tiết Sản Phẩm</b></h3>
-<form action="/chi-tiet-san-pham/add">
-    <button type="submit" class="btn btn-primary">Add CTSP</button>
+<h3 style="color: black; text-align: center"><b>Imei</b></h3>
+<form action="/imei/add">
+    <button type="submit" class="btn btn-primary">Add </button>
 </form>
 <c:if test="${size>0}">
-<table class="table container">
-    <thead>
-    <tr>
-        <th scope="col">Ten san pham</th>
-        <th scope="col">Mau sac</th>
-        <th scope="col">Chip</th>
-        <th scope="col">Ram</th>
-        <th scope="col">Rom</th>
-        <th scope="col">Pin</th>
-        <th scope="col">Url Anh</th>
-        <th scope="col">Gia nhap</th>
-        <th scope="col">Gia ban</th>
-        <th scope="col">Ngay tao</th>
-        <th scope="col">Ngay cap nhat</th>
-        <th scope="col">Tinh trang</th>
-        <th scope="col">Nam bao hanh </th>
-        <th scope="col">So luong ton </th>
-        <th scope="col">Mo ta </th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${listCTSP}" var="ctsp" varStatus="index">
+    <table class="table container">
+        <thead>
         <tr>
-            <td>${ctsp.sanPham.ten}</td>
-            <td>${ctsp.mauSac.ten}</td>
-            <td>${ctsp.chip.ten}</td>
-            <td>${ctsp.ram.dungLuong} GB</td>
-            <td>${ctsp.rom.dungLuong} GB</td>
-            <td>${ctsp.pin.dungLuongPin.thongSo} mAh</td>
-            <td>${ctsp.urlAnh}</td>
-            <td>${ctsp.giaNhap} VND</td>
-            <td>${ctsp.giaBan} VND</td>
-            <td>${ctsp.ngayTao}</td>
-            <td>${ctsp.ngayCapNhat}</td>
-            <td>${ctsp.tinhTrang==1?"con ban":"Ngung ban"}</td>
-            <td>${ctsp.namBaoHanh}</td>
-            <td>${ctsp.soLuong}</td>
-            <td>${ctsp.moTa}</td>
-            <td>
-                <a href="/chi-tiet-san-pham/update/${ctsp.id}" class="btn btn-success">Update</a>
-                <a href="#" onclick="remove('/chi-tiet-san-pham/remove/${ctsp.id}')" class="btn btn-danger">Delete</a>
+            <th scope="col">Ten san pham</th>
+            <th scope="col">Ma</th>
+            <th scope="col">So imei</th>
+            <th scope="col">Ngay tao</th>
+            <th scope="col">Ngay cap nhat</th>
+            <th scope="col">Tinh trang</th>
+            <th scope="col">Mo ta</th>
 
-            </td>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach items="${listImei}" var="imei" varStatus="index">
+            <tr>
+                <td>${imei.chiTietSanPham.sanPham.ten}</td>
+                <td>${imei.ma}</td>
+                <td>${imei.soImei}</td>
+
+                <td>${imei.ngayTao}</td>
+                <td>${imei.ngayCapNhat}</td>
+                <td>${imei.tinhTrang==1?"con ban":"Ngung ban"}</td>
+
+                <td>${imei.moTa}</td>
+                <td>
+                    <a href="/imei/update/${imei.id}" class="btn btn-success">Update</a>
+                    <a href="#" onclick="remove('/imei/remove/${imei.id}')" class="btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
     <nav aria-label="Page navigation example" class="container">
         <ul class="pagination">
             <c:forEach begin="0" end="${total}" varStatus="loop">
                 <%--            <li class="page-item"><a class="page-link" href="#">Previous</a></li>--%>
                 <li class="page-item">
                     <a class="page-link"
-                       href="/chi-tiet-san-pham/hien-thi?page=${loop.begin + loop.count - 1}">${loop.begin + loop.count}</a>
+                       href="/imei/hien-thi?page=${loop.begin + loop.count - 1}">${loop.begin + loop.count}</a>
                 </li>
                 <%--            <li class="page-item"><a class="page-link" href="#">Next</a></li>--%>
             </c:forEach>
@@ -85,18 +72,17 @@
     Khong co ban ghi nao
 </c:if>
 <script>
-    function remove(url){
-        var confirmed =false;
+    function remove(url) {
+        var confirmed = false;
         var message = confirm("ban co muon xoa?");
-        if (message){
-            confirmed=true;
+        if (message) {
+            confirmed = true;
             alert("Xoa thanh cong");
+        } else {
+            confirmed = false;
         }
-        else {
-            confirmed=false;
-        }
-        if (confirmed){
-            window.location.href=url;
+        if (confirmed) {
+            window.location.href = url;
         }
     }
 </script>

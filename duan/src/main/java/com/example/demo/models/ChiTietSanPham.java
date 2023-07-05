@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,31 +38,31 @@ public class ChiTietSanPham {
     @Column(name = "url_anh")
     private String urlAnh;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "gia_nhap")
     private BigDecimal giaNhap;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "gia_ban")
     private BigDecimal giaBan;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
+
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "nam_bao_hanh")
     private int namBaoHanh;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "so_luong_ton")
     private int soLuong;
 

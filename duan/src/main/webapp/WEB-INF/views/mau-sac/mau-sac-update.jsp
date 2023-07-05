@@ -78,16 +78,16 @@
     r>
 </form:form>
 
-<script>
-    function confirmUpdate(event) {
-       event.preventDefault(); // Prevents the default action of the link
+<%--<script>--%>
+<%--    function confirmUpdate(event) {--%>
+<%--       event.preventDefault(); // Prevents the default action of the link--%>
 
-        if (confirm("Bạn chắc chắn muốn Update không?")) {
-            window.location.href = event.target.href; // Redirect to the delete URL
-        } else {
-            // Do nothing or perform any desired action
-        }
-    }
+<%--        if (confirm("Bạn chắc chắn muốn Update không?")) {--%>
+<%--            window.location.href = event.target.href; // Redirect to the delete URL--%>
+<%--        } else {--%>
+<%--            // Do nothing or perform any desired action--%>
+<%--        }--%>
+<%--    }--%>
 </script>
 </body>
 

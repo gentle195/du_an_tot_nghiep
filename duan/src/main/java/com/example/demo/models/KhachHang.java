@@ -53,7 +53,7 @@ public class KhachHang {
     private String email;
 
     @NotBlank(message = "Không để trống thông tin")
-    @Pattern(regexp = "^0[0-9]{11}$", message = "Sdt phải 12 số và bắt đầu bằng 0")
+    @Pattern(regexp = "^0[0-9]{9}$", message = "Sdt phải 10 số và bắt đầu bằng 0")
     @Column(name = "sdt")
     private String sdt;
 

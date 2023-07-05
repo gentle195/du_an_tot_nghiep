@@ -104,12 +104,26 @@
             </tr>
             </thead>
         <tr>
-            <button type="submit" class="btn btn-primary">UPDATE</button>
+            <button type="submit" class="btn btn-primary" onclick="return tb()">UPDATE</button>
         </tr>
 
         </tr>
     </table>
 </form:form>
+
+
+<script>
+    function tb() {
+        var dtt = document.getElementById("dtt").value;
+        if (confirm("Bạn muốn dùng chức năng UPDATE") == true) {
+
+            return true;
+
+        }
+        return false;
+    }
+
+</script>
 </body>
 
 </html>

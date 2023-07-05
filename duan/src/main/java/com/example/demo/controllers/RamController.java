@@ -41,6 +41,8 @@ public class RamController {
         Page<Ram> list = ramService.getAll(pageable);
         model.addAttribute("tongSoTrang", list.getTotalPages());
         model.addAttribute("duLieu", list.getContent());
+        model.addAttribute("DLtable", ramService.getAll0().size());
+
         return "ram/ram";
     }
 
@@ -51,7 +53,7 @@ public class RamController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", ramService.getAll0());
-            return "/ram/ram";
+//            return "ram/ram";
         }
 
         String maR = "R" + ramService.findAll().size();

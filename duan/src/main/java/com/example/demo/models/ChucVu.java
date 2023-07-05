@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -41,15 +42,13 @@ public class ChucVu {
     @Column(name = "ten")
     private String ten;
 
-    @NotNull(message = "Không để trống thông tin")
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotNull(message = "Không được để trống")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotNull(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

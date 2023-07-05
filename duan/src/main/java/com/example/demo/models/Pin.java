@@ -12,10 +12,12 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -27,6 +29,7 @@ import java.util.UUID;
 @ToString
 @Entity
 @Table(name = "pin")
+@Builder
 public class Pin {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -41,7 +44,7 @@ public class Pin {
     @Column(name = "loai_pin")
     private String loaiPin;
 
-
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
@@ -60,4 +63,5 @@ public class Pin {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_dung_luong")
     private DungLuongPin dungLuongPin;
+
 }

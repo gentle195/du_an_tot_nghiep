@@ -17,13 +17,6 @@
         <tr style="text-align: center">
             <thead>
             <tr>
-
-                <th><form:label path="ma">Mã ram : </form:label></th>
-                <th><form:input path="ma" readonly="true"></form:input></th>
-            </tr>
-            </thead>
-            <thead>
-            <tr>
                 <th><form:label path="dungLuong">Dung lượng: </form:label></th>
                 <th><form:input path="dungLuong"></form:input>
                     <form:errors path="dungLuong"></form:errors>
@@ -35,38 +28,31 @@
                 <th><form:input path="ngayTao" type="date"></form:input></th>
             </tr>
             </thead>
-                <%--            <thead>--%>
-                <%--            <tr>--%>
-                <%--                <th>  <form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>--%>
-                <%--                <th> <form:input path="ngayCapNhat" type="date"></form:input></th>--%>
-                <%--            </tr>--%>
-                <%--            </thead>--%>
-                <%--            <thead>--%>
-                <%--            <tr>--%>
-                <%--                <th> <form:label path="tinhTrang">Tình trạng</form:label></th>--%>
-                <%--                <th>        <form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>--%>
-                <%--                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton></th></th>--%>
-                <%--            </tr>--%>
-                <%--            </thead>--%>
+            <thead>
+            <tr>
+                <th><form:label path="tinhTrang">Tình trạng</form:label></th>
+                <th><form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>
+                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton></th>
+                </th>
+            </tr>
+            </thead>
 
             <thead>
             <tr>
                 <th><form:label path="moTa">Mô tả</form:label></th>
                 <th><form:textarea path="moTa"></form:textarea>
                     <form:errors path="moTa"></form:errors></th>
-
-
             </tr>
             </thead>
             <thead>
-            <tr>
-                <button type="submit" class="btn btn-primary">ADD</button>
-            </tr>
+
             </thead>
+        </tr>
+        <tr>
+            <button type="submit" class="btn btn-primary">ADD</button>
         </tr>
     </table>
 </form:form>
-
 <table class="table">
     <thead>
     <tr>

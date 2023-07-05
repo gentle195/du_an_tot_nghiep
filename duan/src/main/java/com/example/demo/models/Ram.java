@@ -52,10 +52,12 @@ public class Ram {
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "mo_ta")
     private String moTa;
-    public String trangThai(){
-        if(tinhTrang== 0 ){
+
+    public String trangThai() {
+        if (tinhTrang == 0) {
             return "Còn dùng";
-        }return "Không còn dùng";
+        }
+        return "Không còn dùng";
 
     }
 }

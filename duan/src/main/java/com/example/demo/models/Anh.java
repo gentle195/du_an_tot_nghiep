@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -43,15 +44,13 @@ public class Anh {
     @Column(name = "url_anh")
     private String anh;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

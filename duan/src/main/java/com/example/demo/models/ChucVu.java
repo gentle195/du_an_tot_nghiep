@@ -32,7 +32,7 @@ public class ChucVu {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ma")
     private String ma;
 
@@ -41,11 +41,11 @@ public class ChucVu {
     @Column(name = "ten")
     private String ten;
 
-    @NotNull(message = "Không để trống thông tin")
+//    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotNull(message = "Không được để trống")
+//    @NotNull(message = "Không được để trống")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 

@@ -47,6 +47,10 @@
             </div>
             <div class="col">
                 <div class="form-floating mb-3 mt-3">
+                    <form:input class="form-control" placeholder="" path="queQuan"/>
+                    <form:label class="form-label" path="queQuan">Quê Quán:</form:label>
+                </div>
+                <div class="form-floating mb-3 mt-3">
                     <form:input class="form-control" placeholder="" path="matKhau"/>
                     <form:label class="form-label" path="matKhau">Mật khẩu:</form:label>
                 </div>
@@ -55,13 +59,13 @@
                                 path="ngayTao"/>
                     <form:label class="form-label" path="ngayTao">Ngày tạo:</form:label>
                 </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="${nhanVien.ngayCapNhat}" placeholder=""
-                                path="ngayCapNhat"/>
-                    <form:label class="form-label" path="ngayCapNhat">Ngày cập nhật:</form:label>
-                </div>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input class="form-control" type="date" value="${nhanVien.ngayCapNhat}" placeholder=""--%>
+<%--                                path="ngayCapNhat"/>--%>
+<%--                    <form:label class="form-label" path="ngayCapNhat">Ngày cập nhật:</form:label>--%>
+<%--                </div>--%>
                 <div class="form-check mb-3 mt-3">
-                    <form:label class="form-label" path="tinhTrang">Giới Tính:</form:label>
+                    <form:label class="form-label" path="gioiTinh">Giới Tính:</form:label>
                     <form:radiobutton path="gioiTinh" value="true" />Nam
                     <form:radiobutton path="gioiTinh" value="false" checked="true"/> Nữ
                 </div>
@@ -72,7 +76,7 @@
                 </div>
                 <div class="form-floating mb-3 mt-3">
                     <form:select path="chucVu" class="form-select">
-                        <form:options items="${listChucVu}" itemValue="ten" itemLabel="ten"/>
+                        <form:options items="${listChucVu}" itemValue="id" itemLabel="ten"/>
                     </form:select>
                     <form:label class="form-label" path="chucVu">Chức vụ:</form:label>
                 </div>

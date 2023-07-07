@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,7 +34,7 @@ public class NhanVienController {
 
     @GetMapping("/hien-thi")
     public String viewAll(Model model,
-                          @RequestParam(name = "page", defaultValue = "1") int page){
+                          @RequestParam(name = "page", defaultValue = "1") int page) {
         Sort sort = Sort.by("ma").ascending();
         if (page < 1) page = 1;
         Pageable pageable = PageRequest.of(page - 1, 5, sort);
@@ -42,7 +44,7 @@ public class NhanVienController {
     }
 
     @GetMapping("/view-add")
-    public String viewAdd(Model model){
+    public String viewAdd(Model model) {
         List<ChucVu> listChucVu = chucVuRepository.findAll();
         model.addAttribute("listChucVu", listChucVu);
         model.addAttribute("nhanVien", new NhanVien());
@@ -51,37 +53,44 @@ public class NhanVienController {
 
     @PostMapping("/add")
     public String add(@Valid @ModelAttribute(name = "nhanVien") NhanVien nhanVien, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             List<ChucVu> listChucVu = chucVuRepository.findAll();
             model.addAttribute("listChucVu", listChucVu);
             return "nhan-vien/nhan-vien-add";
         }
-        if(nhanVienService.existsByPhoneNumber(nhanVien.getSdt())){
-            return "nhan-vien/nhan-vien-add";
-        }
+//        if(nhanVienService.existsByPhoneNumber(nhanVien.getSdt())){
+//            return "nhan-vien/nhan-vien-add";
+//        }
+        String maNV = "NV" + nhanVienService.findAll().size() + 1;
+        LocalDate localDate = LocalDate.now();
+        nhanVien.setMa(maNV);
+        nhanVien.setNgayTao(Date.valueOf(localDate));
         nhanVienService.add(nhanVien);
         return "redirect:/nhan-vien/hien-thi";
     }
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable(name = "id") UUID id,
-                         Model model){
+                         Model model) {
         List<ChucVu> listChucVu = chucVuRepository.findAll();
         model.addAttribute("listChucVu", listChucVu);
-        nhanVienService.getById(id);
+        NhanVien nhanVien = nhanVienService.getById(id);
+        model.addAttribute("nhanVien", nhanVien);
         return "nhan-vien/nhan-vien-detail";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") UUID id){
+    public String delete(@PathVariable(name = "id") UUID id) {
         nhanVienService.delete(id);
         return "redirect:/nhan-vien/hien-thi";
     }
 
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute(name = "nhanVien") NhanVien nhanVien,
-                         @PathVariable(name = "id") UUID id){
+                         @PathVariable(name = "id") UUID id) {
         nhanVien.setId(id);
+        LocalDate localDate = LocalDate.now();
+        nhanVien.setNgayCapNhat(Date.valueOf(localDate));
         nhanVienService.update(id, nhanVien);
         return "redirect:/nhan-vien/hien-thi";
     }

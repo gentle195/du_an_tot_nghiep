@@ -14,24 +14,24 @@
 <div class="container">
     <form:form method="post" class="container" action="/chuc-vu/add" modelAttribute="chucVu">
         <div class="row">
-            <div class="col">
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" placeholder="" path="ma"/>
-                    <form:label class="form-label" path="ma">Mã:</form:label>
-                    <form:errors path="ma" cssStyle="color: red"></form:errors>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="chucVu.ngayTao" placeholder="" path="ngayTao"/>
-                    <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>
-                    <form:errors path="ngayTao" cssStyle="color: red"></form:errors>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="chucVu.ngayCapNhat" placeholder=""
-                                path="ngayCapNhat"/>
-                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>
-                    <form:errors path="ngayCapNhat" cssStyle="color: red"></form:errors>
-                </div>
-            </div>
+<%--            <div class="col">--%>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input class="form-control" placeholder="" path="ma"/>--%>
+<%--                    <form:label class="form-label" path="ma">Mã:</form:label>--%>
+<%--                    <form:errors path="ma" cssStyle="color: red"></form:errors>--%>
+<%--                </div>--%>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input class="form-control" type="date" value="chucVu.ngayTao" placeholder="" path="ngayTao"/>--%>
+<%--                    <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>--%>
+<%--                    <form:errors path="ngayTao" cssStyle="color: red"></form:errors>--%>
+<%--                </div>--%>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input class="form-control" type="date" value="chucVu.ngayCapNhat" placeholder=""--%>
+<%--                                path="ngayCapNhat"/>--%>
+<%--                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>--%>
+<%--                    <form:errors path="ngayCapNhat" cssStyle="color: red"></form:errors>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="col">
                 <div class="form-floating mb-3 mt-3">
                     <form:input class="form-control" placeholder="" path="ten"/>

@@ -23,11 +23,11 @@
                     <form:input class="form-control" type="date" value="${chucVu.ngayTao}" placeholder="" path="ngayTao"/>
                     <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>
                 </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="${chucVu.ngayCapNhat}" placeholder=""
-                                path="ngayCapNhat"/>
-                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>
-                </div>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input class="form-control" type="date" value="${chucVu.ngayCapNhat}" placeholder=""--%>
+<%--                                path="ngayCapNhat"/>--%>
+<%--                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>--%>
+<%--                </div>--%>
             </div>
             <div class="col">
                 <div class="form-floating mb-3 mt-3">

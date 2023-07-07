@@ -31,12 +31,13 @@ import java.util.UUID;
 @Entity
 @Table(name = "nhan_vien")
 public class NhanVien {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ma")
     private String ma;
 
@@ -44,7 +45,7 @@ public class NhanVien {
     @Column(name = "ho_ten")
     private String hoTen;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "url_anh")
     private String urlAnh;
 
@@ -57,10 +58,14 @@ public class NhanVien {
     private String email;
 
     @NotBlank(message = "Không để trống thông tin")
-    @Pattern(regexp = "^0\\d{9}$", message = "Số điện thoại không hợp lệ")
+//    @Pattern(regexp = "^0\\d{9}$", message = "Số điện thoại không hợp lệ")
     @Size(max = 10, message = "Số điện thoại không quá 10 ký tự")
     @Column(name = "sdt")
     private String sdt;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "que_quan")
+    private String queQuan;
 
     @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_sinh")
@@ -79,12 +84,12 @@ public class NhanVien {
     @Column(name = "mat_khau")
     private String matKhau;
 
-    @NotNull(message = "Không để trống thông tin")
+//    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotNull(message = "Không để trống thông tin")
-    @DateTimeFormat(pattern = "mm/dd/yyyy")
+//    @NotNull(message = "Không để trống thông tin")
+//    @DateTimeFormat(pattern = "mm/dd/yyyy")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
@@ -93,6 +98,6 @@ public class NhanVien {
     private int tinhTrang;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_chuc_vu")
+    @JoinColumn(name = "id_chuc_vu", referencedColumnName = "id")
     private ChucVu chucVu;
 }

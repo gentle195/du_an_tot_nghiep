@@ -28,32 +28,6 @@
                 </th>
             </tr>
             </thead>
-            <thead>
-            <tr style="display: none">
-                <th>
-                    <form:label path="ngayTao">Ngày tạo </form:label>
-                <th><form:input path="ngayTao" type="date"></form:input></th>
-            </tr>
-            </thead>
-
-                <%--            <thead>--%>
-                <%--            <tr>--%>
-                <%--                <th><form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>--%>
-                <%--                <th><form:input path="ngayCapNhat" type="date"></form:input></th>--%>
-                <%--            </tr>--%>
-                <%--            </thead>--%>
-
-                <%--            <thead>--%>
-                <%--            <tr>--%>
-                <%--                <th><form:label path="tinhTrang">Tình trạng</form:label></th>--%>
-                <%--                <th>       <form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>--%>
-                <%--                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton></th>--%>
-                <%--                </th>--%>
-
-                <%--            </tr>--%>
-                <%--            </thead>--%>
-                <%--            <thead>--%>
-
         <tr>
             <th>
                 <form:label path="moTa">Mô tả</form:label></th>

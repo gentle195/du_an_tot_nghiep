@@ -1,8 +1,11 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.ChiTietSanPham;
+import com.example.demo.models.DungLuongPin;
 import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.ChipService;
+import com.example.demo.services.DungLuongPinService;
+import com.example.demo.services.HangSanPhamService;
 import com.example.demo.services.MauSacService;
 import com.example.demo.services.PinService;
 import com.example.demo.services.RamService;
@@ -26,7 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -47,17 +52,27 @@ public class ChiTietSanPhamController {
     RomService romService;
     @Autowired
     PinService pinService;
+    @Autowired
+    HangSanPhamService hangSanPhamService;
+    @Autowired
+    DungLuongPinService dungLuongPinService;
+
+
     private Date ngay;
 
     @GetMapping("/hien-thi")
-    public String hienThi(Model model, @RequestParam(value = "page", defaultValue = "0") Integer pageNum) {
-        Pageable pageable = PageRequest.of(pageNum, 5);
+    public String hienThi(Model model,  @RequestParam("pageNum") Optional<Integer> pageNum) {
+        Pageable pageable = PageRequest.of(pageNum.orElse(0), 5);
         Page<ChiTietSanPham> chiTietSanPhamPage = chiTietSanPhamService.getAll(pageable);
-
         model.addAttribute("total", chiTietSanPhamPage.getTotalPages());
         model.addAttribute("listCTSP", chiTietSanPhamPage.getContent());
         model.addAttribute("size", chiTietSanPhamPage.getSize());
-
+        model.addAttribute("listHang", hangSanPhamService.findAll());
+        model.addAttribute("listMauSac", mauSacService.findAll());
+        model.addAttribute("listChip", chipService.findAll());
+        model.addAttribute("listRam", ramService.findAll());
+        model.addAttribute("listRom", romService.findAll());
+        model.addAttribute("listPin", dungLuongPinService.findAll());
         return "chi-tiet-san-pham/index";
     }
 
@@ -143,8 +158,27 @@ public class ChiTietSanPhamController {
 
         chiTietSanPhamService.delete(id);
         return "redirect:/chi-tiet-san-pham/hien-thi";
+    }
 
+    @PostMapping("/search")
+    public String search(Model model, @RequestParam("search") String search) {
+        List<ChiTietSanPham> list = chiTietSanPhamService.search(search);
+        model.addAttribute("listCTSP", list);
+        return "/chi-tiet-san-pham/index";
+    }
 
+    @PostMapping("/loc")
+    public String loc(Model model, @RequestParam(value = "hang", required = false) UUID hang, @RequestParam(value = "ram", required = false) UUID ram,
+                      @RequestParam(value = "rom", required = false) UUID rom, @RequestParam(value = "dungLuongPin", required = false) UUID dungLuongPin) {
+        List<ChiTietSanPham> list = chiTietSanPhamService.loc(hang, ram, rom, dungLuongPin);
+        model.addAttribute("listCTSP", list);
+        model.addAttribute("listHang", hangSanPhamService.findAll());
+        model.addAttribute("listMauSac", mauSacService.findAll());
+        model.addAttribute("listChip", chipService.findAll());
+        model.addAttribute("listRam", ramService.findAll());
+        model.addAttribute("listRom", romService.findAll());
+        model.addAttribute("listPin", dungLuongPinService.findAll());
+        return "/chi-tiet-san-pham/index";
     }
 
 }

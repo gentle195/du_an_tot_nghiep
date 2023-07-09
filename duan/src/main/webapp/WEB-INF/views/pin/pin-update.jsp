@@ -11,8 +11,6 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<h3 style="color: red; text-align: center"><b>Pin</b></h3>
-<hr>
 <form:form action="/pin/update-pin/${Pin.id}" method="post" modelAttribute="Pin">
     <div class="row">
         <div class="col" style="display: none">
@@ -30,16 +28,16 @@
             <form:input path="ngayTao" class="form-control" type="date"></form:input>
         </div>
 
-<%--        <div class="col">--%>
-<%--            <form:label path="ngayCapNhat"><b>Ngày Cập nhật:</b></form:label>--%>
-<%--            <form:input path="ngayCapNhat" class="form-control" type="date"></form:input>--%>
-<%--        </div>--%>
+            <%--        <div class="col">--%>
+            <%--            <form:label path="ngayCapNhat"><b>Ngày Cập nhật:</b></form:label>--%>
+            <%--            <form:input path="ngayCapNhat" class="form-control" type="date"></form:input>--%>
+            <%--        </div>--%>
 
-<%--        <div class="col">--%>
-<%--            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>--%>
-<%--            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>--%>
-<%--            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>--%>
-<%--        </div>--%>
+            <%--        <div class="col">--%>
+            <%--            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>--%>
+            <%--            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>--%>
+            <%--            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>--%>
+            <%--        </div>--%>
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>
             <form:textarea path="moTa" class="form-control"></form:textarea>

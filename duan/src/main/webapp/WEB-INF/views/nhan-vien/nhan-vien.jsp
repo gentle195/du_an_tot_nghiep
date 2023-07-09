@@ -25,26 +25,6 @@
                     </div>
                 </div>
             </div>
-            <%--            <div class="mb-3 mt-3 col-3">--%>
-            <%--                <div class="row g-3 align-items-center">--%>
-            <%--                    <div class="col-auto">--%>
-            <%--                        <label class="col-form-label">Giá min:</label>--%>
-            <%--                    </div>--%>
-            <%--                    <div class="col-auto">--%>
-            <%--                        <input class="form-control" name="min" value="${param.min}">--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-            <%--            </div>--%>
-            <%--            <div class="mb-3 mt-3 col-3">--%>
-            <%--                <div class="row g-3 align-items-center">--%>
-            <%--                    <div class="col-auto">--%>
-            <%--                        <label class="col-form-label">Giá max:</label>--%>
-            <%--                    </div>--%>
-            <%--                    <div class="col-auto">--%>
-            <%--                        <input class="form-control" name="max" value="${param.max}">--%>
-            <%--                    </div>--%>
-            <%--                </div>--%>
-            <%--            </div>--%>
             <div class="mb-3 mt-3 col-3">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>

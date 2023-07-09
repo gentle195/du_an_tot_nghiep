@@ -41,7 +41,7 @@
         </thead>
         <thead>
         <tr style="display: none">
-            <th><form:label path="ngayCapNhat">Ngày cập nhật</form:label></th>
+            <th><form:label path="ngayCapNhat" style="display: none">Ngày cập nhật</form:label></th>
             <th><form:input path="ngayCapNhat" type="date"></form:input></th>
         </tr>
         </thead>

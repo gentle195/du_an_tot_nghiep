@@ -90,8 +90,8 @@ public class PinController {
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
         pin.setNgayCapNhat(date);
+        pin.setNgayTao(pin.getNgayTao());
         pinService.update(id,pin);
-
         return "redirect:/pin/hien-thi";
     }
 

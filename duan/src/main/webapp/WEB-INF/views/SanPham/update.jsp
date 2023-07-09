@@ -18,19 +18,8 @@
 <body>
 <div class="container">
     <form:form action="/san-pham/update/${dulieuxem.id}" method="post" modelAttribute="dulieuxem">
-        <h1 style="text-align: center">Update  Sản Phẩm</h1>
-
+        <h1 style="text-align: center">Update Sản Phẩm</h1>
         <table class="table " style="border: aliceblue 1px">
-            <tbody>
-            <tr>
-                <td> Mã:</td>
-                <th>
-                    <form:input path="ma" id="mat" disabled="true"></form:input>
-
-                </th>
-            </tr>
-            </tbody>
-
             <tbody>
             <tr>
                 <td> Tên:</td>
@@ -56,8 +45,8 @@
             <tbody>
             <tr>
                 <td> Trang thai:</td>
-                <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"></form:radiobutton>
-                    <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"></form:radiobutton>
+                <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"/>
+                    <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"/>
                 </th>
             </tr>
             </tbody>
@@ -66,7 +55,7 @@
             <tbody>
             <tr>
                 <td>Mo ta:</td>
-                <th><form:textarea path="moTa" ></form:textarea></th>
+                <th><form:textarea path="moTa"></form:textarea></th>
                 <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
@@ -74,7 +63,7 @@
             <tbody>
             <tr>
                 <td>Hãng:</td>
-                <th><form:select path="hangSanPham" items="${hangsp}" itemValue="id" itemLabel="ten" ></form:select></th>
+                <th><form:select path="hangSanPham" items="${hangsp}" itemValue="id" itemLabel="ten"/></th>
             </tr>
             </tbody>
 

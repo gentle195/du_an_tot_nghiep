@@ -12,6 +12,10 @@ public interface ChiTietSanPhamService {
 
     public List<ChiTietSanPham> findAll();
 
+    public List<ChiTietSanPham> search(String ten);
+
+    public List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin);
+
     public ChiTietSanPham findById(UUID id);
 
     public ChiTietSanPham add(ChiTietSanPham chiTietSanPham);

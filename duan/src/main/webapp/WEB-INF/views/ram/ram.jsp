@@ -21,13 +21,6 @@
                 <th><form:input path="dungLuong"></form:input>
                     <form:errors path="dungLuong"></form:errors>
                 </th>
-
-            <thead>
-            <tr style="display: none">
-                <th><form:label path="ngayTao">Ngày tạo </form:label></th>
-                <th><form:input path="ngayTao" type="date"></form:input></th>
-            </tr>
-            </thead>
             <thead>
             <tr>
                 <th><form:label path="tinhTrang">Tình trạng</form:label></th>

@@ -30,6 +30,16 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     }
 
     @Override
+    public List<ChiTietSanPham> search(String ten) {
+        return chiTietSanPhamRepository.search(ten);
+    }
+
+    @Override
+    public List<ChiTietSanPham> loc(UUID idHang,UUID idRam,UUID idRom,UUID idDLPin) {
+        return chiTietSanPhamRepository.loc(idHang, idRam, idRom, idDLPin);
+    }
+
+    @Override
     public ChiTietSanPham findById(UUID id) {
         return chiTietSanPhamRepository.findById(id).orElse(null);
     }
@@ -41,9 +51,9 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 
     @Override
     public ChiTietSanPham update(UUID id, ChiTietSanPham chiTietSanPham) {
-        if(id != null){
+        if (id != null) {
             ChiTietSanPham chiTietSanPhamUpdate = chiTietSanPhamRepository.findById(id).orElse(null);
-            if(chiTietSanPhamUpdate != null){
+            if (chiTietSanPhamUpdate != null) {
                 BeanUtils.copyProperties(chiTietSanPham, chiTietSanPhamUpdate);
                 chiTietSanPhamRepository.save(chiTietSanPhamUpdate);
             }
@@ -53,9 +63,9 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
 
     @Override
     public Boolean delete(UUID id) {
-        if(id != null){
+        if (id != null) {
             ChiTietSanPham chiTietSanPham = chiTietSanPhamRepository.findById(id).orElse(null);
-            if(chiTietSanPham != null){
+            if (chiTietSanPham != null) {
                 chiTietSanPhamRepository.delete(chiTietSanPham);
                 return true;
             }

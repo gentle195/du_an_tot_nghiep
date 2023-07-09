@@ -23,14 +23,14 @@
                 <form:select path="sanPham" class="form-control">
                     <form:options items="${listSanPham}" itemLabel="ten" itemValue="id"/>
                 </form:select>
-                <form:label class="form-label" path="sanPham">San Pham:</form:label>
+                <form:label class="form-label" path="sanPham">Sản Phẩm:</form:label>
 
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:select path="mauSac" class="form-control">
                     <form:options items="${listMauSac}" itemLabel="ten" itemValue="id"/>
                 </form:select>
-                <form:label class="form-label" path="mauSac">Mau Sac:</form:label>
+                <form:label class="form-label" path="mauSac">Màu Sắc:</form:label>
 
             </div>
             <div class="form-floating mb-3 mt-3">
@@ -64,7 +64,7 @@
 
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="urlAnh" type="file"/>
-                <form:label class="form-label" path="urlAnh">Anh:</form:label>
+                <form:label class="form-label" path="urlAnh">Ảnh:</form:label>
                 <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
             </div>
 
@@ -72,39 +72,37 @@
         <div class="col">
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="giaNhap"/>
-                <form:label class="form-label" path="giaNhap">Gia nhap:</form:label>
+                <form:label class="form-label" path="giaNhap">Giá nhấp:</form:label>
                 <form:errors path="giaNhap" cssStyle="color: red"></form:errors>
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="giaBan"/>
-                <form:label class="form-label" path="giaBan">Gia ban:</form:label>
+                <form:label class="form-label" path="giaBan">Giá bán:</form:label>
                 <form:errors path="giaBan" cssStyle="color: red"></form:errors>
             </div>
 
 
             <div class="form-check mb-3 mt-3">
                 <form:label class="form-label" path="tinhTrang">Tình Trạng:</form:label>
-                <form:radiobutton path="tinhTrang" value="0"/>Ngung ban
-                <form:radiobutton path="tinhTrang" value="1" checked="true"/> Con ban
+                <form:radiobutton path="tinhTrang" value="0"/>Ngừng kinh doanh
+                <form:radiobutton path="tinhTrang" value="1" checked="true"/> Còn kinh doanh
 
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="namBaoHanh"/>
-                <form:label class="form-label" path="namBaoHanh">Nam bao hanh:</form:label>
+                <form:label class="form-label" path="namBaoHanh">Năm bảo hành:</form:label>
                 <form:errors path="namBaoHanh" cssStyle="color: red"></form:errors>
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="soLuong"/>
-                <form:label class="form-label" path="soLuong">So luong ton:</form:label>
+                <form:label class="form-label" path="soLuong">Số lượng tồn:</form:label>
                 <form:errors path="soLuong" cssStyle="color: red"></form:errors>
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:textarea class="form-control" placeholder="" path="moTa"/>
-                <form:label class="form-label" path="moTa">Mo ta:</form:label>
+                <form:label class="form-label" path="moTa">Mô tả:</form:label>
                 <form:errors path="moTa" cssStyle="color: red"></form:errors>
             </div>
-
-
         </div>
     </div>
 

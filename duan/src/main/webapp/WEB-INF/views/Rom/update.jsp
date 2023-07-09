@@ -23,16 +23,6 @@
         <table class="table " style="border: aliceblue 1px">
             <tbody>
             <tr>
-                <td> Mã:</td>
-                <th>
-                    <form:input path="ma" id="mat" ></form:input>
-
-                </th>
-            </tr>
-            </tbody>
-
-            <tbody>
-            <tr>
                 <td> Dung lượng :</td>
                 <th><form:input path="dungLuong" id="tent"></form:input></th>
                 <th><form:errors path="dungLuong" cssClass="error text-danger"></form:errors></th>

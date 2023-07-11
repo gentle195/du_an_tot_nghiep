@@ -65,7 +65,7 @@ public class NhanVien {
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "que_quan")
     private String queQuan;
-    
+
     @Column(name = "ngay_sinh")
     private Date ngaySinh;
 

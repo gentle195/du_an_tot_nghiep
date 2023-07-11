@@ -40,7 +40,7 @@
 </div>
 <c:if test="${listNhanVien.isEmpty()}">
     <div class="container">
-        <h4>Không có sản phẩm !</h4>
+        <h4>Không có nhân viên !</h4>
     </div>
 </c:if>
 <c:if test="${not listNhanVien.isEmpty()}">

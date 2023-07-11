@@ -20,16 +20,11 @@
                     <form:label class="form-label" path="soDiem">Số Điểm:</form:label>
                     <form:errors path="soDiem" cssStyle="color: red"></form:errors>
                 </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="mucQuyDoi.ngayTao" placeholder="" path="ngayTao"/>
-                    <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>
-                    <form:errors path="ngayTao" cssStyle="color: red"></form:errors>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="mucQuyDoi.ngayCapNhat" placeholder=""
-                                path="ngayCapNhat" />
-                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>
-                    <form:errors path="ngayCapNhat" cssStyle="color: red"></form:errors>
+                <div class="form-check mb-3 mt-3">
+                    <form:label class="form-label" path="tinhTrang">Tình Trạng:</form:label>
+                    <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
+                    <form:radiobutton path="tinhTrang" value="1" checked="true"/>Hoạt động
+                    <form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
                 </div>
             </div>
             <div class="col">
@@ -37,12 +32,6 @@
                     <form:input class="form-control" placeholder="" path="soTien"/>
                     <form:label class="form-label" path="soTien">Số Tiền:</form:label>
                     <form:errors path="soTien" cssStyle="color: red"></form:errors>
-                </div>
-                <div class="form-check mb-3 mt-3">
-                    <form:label class="form-label" path="tinhTrang">Tình Trạng:</form:label>
-                    <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
-                    <form:radiobutton path="tinhTrang" value="1" checked="true"/>Hoạt động
-                    <form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="form-floating mb-3 mt-3">
                     <form:textarea class="form-control" placeholder="" path="ghiChu"/>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Chức vụ</title>
+    <title>Mức quy đổi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 </div>
 <c:if test="${listMucQuyDoi.isEmpty()}">
     <div class="container">
-        <h4>Không có sản phẩm !</h4>
+        <h4>Không có mức quy đổi !</h4>
     </div>
 </c:if>
 <c:if test="${not listMucQuyDoi.isEmpty()}">

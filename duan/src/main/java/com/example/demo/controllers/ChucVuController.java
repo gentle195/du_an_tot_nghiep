@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Controller
@@ -46,6 +48,9 @@ public class ChucVuController {
         if(bindingResult.hasErrors()){
             return "chuc-vu/chuc-vu-add";
         }
+        String maCV = "CV" + chucVuService.findAll().size() + 1;
+        chucVu.setMa(maCV);
+        chucVu.setNgayTao(Date.valueOf(LocalDate.now()));
         chucVuService.add(chucVu);
         return "redirect:/chuc-vu/hien-thi";
     }
@@ -63,6 +68,7 @@ public class ChucVuController {
     public String update(@ModelAttribute(name = "chucVu") ChucVu chucVu,
                          @PathVariable(name = "id") UUID id){
         chucVu.setId(id);
+        chucVu.setNgayCapNhat(Date.valueOf(LocalDate.now()));
         chucVuService.update(id, chucVu);
         return "redirect:/chuc-vu/hien-thi";
     }

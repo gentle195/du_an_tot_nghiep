@@ -23,10 +23,15 @@
                     <form:input class="form-control" type="date" value="${chucVu.ngayTao}" placeholder="" path="ngayTao"/>
                     <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>
                 </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="${chucVu.ngayCapNhat}" placeholder=""
-                                path="ngayCapNhat"/>
-                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+                    <%--                    <form:input class="form-control" type="date" value="${chucVu.ngayCapNhat}" placeholder=""--%>
+                    <%--                                path="ngayCapNhat"/>--%>
+                    <%--                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>--%>
+                    <%--                </div>--%>
+                <div class="form-check mb-3 mt-3">
+                    <form:label class="form-label" path="tinhTrang">Tình trạng:</form:label>
+                    <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
+                    <form:radiobutton path="tinhTrang" value="1"/>Hoạt động
                 </div>
             </div>
             <div class="col">
@@ -34,13 +39,8 @@
                     <form:input class="form-control" placeholder="" path="ten"/>
                     <form:label class="form-label" path="ten">Tên:</form:label>
                 </div>
-                <div class="form-check mb-3 mt-3">
-                    <form:label class="form-label" path="tinhTrang">Tình trạng:</form:label>
-                    <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
-                    <form:radiobutton path="tinhTrang" value="1" checked="true"/>Hoạt động
-                </div>
                 <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" placeholder="" path="moTa"/>
+                    <form:textarea class="form-control" placeholder="" path="moTa"/>
                     <form:label class="form-label" path="moTa">Mô tả:</form:label>
                 </div>
             </div>

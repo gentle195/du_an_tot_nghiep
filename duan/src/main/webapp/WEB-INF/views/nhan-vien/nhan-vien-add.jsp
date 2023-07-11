@@ -15,11 +15,11 @@
     <form:form method="post" class="container" action="/nhan-vien/add" modelAttribute="nhanVien">
         <div class="row">
             <div class="col">
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" placeholder="" path="ma"/>
-                    <form:label class="form-label" path="ma">Mã:</form:label>
-                    <form:errors path="ma" cssStyle="color: red"></form:errors>
-                </div>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input class="form-control" placeholder="" path="ma"/>--%>
+<%--                    <form:label class="form-label" path="ma">Mã:</form:label>--%>
+<%--                    <form:errors path="ma" cssStyle="color: red"></form:errors>--%>
+<%--                </div>--%>
                 <div class="form-floating mb-3 mt-3">
                     <form:input class="form-control" placeholder="" path="hoTen"/>
                     <form:label class="form-label" path="hoTen">Họ tên:</form:label>
@@ -59,21 +59,14 @@
                     <form:errors path="matKhau" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="nhanVien.ngayTao" placeholder=""
-                                path="ngayTao"/>
-                    <form:label class="form-label" path="ngayTao">Ngày tạo:</form:label>
-                    <form:errors path="ngayTao" cssStyle="color: red"></form:errors>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="nhanVien.ngayCapNhat" placeholder=""
-                                path="ngayCapNhat"/>
-                    <form:label class="form-label" path="ngayCapNhat">Ngày cập nhật:</form:label>
-                    <form:errors path="ngayCapNhat" cssStyle="color: red"></form:errors>
+                    <form:input class="form-control" placeholder="" path="queQuan"/>
+                    <form:label class="form-label" path="queQuan">Quê quán:</form:label>
+                    <form:errors path="queQuan" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="form-check mb-3 mt-3">
                     <form:label class="form-label" path="tinhTrang">Giới Tính:</form:label>
-                    <form:radiobutton path="gioiTinh" value="true" />Nam
-                    <form:radiobutton path="gioiTinh" value="false" checked="true"/> Nữ
+                    <form:radiobutton path="gioiTinh" value="true" checked="true"/>Nam
+                    <form:radiobutton path="gioiTinh" value="false" /> Nữ
                     <form:errors path="gioiTinh" cssStyle="color: red"></form:errors>
                 </div>
                 <div class="form-check mb-3 mt-3">
@@ -84,15 +77,15 @@
                 </div>
                 <div class="form-floating mb-3 mt-3">
                     <form:select path="chucVu" class="form-select">
-                        <form:options items="${listChucVu}" itemValue="ten" itemLabel="ten"/>
+                        <form:options items="${listChucVu}" itemValue="id" itemLabel="ten"/>
                     </form:select>
                     <form:label class="form-label" path="chucVu">Chức vụ:</form:label>
                 </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input path="urlAnh" type="file" class="form-control" placeholder=""/>
-                    <form:label class="form-label" path="urlAnh">Ảnh:</form:label>
-                    <form:errors path="urlAnh" cssStyle="color: red" />
-                </div>
+<%--                <div class="form-floating mb-3 mt-3">--%>
+<%--                    <form:input path="urlAnh" type="file" class="form-control" placeholder=""/>--%>
+<%--                    <form:label class="form-label" path="urlAnh">Ảnh:</form:label>--%>
+<%--                    <form:errors path="urlAnh" cssStyle="color: red" />--%>
+<%--                </div>--%>
             </div>
         </div>
         <form:button type="submit" class="btn btn-primary"

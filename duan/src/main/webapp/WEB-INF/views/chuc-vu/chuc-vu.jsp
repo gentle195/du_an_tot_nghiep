@@ -60,7 +60,7 @@
 </div>
 <c:if test="${listChucVu.isEmpty()}">
     <div class="container">
-        <h4>Không có sản phẩm !</h4>
+        <h4>Không có chức vụ !</h4>
     </div>
 </c:if>
 <c:if test="${not listChucVu.isEmpty()}">

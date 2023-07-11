@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Controller
@@ -46,6 +48,7 @@ public class MucQuyDoiController {
         if (bindingResult.hasErrors()){
             return "muc-quy-doi/muc-quy-doi-add";
         }
+        mucQuyDoi.setNgayTao(Date.valueOf(LocalDate.now()));
         mucQuyDoiService.add(mucQuyDoi);
         return "redirect:/muc-quy-doi/hien-thi";
     }
@@ -62,6 +65,7 @@ public class MucQuyDoiController {
     public String update(@ModelAttribute(name = "mucQuyDoi") MucQuyDoi mucQuyDoi,
                          @PathVariable(name = "id") UUID id) {
         mucQuyDoi.setId(id);
+        mucQuyDoi.setNgayCapNhat(Date.valueOf(LocalDate.now()));
         mucQuyDoiService.update(id, mucQuyDoi);
         return "redirect:/muc-quy-doi/hien-thi";
     }

@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <form:form method="post" class="container" action="/muc-quy-doi/update/${nhanVien.id}" modelAttribute="mucQuyDoi">
+    <form:form method="post" class="container" action="/muc-quy-doi/update/${mucQuyDoi.id}" modelAttribute="mucQuyDoi">
         <div class="row">
             <div class="col">
                 <div class="form-floating mb-3 mt-3">
@@ -23,21 +23,16 @@
                     <form:input class="form-control" type="date" value="${mucQuyDoi.ngayTao}" placeholder="" path="ngayTao"/>
                     <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>
                 </div>
-                <div class="form-floating mb-3 mt-3">
-                    <form:input class="form-control" type="date" value="${mucQuyDoi.ngayCapNhat}" placeholder=""
-                                path="ngayCapNhat"/>
-                    <form:label class="form-label" path="ngayCapNhat">Ngày Cập Nhật:</form:label>
+                <div class="form-check mb-3 mt-3">
+                    <form:label class="form-label" path="tinhTrang">Tình Trạng:</form:label>
+                    <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
+                    <form:radiobutton path="tinhTrang" value="1"/>Hoạt động
                 </div>
             </div>
             <div class="col">
                 <div class="form-floating mb-3 mt-3">
                     <form:input class="form-control" placeholder="" path="soTien"/>
                     <form:label class="form-label" path="soTien">Số Tiền:</form:label>
-                </div>
-                <div class="form-check mb-3 mt-3">
-                    <form:label class="form-label" path="tinhTrang">Tình Trạng:</form:label>
-                    <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
-                    <form:radiobutton path="tinhTrang" value="1" checked="true"/>Hoạt động
                 </div>
                 <div class="form-floating mb-3 mt-3">
                     <form:input class="form-control" placeholder="" path="ghiChu"/>

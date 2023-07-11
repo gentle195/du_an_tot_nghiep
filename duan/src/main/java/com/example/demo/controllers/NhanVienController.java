@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,9 +58,12 @@ public class NhanVienController {
             model.addAttribute("listChucVu", listChucVu);
             return "nhan-vien/nhan-vien-add";
         }
-        if(nhanVienService.existsByPhoneNumber(nhanVien.getSdt())){
-            return "nhan-vien/nhan-vien-add";
-        }
+//        if(nhanVienService.existsByPhoneNumber(nhanVien.getSdt())){
+//            return "nhan-vien/nhan-vien-add";
+//        }
+        String maNV = "NV" + nhanVienService.findAll().size() + 1;
+        nhanVien.setMa(maNV);
+        nhanVien.setNgayTao(Date.valueOf(LocalDate.now()));
         nhanVienService.add(nhanVien);
         return "redirect:/nhan-vien/hien-thi";
     }
@@ -68,7 +73,8 @@ public class NhanVienController {
                          Model model){
         List<ChucVu> listChucVu = chucVuRepository.findAll();
         model.addAttribute("listChucVu", listChucVu);
-        nhanVienService.getById(id);
+        NhanVien nhanVien = nhanVienService.getById(id);
+        model.addAttribute("nhanVien", nhanVien);
         return "nhan-vien/nhan-vien-detail";
     }
 
@@ -82,6 +88,7 @@ public class NhanVienController {
     public String update(@ModelAttribute(name = "nhanVien") NhanVien nhanVien,
                          @PathVariable(name = "id") UUID id){
         nhanVien.setId(id);
+        nhanVien.setNgayCapNhat(Date.valueOf(LocalDate.now()));
         nhanVienService.update(id, nhanVien);
         return "redirect:/nhan-vien/hien-thi";
     }

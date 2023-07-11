@@ -42,10 +42,11 @@ public class MucQuyDoi {
     @Column(name = "so_tien")
     private BigDecimal soTien;
 
-   @CreationTimestamp
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 

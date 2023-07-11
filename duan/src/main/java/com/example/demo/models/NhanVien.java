@@ -62,6 +62,11 @@ public class NhanVien {
     @Column(name = "sdt")
     private String sdt;
 
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "que_quan")
+    private String queQuan;
+
+    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_sinh")
     private Date ngaySinh;
 
@@ -78,7 +83,6 @@ public class NhanVien {
     @Column(name = "mat_khau")
     private String matKhau;
 
-    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 

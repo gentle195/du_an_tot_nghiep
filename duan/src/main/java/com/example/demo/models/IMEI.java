@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -42,6 +43,7 @@ public class IMEI {
     @Column(name = "so_imei")
     private String soImei;
 
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 

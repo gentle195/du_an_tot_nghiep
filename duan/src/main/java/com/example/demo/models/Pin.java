@@ -48,10 +48,8 @@ public class Pin {
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
-
 
     @Column(name = "tinh_trang")
     private int tinhTrang;

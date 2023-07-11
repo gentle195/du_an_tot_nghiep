@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.IMEI;
 import com.example.demo.models.SanPhamGiamGia;
 import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.KhuyenMaiService;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Controller

@@ -1,6 +1,5 @@
 package com.example.demo.services.impl;
 
-import com.example.demo.models.HangKhachHang;
 import com.example.demo.models.KhachHang;
 import com.example.demo.repositories.KhachHangRepository;
 import com.example.demo.services.KhachHangService;

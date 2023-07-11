@@ -37,11 +37,9 @@ public class DoiTra {
     @Column(name = "ma")
     private String ma;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_doi_tra")
     private Date ngayDoiTra;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_hoan_tra")
     private Date ngayHoanTra;
 
@@ -53,7 +51,6 @@ public class DoiTra {
     @Column(name = "tien_doi_tra")
     private BigDecimal tienDoiTra;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

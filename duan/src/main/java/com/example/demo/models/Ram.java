@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -37,14 +38,12 @@ public class Ram {
     @Column(name = "dung_luong")
     private String dungLuong;
 
-
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
-
 
     @Column(name = "tinh_trang")
     private int tinhTrang;

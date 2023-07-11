@@ -1,9 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.DiaChi;
-import com.example.demo.models.KhachHang;
 import com.example.demo.services.DiaChiService;
-import com.example.demo.services.HangKhachHangService;
 import com.example.demo.services.KhachHangService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

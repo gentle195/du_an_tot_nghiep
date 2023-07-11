@@ -2,15 +2,11 @@ package com.example.demo.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,27 +23,29 @@ import java.util.UUID;
 @Setter
 @ToString
 @Entity
-@Table(name = "san_pham")
-public class SanPham {
+@Table(name = "camera")
+public class Camera {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
+
     @Column(name = "ma")
     private String ma;
 
     @NotBlank(message = "Không để trống thông tin")
-    @Size(min = 4, message = "Tên phải lớn hơn hoặc bằng 6 kí tự")
-    @Column(name = "ten")
-    private String ten;
+    @Column(name = "thong_so")
+    private String thongSo;
 
     @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
+
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
+
 
     @Column(name = "tinh_trang")
     private int tinhTrang;
@@ -55,21 +53,4 @@ public class SanPham {
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "mo_ta")
     private String moTa;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hang")
-    private HangSanPham hangSanPham;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_anh")
-    private Anh anh;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_man_hinh")
-    private ManHinh manHinh;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_camera")
-    private Camera camera;
 }
-

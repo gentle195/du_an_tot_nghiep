@@ -44,13 +44,12 @@
         <form action="/chi-tiet-san-pham/loc" method="post" onsubmit="return checkLoc()">
             <table class="table">
                 <tr>
-                    <td style="text-align: center" colspan="2">Hãng Điện Thoại</td>
+                    <td style="text-align: center" colspan="1">Hãng Điện Thoại</td>
                     <td style="text-align: center" colspan="2">Ram</td>
-                    <td style="text-align: center" colspan="2">Rom</td>
-                    <td style="text-align: center" colspan="2">Dung Lượng Pin</td>
+                    <td style="text-align: center" colspan="1">Dung Lượng Bộ Nhớ</td>
                 </tr>
                 <tr>
-                    <td style="text-align: center" colspan="2">
+                    <td style="text-align: center" colspan="1">
                         <select name="hang">
                             <option selected disabled>Hãng</option>
                             <c:forEach items="${listHang}" var="hang" varStatus="i">
@@ -68,7 +67,7 @@
                             </c:forEach>
                         </select>
                     </td>
-                    <td style="text-align: center" colspan="2">
+                    <td style="text-align: center" colspan="1">
                         <select name="rom">
                             <option selected disabled>Rom</option>
                             <c:forEach items="${listRom}" var="rom" varStatus="i">
@@ -77,7 +76,16 @@
                             </c:forEach>
                         </select>
                     </td>
-                    <td style="text-align: center" colspan="2">
+
+                </tr>
+                <tr>
+                    <td style="text-align: center" colspan="1">Dung Lượng Pin</td>
+                    <td style="text-align: center" colspan="1">Chip</td>
+                    <td style="text-align: center" colspan="1">Màn Hình</td>
+                    <td style="text-align: center" colspan="1">Camera</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center" colspan="1">
                         <select name="dungLuongPin">
                             <option selected disabled>Dung Lượng Pin</option>
                             <c:forEach items="${listPin}" var="pin" varStatus="i">
@@ -86,9 +94,34 @@
                             </c:forEach>
                         </select>
                     </td>
+                    <td style="text-align: center" colspan="1">
+                        <select name="chip">
+                            <option selected disabled>Chip</option>
+                            <c:forEach items="${listChip}" var="chip" varStatus="i">
+
+                                <option value="${chip.id}">${chip.ten}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td style="text-align: center" colspan="1">
+                        <select name="manHinh">
+                            <option selected disabled>Màn Hình</option>
+                            <c:forEach items="${listManHinh}" var="man" varStatus="i">
+                                <option value="${man.id}">${man.thongSo}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td style="text-align: center" colspan="1">
+                        <select name="camera">
+                            <option selected disabled>Camera</option>
+                            <c:forEach items="${listCamera}" var="cam" varStatus="i">
+                                <option value="${cam.id}">${cam.thongSo}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                    <td style="text-align: center" colspan="8">
+                    <td style="text-align: center" colspan="7">
                         <button class="btn btn-secondary">Lọc</button>
                     </td>
                 </tr>

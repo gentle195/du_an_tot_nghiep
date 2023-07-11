@@ -1,8 +1,8 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.models.Ram;
-import com.example.demo.services.RamService;
 import com.example.demo.repositories.RamRepository;
+import com.example.demo.services.RamService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

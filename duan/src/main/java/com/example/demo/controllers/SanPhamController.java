@@ -1,12 +1,15 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.Camera;
 import com.example.demo.models.HangSanPham;
-import com.example.demo.models.SanPham;
+import com.example.demo.models.ManHinh;
 
+import com.example.demo.models.SanPham;
+import com.example.demo.services.CameraService;
 import com.example.demo.services.HangSanPhamService;
+import com.example.demo.services.ManHinhService;
 import com.example.demo.services.SanPhamService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +33,10 @@ public class SanPhamController {
     SanPhamService sanPhamService;
     @Autowired
     HangSanPhamService hangSanPhamService;
+    @Autowired
+    ManHinhService manHinhService;
+    @Autowired
+    CameraService cameraService;
 
     @GetMapping("hien-thi")
     public String hienthi(@ModelAttribute("dulieuxem") SanPham dulieuxem, Model model, @RequestParam("num") Optional<Integer> num,
@@ -44,6 +51,16 @@ public class SanPhamController {
     @ModelAttribute("hangsp")
     public List<HangSanPham> hsp() {
         return hangSanPhamService.findAll();
+    }
+
+    @ModelAttribute("manHinh")
+    public List<ManHinh> manHinh() {
+        return manHinhService.findAll();
+    }
+
+    @ModelAttribute("camera")
+    public List<Camera> camera() {
+        return cameraService.findAll();
     }
 
     @GetMapping("/view-update/{id}")

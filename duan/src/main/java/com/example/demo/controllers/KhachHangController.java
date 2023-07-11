@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.HangKhachHang;
 import com.example.demo.models.KhachHang;
 import com.example.demo.services.HangKhachHangService;
 import com.example.demo.services.KhachHangService;

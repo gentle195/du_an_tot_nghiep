@@ -40,9 +40,14 @@ public class Anh {
     @Column(name = "ten")
     private String ten;
 
-    @NotBlank(message = "Không để trống thông tin")
-    @Column(name = "url_anh")
-    private String anh;
+    @Column(name = "url_anh_1")
+    private String anh1;
+
+    @Column(name = "url_anh_2")
+    private String anh2;
+
+    @Column(name = "url_anh_3")
+    private String anh3;
 
     @CreationTimestamp
     @Column(name = "ngay_tao")

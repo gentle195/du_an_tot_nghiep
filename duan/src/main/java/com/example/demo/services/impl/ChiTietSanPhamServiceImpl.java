@@ -35,8 +35,8 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     }
 
     @Override
-    public List<ChiTietSanPham> loc(UUID idHang,UUID idRam,UUID idRom,UUID idDLPin) {
-        return chiTietSanPhamRepository.loc(idHang, idRam, idRom, idDLPin);
+    public List<ChiTietSanPham> loc(UUID idHang,UUID idRam,UUID idRom,UUID idDLPin,UUID idChip,UUID moTaMan,UUID moTaCam) {
+        return chiTietSanPhamRepository.loc(idHang, idRam, idRom, idDLPin,idChip,moTaMan,moTaCam);
     }
 
     @Override

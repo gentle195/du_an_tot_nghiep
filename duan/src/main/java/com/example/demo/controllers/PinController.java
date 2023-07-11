@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Chip;
 import com.example.demo.models.Pin;
 import com.example.demo.services.DungLuongPinService;
 import com.example.demo.services.PinService;

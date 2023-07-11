@@ -3,7 +3,6 @@ package com.example.demo.controllers;
 import com.example.demo.models.HangSanPham;
 import com.example.demo.services.HangSanPhamService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

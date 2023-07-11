@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -31,7 +32,6 @@ public class KhuyenMai {
     @Column(name = "id")
     private UUID id;
 
-
     @Column(name = "ma")
     private String ma;
 
@@ -40,22 +40,18 @@ public class KhuyenMai {
     @Column(name = "ten")
     private String ten;
 
-
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
-
 
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-
     @Column(name = "ngay_bat_dau")
     private Date ngayBatDau;
 
-
     @Column(name = "ngay_ket_thuc")
     private Date ngayKetThuc;
-
 
     @Column(name = "tinh_trang")
     private int tinhTrang;
@@ -67,7 +63,6 @@ public class KhuyenMai {
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "hinh_thuc_giam_gia")
     private String hinhThucGiamGia;
-
 
     @Column(name = "so_tien_giam")
     private BigDecimal soTienGiam;

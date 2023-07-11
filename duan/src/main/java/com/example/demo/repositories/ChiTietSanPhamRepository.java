@@ -23,10 +23,15 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
             "left join Rom rom on ct.rom.id=rom.id left join Pin pin on ct.pin.id=pin.id " +
             "left join MauSac ms on ct.mauSac.id=ms.id left join Chip chip on ct.chip.id=chip.id " +
             "left join DungLuongPin dungLuong on pin.dungLuongPin.id=dungLuong.id " +
+            "left  join ManHinh manHinh on sp.manHinh.id=manHinh.id " +
+            "left join Camera  cam on sp.camera.id=cam.id " +
             "where" +
             " (:idHang is null or hang.id =:idHang) " +
             "and (:idRam is null or ram.id=: idRam) " +
             "and (:idRom is null or rom.id=: idRom) " +
-            "and (:idDLPin is null or dungLuong.id=: idDLPin)")
-    List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin);
+            "and (:idDLPin is null or dungLuong.id=: idDLPin) " +
+            "and (:idChip is null or chip.id=: idChip) " +
+            "and (:moTaMan is null or manHinh.id =:moTaMan) " +
+            "and (:moTaCam is null or cam.id =:moTaCam) ")
+    List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin,UUID idChip,UUID moTaMan,UUID moTaCam);
 }

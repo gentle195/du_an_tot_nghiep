@@ -15,25 +15,25 @@
 </head>
 <body>
 <div class="container">
-    <h1 style="text-align: center">Rom</h1>
-    <table class="table table-bordered border-primary">
-        <thead>
-        <tr>
-            <th>STT</th>
-            <th>Mã </th>
-            <th>Dung lượng </th>
-            <th>Ngày tạo</th>
-            <th>Ngày cập nhật</th>
-            <th>Tình trạng</th>
-            <th>Mô tả</th>
-            <th colspan="2">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:if test="${f:length(hsp)==0}">
-            <span>Khong co du lieu</span>
-        </c:if>
-        <c:if test="${f:length(hsp)!=0}">
+    <h1 style="text-align: center">Dung lượng</h1>
+    <c:if test="${f:length(hsp)==0}">
+        <span style="text-align: center">Không có dữ liệu dung lượng</span>
+    </c:if>
+    <c:if test="${f:length(hsp)!=0}">
+        <table class="table table-bordered border-primary">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã</th>
+                <th>Dung lượng</th>
+                <th>Ngày tạo</th>
+                <th>Ngày cập nhật</th>
+                <th>Tình trạng</th>
+                <th>Mô tả</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
             <c:forEach var="list" varStatus="i" items="${hsp}">
                 <tr>
                     <td>${i.index+1}</td>
@@ -46,30 +46,31 @@
                     </td>
                     <td>${list.moTa}</td>
                     <td>
-                        <a class="btn btn-primary" href="/rom/delete/${list.id}" onclick="return myFunction3()">Delete</a>
+                        <a class="btn btn-primary" href="/rom/delete/${list.id}"
+                           onclick="return myFunction3()">Delete</a>
                         <a class="btn btn-primary" href="/rom/view-update/${list.id}">Update</a>
                     </td>
                 </tr>
             </c:forEach>
-        </c:if>
+            </tbody>
+        </table>
 
-        </tbody>
-    </table>
-    <br>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center pagination-lg">
-            <li class="page-item"><a class="page-link" href="/rom/hien-thi?num=0">First</a></li>
+        <br>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pagination-lg">
+                <li class="page-item"><a class="page-link" href="/rom/hien-thi?num=0">First</a></li>
 
-            <c:forEach begin="1" end="${total}" varStatus="status">
-                <li class="page-item">
-                    <a href="${pageContext.request.contextPath}/rom/hien-thi?num=${status.index -1}"
-                       class="page-link">${status.index}</a>
-                </li>
-            </c:forEach>
+                <c:forEach begin="1" end="${total}" varStatus="status">
+                    <li class="page-item">
+                        <a href="${pageContext.request.contextPath}/rom/hien-thi?num=${status.index -1}"
+                           class="page-link">${status.index}</a>
+                    </li>
+                </c:forEach>
 
-            <li class="page-item"><a class="page-link" href="/rom/hien-thi?num=${total-1}">Last</a></li>
-        </ul>
-    </nav>
+                <li class="page-item"><a class="page-link" href="/rom/hien-thi?num=${total-1}">Last</a></li>
+            </ul>
+        </nav>
+    </c:if>
 </div>
 <br>
 <div class="container">
@@ -122,7 +123,7 @@
             <tbody>
             <tr>
                 <td>Mo ta:</td>
-                <th><form:textarea path="moTa" ></form:textarea></th>
+                <th><form:textarea path="moTa"></form:textarea></th>
                 <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
@@ -173,7 +174,6 @@
             return false;
         }
     }
-
 
 
 </script>

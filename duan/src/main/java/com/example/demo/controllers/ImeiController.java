@@ -1,11 +1,9 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.ChiTietSanPham;
 import com.example.demo.models.IMEI;
 import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.IMEIService;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

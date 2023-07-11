@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -36,6 +37,7 @@ public class Rom {
     @Column(name = "dung_luong")
     private String dungLuong;
 
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 

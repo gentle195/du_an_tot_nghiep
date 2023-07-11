@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -45,23 +46,19 @@ public class HoaDon {
     @Column(name = "tong_tien")
     private BigDecimal tongTien;
 
-    @NotBlank(message = "Không để trống thông tin")
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_nhan")
     private Date ngayNhan;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ngay_ship")
     private Date ngayShip;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

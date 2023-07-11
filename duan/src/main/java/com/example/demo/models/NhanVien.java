@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -48,7 +49,6 @@ public class NhanVien {
     @Column(name = "url_anh")
     private String urlAnh;
 
-    @NotNull(message = "Không để trống thông tin")
     @Column(name = "gioi_tinh")
     private Boolean gioiTinh;
 
@@ -62,7 +62,6 @@ public class NhanVien {
     @Column(name = "sdt")
     private String sdt;
 
-    @NotNull(message = "Không để trống thông tin")
     @Column(name = "ngay_sinh")
     private Date ngaySinh;
 
@@ -79,7 +78,7 @@ public class NhanVien {
     @Column(name = "mat_khau")
     private String matKhau;
 
-    @NotNull(message = "Không để trống thông tin")
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
 

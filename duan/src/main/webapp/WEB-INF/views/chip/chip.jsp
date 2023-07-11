@@ -15,22 +15,16 @@
 <hr>
 <form:form action="/chip/add-chip" method="post" modelAttribute="Chip">
     <div class="row">
-            <%--        <div class="col" >--%>
-            <%--            <form:label path="ma"><b>Mã:</b></form:label>--%>
-            <%--            <form:input path="ma" class="form-control" readonly="true"></form:input>--%>
-            <%--        </div>--%>
         <div class="col">
             <form:label path="ten"><b>Tên:</b></form:label>
             <form:input path="ten" class="form-control"></form:input>
             <form:errors path="ten"></form:errors>
         </div>
-
         <div class="col">
             <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
-            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>
-            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>
+            <form:radiobutton path="tinhTrang" label="Thế hệ mới" value="0"></form:radiobutton>
+            <form:radiobutton path="tinhTrang" label="thế hệ cũ" value="1"></form:radiobutton>
         </div>
-
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>
             <form:textarea path="moTa" class="form-control"></form:textarea>
@@ -68,8 +62,8 @@
                     <td>${chip.ngayTao}</td>
                     <td>${chip.ngayCapNhat}</td>
                     <td>
-                        <c:if test="${chip.tinhTrang == 0}">Yes</c:if>
-                        <c:if test="${chip.tinhTrang == 1}">No</c:if>
+                        <c:if test="${chip.tinhTrang == 0}">Thế hệ mới</c:if>
+                        <c:if test="${chip.tinhTrang == 1}">Thế hệ cũ</c:if>
                     </td>
                     <td>${chip.moTa}</td>
                     <td>

@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.util.UUID;
@@ -34,7 +35,6 @@ public class KhachHang {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
-
 
     @Column(name = "ma")
     private String ma;
@@ -57,7 +57,6 @@ public class KhachHang {
     @Column(name = "sdt")
     private String sdt;
 
-    @NotNull(message = "Không để trống thông tin ngày sinh")
     @Column(name = "ngay_sinh")
     private Date ngaySinh;
 
@@ -69,10 +68,9 @@ public class KhachHang {
     @Column(name = "mat_khau")
     private String matKhau;
 
-
+    @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;
-
 
     @Column(name = "ngay_cap_nhat")
     private Date ngayCapNhat;
@@ -92,15 +90,17 @@ public class KhachHang {
     private HangKhachHang hangKhachHang;
 
 
-    public  String goitinh(){
-        if (gioiTinh==true){
+    public String goitinh() {
+        if (gioiTinh == true) {
             return "nam";
         }
         return "nu";
     }
-    public String tt(){
-        if(tinhTrang== 0 ){
+
+    public String tt() {
+        if (tinhTrang == 0) {
             return "Còn dùng";
-        }return "Không còn dùng";
+        }
+        return "Không còn dùng";
     }
 }

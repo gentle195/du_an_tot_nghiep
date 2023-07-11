@@ -30,19 +30,20 @@
             <form:label path="ngayTao"><b>Ngày Tạo:</b></form:label>
             <form:input path="ngayTao" class="form-control" type="date"></form:input>
         </div>
-
-<%--        <div class="col">--%>
-<%--            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>--%>
-<%--            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>--%>
-<%--            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>--%>
-<%--        </div>--%>
+        <div class="col">
+            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
+            <form:radiobutton path="tinhTrang" label="Thế hệ mới" value="0"></form:radiobutton>
+            <form:radiobutton path="tinhTrang" label="thế hệ cũ" value="1"></form:radiobutton>
+        </div>
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>
             <form:textarea path="moTa" class="form-control"></form:textarea>
             <form:errors path="moTa"></form:errors>
         </div>
         <div style="margin-top: 20px; margin-bottom: 20px">
-            <button type="submit" class="btn btn-primary" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">SAVE</button>
+            <button type="submit" class="btn btn-primary"
+                    onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">SAVE
+            </button>
         </div>
     </div>
 </form:form>

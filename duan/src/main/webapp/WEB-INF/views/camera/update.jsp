@@ -17,14 +17,14 @@
 </head>
 <body>
 <div class="container">
-    <form:form action="/san-pham/update/${dulieuxem.id}" method="post" modelAttribute="dulieuxem">
-        <h1 style="text-align: center">Update Sản Phẩm</h1>
+    <form:form action="/camera/update/${camera.id}" method="post" modelAttribute="camera">
+        <h1 style="text-align: center">UPDATE Thông Tin Camera</h1>
         <table class="table " style="border: aliceblue 1px">
             <tbody>
             <tr>
-                <td><form:label path="ten">Tên Sản Phẩm</form:label></td>
-                <th><form:input path="ten" id="tent"></form:input></th>
-                <th><form:errors path="ten" cssClass="error text-danger"></form:errors></th>
+                <td><form:label path="thongSo">Thông số Camera</form:label></td>
+                <th><form:input path="thongSo" id="tent"></form:input></th>
+                <th><form:errors path="thongSo" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
             <tbody>
@@ -42,37 +42,14 @@
                 <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
-
-            <tbody>
-            <tr>
-                <td><form:label path="hangSanPham">Hãng</form:label></td>
-                <th><form:select path="hangSanPham" items="${hangsp}" itemValue="id" itemLabel="ten"/></th>
-            </tr>
-            </tbody>
-            <tbody>
-            <tr>
-                <td><form:label path="manHinh">Màn Hình</form:label></td>
-                <th><form:select path="manHinh" items="${manHinh}" itemValue="id" itemLabel="thongSo"/></th>
-            </tr>
-            </tbody>
-            <tbody>
-            <tr>
-                <td><form:label path="camera">Camera</form:label></td>
-                <th><form:select path="camera" items="${camera}" itemValue="id" itemLabel="thongSo"/></th>
-            </tr>
-            </tbody>
-
             <tr>
                 <td>
-
                     <button type="submit" style="float: right" class="btn btn-success"
-                            id="btt" onclick="return myFunction2()">UPDATE
+                            id="btt" onclick="return myFunction2()">Update
                     </button>
                 </td>
-                <th></th>
             </tr>
             </tbody>
-
         </table>
     </form:form>
 </div>
@@ -100,24 +77,14 @@
     }
 
     function myFunction3() {
-        let text = "Bạn chắc chắn muốn sửa";
-        let kt = confirm(text);
-        if (kt == true) {
-            return true
-        } else {
-            return false;
-        }
-    }
-
-    function myFunction4() {
         let text = "Bạn chắc chắn muốn xóa";
         let kt = confirm(text);
         if (kt == true) {
+            confirm("Xóa thành công");
             return true
         } else {
             return false;
         }
     }
-
 </script>
 </html>

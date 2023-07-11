@@ -36,7 +36,6 @@ public class GioHangChiTiet {
     @Column(name = "so_luong")
     private int soLuong;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tinh_trang")
     private int tinhTrang;
 

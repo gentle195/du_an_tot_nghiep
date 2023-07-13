@@ -39,6 +39,11 @@ public class HangSanPham {
     @Column(name = "ten")
     private String ten;
 
+    @NotBlank(message = "Không để trống thông tin")
+    @Size(min = 4, message = "Tên phải lớn hơn hoặc bằng 4 kí tự")
+    @Column(name = "xuat_su")
+    private String xuatSu;
+
     @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;

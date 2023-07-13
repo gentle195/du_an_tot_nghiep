@@ -44,6 +44,10 @@ public class Pin {
     @Column(name = "loai_pin")
     private String loaiPin;
 
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "cong_nghe_pin")
+    private String congNghePin;
+
     @CreationTimestamp
     @Column(name = "ngay_tao")
     private Date ngayTao;

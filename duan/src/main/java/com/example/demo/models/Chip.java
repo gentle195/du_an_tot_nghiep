@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,15 @@ public class Chip {
     @Size(min = 6, message = "Tên phải lớn hơn hoặc bằng 6 kí tự")
     @Column(name = "ten")
     private String ten;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Size(min = 2, message = "Tên phải lớn hơn hoặc bằng 2 kí tự")
+    @Column(name = "loai_cpu")
+    private String loaiChip;
+
+    @NotNull(message = "Không để trống thông tin")
+    @Column(name = "so_nhan")
+    private int soNhan;
 
     @CreationTimestamp
     @Column(name = "ngay_tao")

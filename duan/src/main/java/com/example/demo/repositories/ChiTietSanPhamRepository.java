@@ -32,6 +32,8 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
             "and (:idDLPin is null or dungLuong.id=: idDLPin) " +
             "and (:idChip is null or chip.id=: idChip) " +
             "and (:moTaMan is null or manHinh.id =:moTaMan) " +
-            "and (:moTaCam is null or cam.id =:moTaCam) ")
+            "and (:moTaCam is null or cam.id =:moTaCam) "
+//            +"and (:giaBanMin is null and :giaBanMax is null or ct.giaBan between :giaBanMin and :giaBanMax)"
+    )
     List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin,UUID idChip,UUID moTaMan,UUID moTaCam);
 }

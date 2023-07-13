@@ -30,13 +30,32 @@ public class ManHinh {
     @Column(name = "id")
     private UUID id;
 
-
     @Column(name = "ma")
     private String ma;
 
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "thong_so")
     private String thongSo;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "loai_cam_ung")
+    private String loaiCamUng;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "ti_le_khung_hinh")
+    private String tiLeKhungHinh;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "cong_nghe_man_hinh")
+    private String congNghe;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "do_phan_giai")
+    private String doPhanGiai;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "tan_so_quet")
+    private String tanSoQuet;
 
     @CreationTimestamp
     @Column(name = "ngay_tao")

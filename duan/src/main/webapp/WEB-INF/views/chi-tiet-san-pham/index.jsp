@@ -45,8 +45,10 @@
             <table class="table">
                 <tr>
                     <td style="text-align: center" colspan="1">Hãng Điện Thoại</td>
-                    <td style="text-align: center" colspan="2">Ram</td>
+                    <td style="text-align: center" colspan="1">Ram</td>
                     <td style="text-align: center" colspan="1">Dung Lượng Bộ Nhớ</td>
+                    <td style="text-align: center" colspan="1">Dung Lượng Pin</td>
+                    <td style="text-align: center" colspan="1">Chip</td>
                 </tr>
                 <tr>
                     <td style="text-align: center" colspan="1">
@@ -58,7 +60,7 @@
                             </c:forEach>
                         </select>
                     </td>
-                    <td style="text-align: center" colspan="2">
+                    <td style="text-align: center" colspan="1">
                         <select name="ram">
                             <option selected disabled>Ram</option>
                             <c:forEach items="${listRam}" var="ram" varStatus="i">
@@ -76,15 +78,6 @@
                             </c:forEach>
                         </select>
                     </td>
-
-                </tr>
-                <tr>
-                    <td style="text-align: center" colspan="1">Dung Lượng Pin</td>
-                    <td style="text-align: center" colspan="1">Chip</td>
-                    <td style="text-align: center" colspan="1">Màn Hình</td>
-                    <td style="text-align: center" colspan="1">Camera</td>
-                </tr>
-                <tr>
                     <td style="text-align: center" colspan="1">
                         <select name="dungLuongPin">
                             <option selected disabled>Dung Lượng Pin</option>
@@ -103,7 +96,16 @@
                             </c:forEach>
                         </select>
                     </td>
-                    <td style="text-align: center" colspan="1">
+                </tr>
+                <tr>
+                    <td style="text-align: center" colspan="2">Màn Hình</td>
+                    <td style="text-align: center" colspan="1">Camera</td>
+                    <td style="text-align: center" colspan="1">Giá Bán Min</td>
+                    <td style="text-align: center" colspan="1">Giá bán Max</td>
+                </tr>
+                <tr>
+
+                    <td style="text-align: center" colspan="2">
                         <select name="manHinh">
                             <option selected disabled>Màn Hình</option>
                             <c:forEach items="${listManHinh}" var="man" varStatus="i">
@@ -119,6 +121,8 @@
                             </c:forEach>
                         </select>
                     </td>
+                    <td style="text-align: center" colspan="1"><input type="number" name="giaBanMin"></td>
+                    <td style="text-align: center" colspan="1"><input type="number" name="giaBanMin"></td>
                 </tr>
                 <tr>
                     <td style="text-align: center" colspan="7">
@@ -164,7 +168,7 @@
                     <td>${ctsp.rom.dungLuong}</td>
                     <td>${ctsp.pin.dungLuongPin.thongSo}</td>
                     <td>
-                            <%--                    <img src="<%=anh%>" width="auto" height="auto" type="file">--%>
+                        <img src=".../.../${ctsp.urlAnh}" width="auto" height="auto" type="file">
                     </td>
 
                     <td>${ctsp.giaNhap} VND</td>

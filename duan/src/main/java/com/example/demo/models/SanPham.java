@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,6 +42,42 @@ public class SanPham {
     @Size(min = 4, message = "Tên phải lớn hơn hoặc bằng 6 kí tự")
     @Column(name = "ten")
     private String ten;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "he_dieu_hanh")
+    private String heDieuHanh;
+
+    @NotNull(message = "Không để trống thông tin")
+    @Column(name = "so_sim")
+    private String soSim;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "bluetooth")
+    private String bluetooth;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "ho_tro_mang")
+    private String hoTroMang;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "cong_giao_tiep")
+    private String congGiaoTiep;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "thong_so_wifi")
+    private String thongSoWifi;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "kich_thuoc")
+    private String kichThuoc;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "trong_luong")
+    private String trongLuong;
+
+    @NotBlank(message = "Không để trống thông tin")
+    @Column(name = "chat_lieu")
+    private String chatLieu;
 
     @CreationTimestamp
     @Column(name = "ngay_tao")

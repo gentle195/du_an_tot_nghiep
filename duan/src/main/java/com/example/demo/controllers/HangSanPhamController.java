@@ -79,6 +79,7 @@ public class HangSanPhamController {
         hsp.setNgayCapNhat(Date.valueOf(LocalDate.now()));
         hsp.setTinhTrang(dulieuxem.getTinhTrang());
         hsp.setMoTa(dulieuxem.getMoTa());
+        hsp.setXuatSu(dulieuxem.getXuatSu());
         hangSanPhamService.update(id,hsp);
         return "redirect:/hang-san-pham/hien-thi";
     }

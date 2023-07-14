@@ -25,15 +25,25 @@
             <form:input path="ten" class="form-control"></form:input>
             <form:errors path="ten"></form:errors>
         </div>
-
-        <div class="col" style="display: none">
-            <form:label path="ngayTao"><b>Ngày Tạo:</b></form:label>
-            <form:input path="ngayTao" class="form-control" type="date"></form:input>
+        <div class="col">
+            <form:label path="loaiChip"><b>Loại Chip:</b></form:label>
+            <form:input path="loaiChip" class="form-control"></form:input>
+            <form:errors path="loaiChip"></form:errors>
+        </div>
+        <div class="col">
+            <form:label path="soNhan"><b>Số nhân:</b></form:label>
+            <form:input path="soNhan" class="form-control" type="number"></form:input>
+            <form:errors path="soNhan"></form:errors>
         </div>
         <div class="col">
             <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
+            <br>
             <form:radiobutton path="tinhTrang" label="Thế hệ mới" value="0"></form:radiobutton>
             <form:radiobutton path="tinhTrang" label="thế hệ cũ" value="1"></form:radiobutton>
+        </div>
+        <div class="col" style="display: none">
+            <form:label path="ngayTao"><b>Ngày Tạo:</b></form:label>
+            <form:input path="ngayTao" class="form-control" type="date"></form:input>
         </div>
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>

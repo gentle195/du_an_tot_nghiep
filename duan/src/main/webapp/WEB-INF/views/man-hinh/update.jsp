@@ -29,6 +29,41 @@
             </tbody>
             <tbody>
             <tr>
+                <td><form:label path="loaiCamUng">Loại cảm ứng màn hình</form:label></td>
+                <th><form:input path="loaiCamUng" id="tent"></form:input></th>
+                <th><form:errors path="loaiCamUng" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="tiLeKhungHinh">Tỉ lệ khung hình</form:label></td>
+                <th><form:input path="tiLeKhungHinh" id="tent"></form:input></th>
+                <th><form:errors path="tiLeKhungHinh" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="congNghe">Công nghệ màn hình</form:label></td>
+                <th><form:input path="congNghe" id="tent"></form:input></th>
+                <th><form:errors path="congNghe" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="doPhanGiai">Độ phân giải</form:label></td>
+                <th><form:input path="doPhanGiai" id="tent"></form:input></th>
+                <th><form:errors path="doPhanGiai" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="tanSoQuet">Tần số quét</form:label></td>
+                <th><form:input path="tanSoQuet" id="tent"></form:input></th>
+                <th><form:errors path="tanSoQuet" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
                 <td><form:label path="tinhTrang">Trạng thái</form:label></td>
                 <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"/>
                     <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"/>

@@ -27,6 +27,7 @@
                 <th>STT</th>
                 <th>Mã hãng</th>
                 <th>Tên hãng</th>
+                <th>Xuất sứ</th>
                 <th>Ngày tạo</th>
                 <th>Ngày cập nhật</th>
                 <th>Tình trạng</th>
@@ -41,6 +42,7 @@
                     <td>${i.index+1}</td>
                     <td>${list.ma}</td>
                     <td>${list.ten}</td>
+                    <td>${list.xuatSu}</td>
                     <td>${list.ngayTao}</td>
                     <td>${list.ngayCapNhat}</td>
                     <td><c:if test="${list.tinhTrang==0}">Hoạt động</c:if>
@@ -81,23 +83,19 @@
         <h1 style="text-align: center">Add Hãng Sản Phẩm</h1>
 
         <table class="table " style="border: aliceblue 1px">
-                <%--            <tbody>--%>
-                <%--            <tr>--%>
-                <%--                <td> Mã:</td>--%>
-                <%--                <th>--%>
-                <%--                    <form:input path="ma" id="mat"></form:input>--%>
-
-                <%--                </th>--%>
-                <%--            </tr>--%>
-                <%--            </tbody>--%>
-
             <tbody>
             <tr>
                 <td> Tên:</td>
                 <th><form:input path="ten" id="tent"></form:input></th>
-
+                <td><form:errors path="ten" cssClass="error text-danger"/></td>
             </tr>
-            <td><form:errors path="ten" cssClass="error text-danger"/></td>
+            </tbody>
+            <tbody>
+            <tr>
+                <td> Xuất Sứ:</td>
+                <th><form:input path="xuatSu" id="tent"></form:input></th>
+                <td><form:errors path="xuatSu" cssClass="error text-danger"/></td>
+            </tr>
             </tbody>
             <tbody>
             <tr>
@@ -107,17 +105,13 @@
                 </th>
             </tr>
             </tbody>
-
-
             <tbody>
             <tr>
                 <td>Mo ta:</td>
                 <th><form:textarea path="moTa"></form:textarea></th>
-
+                <td><form:errors path="moTa" cssClass="error text-danger"/></td>
             </tr>
-            <td><form:errors path="moTa" cssClass="error text-danger"/></td>
             </tbody>
-
             <tr>
                 <td>
 

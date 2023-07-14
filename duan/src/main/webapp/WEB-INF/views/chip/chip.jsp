@@ -21,7 +21,18 @@
             <form:errors path="ten"></form:errors>
         </div>
         <div class="col">
+            <form:label path="loaiChip"><b>Loại Chip:</b></form:label>
+            <form:input path="loaiChip" class="form-control"></form:input>
+            <form:errors path="loaiChip"></form:errors>
+        </div>
+        <div class="col">
+            <form:label path="soNhan"><b>Số nhân:</b></form:label>
+            <form:input path="soNhan" class="form-control" type="number"></form:input>
+            <form:errors path="soNhan"></form:errors>
+        </div>
+        <div class="col">
             <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
+            <br>
             <form:radiobutton path="tinhTrang" label="Thế hệ mới" value="0"></form:radiobutton>
             <form:radiobutton path="tinhTrang" label="thế hệ cũ" value="1"></form:radiobutton>
         </div>
@@ -49,6 +60,8 @@
             <tr style="text-align: center">
                 <th scope="col">Mã</th>
                 <th scope="col">Tên</th>
+                <th scope="col">Loại Chip</th>
+                <th scope="col">Số Nhân</th>
                 <th scope="col">Ngày Tạo</th>
                 <th scope="col">Ngày Cập Nhật</th>
                 <th scope="col">Tình Trạng</th>
@@ -59,6 +72,8 @@
                 <tr>
                     <td>${chip.ma}</td>
                     <td>${chip.ten}</td>
+                    <td>${chip.loaiChip}</td>
+                    <td>${chip.soNhan}</td>
                     <td>${chip.ngayTao}</td>
                     <td>${chip.ngayCapNhat}</td>
                     <td>

@@ -82,7 +82,6 @@ public class SanPhamController {
             model.addAttribute("total", list.getTotalPages());
             return "SanPham/hien-thi";
         }
-
         dulieuxem.setNgayTao(Date.valueOf(LocalDate.now()));
         dulieuxem.setMa("SP" + String.valueOf(hangSanPhamService.findAll().size() + 1));
         sanPhamService.add(dulieuxem);
@@ -99,6 +98,15 @@ public class SanPhamController {
         SanPham hsp = sanPhamService.findById(id);
         Date ngayTao = hsp.getNgayTao();
         hsp.setTen(dulieuxem.getTen());
+        hsp.setHeDieuHanh(dulieuxem.getHeDieuHanh());
+        hsp.setSoSim(dulieuxem.getSoSim());
+        hsp.setBluetooth(dulieuxem.getBluetooth());
+        hsp.setHoTroMang(dulieuxem.getHoTroMang());
+        hsp.setCongGiaoTiep(dulieuxem.getCongGiaoTiep());
+        hsp.setThongSoWifi(dulieuxem.getThongSoWifi());
+        hsp.setKichThuoc(dulieuxem.getKichThuoc());
+        hsp.setTrongLuong(dulieuxem.getTrongLuong());
+        hsp.setChatLieu(dulieuxem.getChatLieu());
         hsp.setNgayTao(ngayTao);
         hsp.setHangSanPham(dulieuxem.getHangSanPham());
         // Gán ngày hiện tại

@@ -26,6 +26,15 @@
                 <th>STT</th>
                 <th>Mã SP</th>
                 <th>Tên SP</th>
+                <th>Thông số bluetooth</th>
+                <th>Hỗ trợ mạng</th>
+                <th>Cổng giao tiếp</th>
+                <th>Thông số wifi</th>
+                <th>Kich thước</th>
+                <th>Trọng lượng</th>
+                <th>Chất liệu máy</th>
+                <th>Hệ điều hành</th>
+                <th>Số khe sim</th>
                 <th>Ngày tạo</th>
                 <th>Ngày cập nhật</th>
                 <th>Tình trạng</th>
@@ -40,6 +49,15 @@
                     <td>${i.index+1}</td>
                     <td>${list.ma}</td>
                     <td>${list.ten}</td>
+                    <td>${list.bluetooth}</td>
+                    <td>${list.hoTroMang}</td>
+                    <td>${list.congGiaoTiep}</td>
+                    <td>${list.thongSoWifi}</td>
+                    <td>${list.kichThuoc}</td>
+                    <td>${list.trongLuong}</td>
+                    <td>${list.chatLieu}</td>
+                    <td>${list.heDieuHanh}</td>
+                    <td>${list.soSim}</td>
                     <td>${list.ngayTao}</td>
                     <td>${list.ngayCapNhat}</td>
                     <td><c:if test="${list.tinhTrang==0}">Hoạt động</c:if>
@@ -88,6 +106,69 @@
             </tbody>
             <tbody>
             <tr>
+                <td><form:label path="heDieuHanh">Hệ điều hành:</form:label></td>
+                <th><form:input path="heDieuHanh" id="heDieuHanht"></form:input></th>
+                <th><form:errors path="heDieuHanh" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="soSim">Số khe sim:</form:label></td>
+                <th><form:input path="soSim" type="number"></form:input></th>
+                <th><form:errors path="soSim" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="bluetooth">Kết nối bluetooth:</form:label></td>
+                <th><form:input path="bluetooth"></form:input></th>
+                <th><form:errors path="bluetooth" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="hoTroMang">Hỗ trợ mạng:</form:label></td>
+                <th><form:input path="hoTroMang"></form:input></th>
+                <th><form:errors path="hoTroMang" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="congGiaoTiep">Cổng giao tiếp:</form:label></td>
+                <th><form:input path="congGiaoTiep"></form:input></th>
+                <th><form:errors path="congGiaoTiep" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="thongSoWifi">Thông số Wifi:</form:label></td>
+                <th><form:input path="thongSoWifi"></form:input></th>
+                <th><form:errors path="thongSoWifi" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="kichThuoc">Kích thước sản phẩm:</form:label></td>
+                <th><form:input path="kichThuoc"></form:input></th>
+                <th><form:errors path="kichThuoc" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="trongLuong">Trọng lượng:</form:label></td>
+                <th><form:input path="trongLuong"></form:input></th>
+                <th><form:errors path="trongLuong" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="chatLieu">Chất liệu:</form:label></td>
+                <th><form:input path="chatLieu"></form:input></th>
+                <th><form:errors path="chatLieu" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
                 <td><form:label path="tinhTrang">Trạng thái</form:label></td>
                 <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"/>
                     <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"/>
@@ -129,7 +210,6 @@
                 <th></th>
             </tr>
             </tbody>
-
         </table>
     </form:form>
 </div>

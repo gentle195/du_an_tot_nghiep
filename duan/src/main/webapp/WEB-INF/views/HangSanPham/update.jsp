@@ -30,7 +30,6 @@
                 </th>
             </tr>
             </tbody>
-
             <tbody>
             <tr>
                 <td> Tên:</td>
@@ -38,21 +37,13 @@
                 <th><form:errors path="ten" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
-
-                <%--            <tbody>--%>
-                <%--            <tr>--%>
-                <%--                <td> Ngay tao:</td>--%>
-                <%--                <th><form:input path="ngayTao" type="date"></form:input></th>--%>
-                <%--            </tr>--%>
-                <%--            </tbody>--%>
-
-                <%--            <tbody>--%>
-                <%--            <tr>--%>
-                <%--                <td> Ngay cap nhat:</td>--%>
-                <%--                <th><form:input path="ngayCapNhat" type="date" value="<%= java.time.LocalDate.now() %>" ></form:input></th>--%>
-                <%--            </tr>--%>
-                <%--            </tbody>--%>
-
+            </tbody>
+            <tbody>
+            <tr>
+                <td> Xuất Sứ:</td>
+                <th><form:input path="xuatSu" id="tent"></form:input></th>
+                <th><form:errors path="xuatSu" cssClass="error text-danger"></form:errors></th>
+            </tr>
             <tbody>
             <tr>
                 <td> Trang thai:</td>
@@ -61,27 +52,21 @@
                 </th>
             </tr>
             </tbody>
-
-
             <tbody>
             <tr>
                 <td>Mo ta:</td>
-                <th><form:textarea path="moTa" ></form:textarea></th>
+                <th><form:textarea path="moTa"></form:textarea></th>
                 <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
-
             <tr>
                 <td>
-
                     <button type="submit" style="float: right" class="btn btn-success"
                             id="btt" onclick="return myFunction2()">UPDATE
                     </button>
                 </td>
-                <th></th>
             </tr>
             </tbody>
-
         </table>
     </form:form>
 </div>

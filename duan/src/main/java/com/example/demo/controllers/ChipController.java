@@ -66,7 +66,6 @@ public class ChipController {
         chip.setNgayTao(date);
         chip.setTinhTrang(0);
         chipService.add(chip);
-
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
@@ -80,7 +79,6 @@ public class ChipController {
         if(bindingResult.hasErrors()){
             return "chip/chip-update";
         }
-
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
         chip.setNgayCapNhat(date);

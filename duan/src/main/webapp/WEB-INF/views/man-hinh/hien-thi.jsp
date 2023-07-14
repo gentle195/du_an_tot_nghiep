@@ -26,6 +26,11 @@
                 <th>STT</th>
                 <th>Mã</th>
                 <th>Thông số</th>
+                <th>Loại cảm ứng</th>
+                <th>Tỉ lệ khung hình</th>
+                <th>Công nghệ màn hình</th>
+                <th>Độ phân giải màn hình</th>
+                <th>Tần số quét</th>
                 <th>Ngày tạo</th>
                 <th>Ngày cập nhật</th>
                 <th>Tình trạng</th>
@@ -39,6 +44,11 @@
                     <td>${i.index+1}</td>
                     <td>${list.ma}</td>
                     <td>${list.thongSo}</td>
+                    <td>${list.loaiCamUng}</td>
+                    <td>${list.tiLeKhungHinh}</td>
+                    <td>${list.congNghe}</td>
+                    <td>${list.doPhanGiai}</td>
+                    <td>${list.tanSoQuet}</td>
                     <td>${list.ngayTao}</td>
                     <td>${list.ngayCapNhat}</td>
                     <td>
@@ -83,6 +93,41 @@
                 <td><form:label path="thongSo">Thông số màn hình</form:label></td>
                 <th><form:input path="thongSo" id="tent"></form:input></th>
                 <th><form:errors path="thongSo" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="loaiCamUng">Loại cảm ứng màn hình</form:label></td>
+                <th><form:input path="loaiCamUng" id="tent"></form:input></th>
+                <th><form:errors path="loaiCamUng" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="tiLeKhungHinh">Tỉ lệ khung hình</form:label></td>
+                <th><form:input path="tiLeKhungHinh" id="tent"></form:input></th>
+                <th><form:errors path="tiLeKhungHinh" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="congNghe">Công nghệ màn hình</form:label></td>
+                <th><form:input path="congNghe" id="tent"></form:input></th>
+                <th><form:errors path="congNghe" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="doPhanGiai">Độ phân giải</form:label></td>
+                <th><form:input path="doPhanGiai" id="tent"></form:input></th>
+                <th><form:errors path="doPhanGiai" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="tanSoQuet">Tần số quét</form:label></td>
+                <th><form:input path="tanSoQuet" id="tent"></form:input></th>
+                <th><form:errors path="tanSoQuet" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
             <tbody>

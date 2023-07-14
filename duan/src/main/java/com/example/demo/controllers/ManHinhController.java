@@ -80,6 +80,11 @@ public class ManHinhController {
         ManHinh hsp = manHinhService.findById(id);
         Date ngayTao = hsp.getNgayTao();
         hsp.setThongSo(manHinh.getThongSo());
+        hsp.setTiLeKhungHinh(manHinh.getTiLeKhungHinh());
+        hsp.setCongNghe(manHinh.getCongNghe());
+        hsp.setTanSoQuet(manHinh.getTanSoQuet());
+        hsp.setDoPhanGiai(manHinh.getDoPhanGiai());
+        hsp.setLoaiCamUng(manHinh.getLoaiCamUng());
         hsp.setNgayTao(ngayTao);
         // Gán ngày hiện tại
         hsp.setNgayCapNhat(Date.valueOf(LocalDate.now()));

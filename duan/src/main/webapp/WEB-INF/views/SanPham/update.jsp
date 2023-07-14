@@ -22,9 +22,72 @@
         <table class="table " style="border: aliceblue 1px">
             <tbody>
             <tr>
-                <td><form:label path="ten">Tên Sản Phẩm</form:label></td>
+                <td><form:label path="ten">Tên:</form:label></td>
                 <th><form:input path="ten" id="tent"></form:input></th>
                 <th><form:errors path="ten" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="heDieuHanh">Hệ điều hành:</form:label></td>
+                <th><form:input path="heDieuHanh" id="heDieuHanht"></form:input></th>
+                <th><form:errors path="heDieuHanh" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="soSim">Số khe sim:</form:label></td>
+                <th><form:input path="soSim" type="number"></form:input></th>
+                <th><form:errors path="soSim" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="bluetooth">Kết nối bluetooth:</form:label></td>
+                <th><form:input path="bluetooth"></form:input></th>
+                <th><form:errors path="bluetooth" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="hoTroMang">Hỗ trợ mạng:</form:label></td>
+                <th><form:input path="hoTroMang"></form:input></th>
+                <th><form:errors path="hoTroMang" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="congGiaoTiep">Cổng giao tiếp:</form:label></td>
+                <th><form:input path="congGiaoTiep"></form:input></th>
+                <th><form:errors path="congGiaoTiep" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="thongSoWifi">Thông số Wifi:</form:label></td>
+                <th><form:input path="thongSoWifi"></form:input></th>
+                <th><form:errors path="thongSoWifi" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="kichThuoc">Kích thước sản phẩm:</form:label></td>
+                <th><form:input path="kichThuoc"></form:input></th>
+                <th><form:errors path="kichThuoc" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="trongLuong">Trọng lượng:</form:label></td>
+                <th><form:input path="trongLuong"></form:input></th>
+                <th><form:errors path="trongLuong" cssClass="error text-danger"></form:errors></th>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><form:label path="chatLieu">Chất liệu:</form:label></td>
+                <th><form:input path="chatLieu"></form:input></th>
+                <th><form:errors path="chatLieu" cssClass="error text-danger"></form:errors></th>
             </tr>
             </tbody>
             <tbody>

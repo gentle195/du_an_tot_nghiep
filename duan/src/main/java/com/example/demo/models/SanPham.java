@@ -49,7 +49,7 @@ public class SanPham {
 
     @NotNull(message = "Không để trống thông tin")
     @Column(name = "so_sim")
-    private String soSim;
+    private int soSim;
 
     @NotBlank(message = "Không để trống thông tin")
     @Column(name = "bluetooth")

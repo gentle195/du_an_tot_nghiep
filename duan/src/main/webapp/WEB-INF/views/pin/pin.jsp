@@ -15,31 +15,16 @@
 <hr>
 <form:form action="/pin/add-pin" method="post" modelAttribute="Pin">
     <div class="row">
-<%--        <div class="col">--%>
-<%--            <form:label path="ma"><b>Mã:</b></form:label>--%>
-<%--            <form:input path="ma" class="form-control"></form:input>--%>
-<%--        </div>--%>
         <div class="col">
             <form:label path="loaiPin"><b>Loại Pin:</b></form:label>
             <form:input path="loaiPin" class="form-control"></form:input>
             <form:errors path="loaiPin"></form:errors>
         </div>
-
-<%--        <div class="col">--%>
-<%--            <form:label path="ngayTao"><b>Ngày Tạo:</b></form:label>--%>
-<%--            <form:input path="ngayTao" class="form-control" type="date"></form:input>--%>
-<%--        </div>--%>
-
-<%--        <div class="col">--%>
-<%--            <form:label path="ngayCapNhat"><b>Ngày Cập nhật:</b></form:label>--%>
-<%--            <form:input path="ngayCapNhat" class="form-control" type="date"></form:input>--%>
-<%--        </div>--%>
-
-<%--        <div class="col">--%>
-<%--            <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>--%>
-<%--            <form:radiobutton path="tinhTrang" label="Yes" value="0"></form:radiobutton>--%>
-<%--            <form:radiobutton path="tinhTrang" label="No" value="1"></form:radiobutton>--%>
-<%--        </div>--%>
+        <div class="col">
+            <form:label path="congNghePin"><b>Công nghệ Pin:</b></form:label>
+            <form:input path="congNghePin" class="form-control"></form:input>
+            <form:errors path="congNghePin"></form:errors>
+        </div>
         <div class="col">
             <form:label path="moTa"><b>Mô Tả:</b></form:label>
             <form:textarea path="moTa" class="form-control"></form:textarea>
@@ -47,10 +32,13 @@
         </div>
         <div class="col">
             <form:label path="dungLuongPin"><b>Dung Lượng:</b></form:label>
-            <form:select path="dungLuongPin" items="${dungLuongPin}" class="form-control" itemLabel="thongSo" itemValue="id"></form:select>
+            <form:select path="dungLuongPin" items="${dungLuongPin}" class="form-control" itemLabel="thongSo"
+                         itemValue="id"></form:select>
         </div>
-    <div style="margin-top: 20px; margin-bottom: 20px">
-            <button type="submit" class="btn btn-primary" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD</button>
+        <div style="margin-top: 20px; margin-bottom: 20px">
+            <button type="submit" class="btn btn-primary"
+                    onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD
+            </button>
         </div>
     </div>
 
@@ -61,54 +49,58 @@
     </div>
 </c:if>
 <c:if test="${not list.isEmpty()}">
-<form action="">
-    <table class="table table-bordered border-dark">
-        <tr style="text-align: center">
-            <th scope="col">Mã</th>
-            <th scope="col">Loại Pin</th>
-            <th scope="col">Ngày Tạo</th>
-            <th scope="col">Ngày Cập Nhật</th>
-            <th scope="col">Tình Trạng</th>
-            <th scope="col">Mô Tả</th>
-            <th scope="col">Dung Lượng</th>
-            <th scope="col">Action</th>
-        </tr>
-        <c:forEach items="${list}" var="p">
-            <tr>
-                <td>${p.ma}</td>
-                <td>${p.loaiPin}</td>
-                <td>${p.ngayTao}</td>
-                <td>${p.ngayCapNhat}</td>
-                <td>
-                    <c:if test="${p.tinhTrang == 0}">Yes</c:if>
-                    <c:if test="${p.tinhTrang == 1}">No</c:if>
-                </td>
-                <td>${p.moTa}</td>
-                <td>${p.dungLuongPin.thongSo}</td>
-                <td>
-                    <a href="/pin/detail-pin/${p.id}" class="btn btn-outline-primary" tabindex="-1"
-                       role="button" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Detail</a>
-                    <a href="/pin/remove-pin/${p.id}" class="btn btn-outline-primary" tabindex="-1"
-                       role="button" onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Delete</a>
-                    <a href="/pin/view-update-pin/${p.id}" class="btn btn-outline-primary" tabindex="-1"
-                       role="button">Update</a>
-                </td>
+    <form action="">
+        <table class="table table-bordered border-dark">
+            <tr style="text-align: center">
+                <th scope="col">Mã</th>
+                <th scope="col">Loại Pin</th>
+                <th scope="col">Công nghệ Pin</th>
+                <th scope="col">Ngày Tạo</th>
+                <th scope="col">Ngày Cập Nhật</th>
+                <th scope="col">Tình Trạng</th>
+                <th scope="col">Mô Tả</th>
+                <th scope="col">Dung Lượng</th>
+                <th scope="col">Action</th>
             </tr>
-        </c:forEach>
-    </table>
-</form>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center pagination-lg">
-        <li class="page-item"><a class="page-link" href="/pin/hien-thi?pageNum=0">First</a></li>
-        <c:forEach begin="1" end="${total}" varStatus="status">
-            <li class="page-item">
-                <a href="${pageContext.request.contextPath}/pin/hien-thi?pageNum=${status.index -1}"
-                   class="page-link">${status.index}</a>
-            </li>
-        </c:forEach>
-        <li class="page-item"><a class="page-link" href="/pin/hien-thi?pageNum=${total-1}">Last</a></li>
-    </ul>
-</nav>
+            <c:forEach items="${list}" var="p">
+                <tr>
+                    <td>${p.ma}</td>
+                    <td>${p.loaiPin}</td>
+                    <td>${p.congNghePin}</td>
+                    <td>${p.ngayTao}</td>
+                    <td>${p.ngayCapNhat}</td>
+                    <td>
+                        <c:if test="${p.tinhTrang == 0}">Yes</c:if>
+                        <c:if test="${p.tinhTrang == 1}">No</c:if>
+                    </td>
+                    <td>${p.moTa}</td>
+                    <td>${p.dungLuongPin.thongSo}</td>
+                    <td>
+                        <a href="/pin/detail-pin/${p.id}" class="btn btn-outline-primary" tabindex="-1"
+                           role="button"
+                           onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Detail</a>
+                        <a href="/pin/remove-pin/${p.id}" class="btn btn-outline-primary" tabindex="-1"
+                           role="button"
+                           onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Delete</a>
+                        <a href="/pin/view-update-pin/${p.id}" class="btn btn-outline-primary" tabindex="-1"
+                           role="button">Update</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </form>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center pagination-lg">
+            <li class="page-item"><a class="page-link" href="/pin/hien-thi?pageNum=0">First</a></li>
+            <c:forEach begin="1" end="${total}" varStatus="status">
+                <li class="page-item">
+                    <a href="${pageContext.request.contextPath}/pin/hien-thi?pageNum=${status.index -1}"
+                       class="page-link">${status.index}</a>
+                </li>
+            </c:forEach>
+            <li class="page-item"><a class="page-link" href="/pin/hien-thi?pageNum=${total-1}">Last</a></li>
+        </ul>
+    </nav>
 </c:if>
 </body>
 </html>

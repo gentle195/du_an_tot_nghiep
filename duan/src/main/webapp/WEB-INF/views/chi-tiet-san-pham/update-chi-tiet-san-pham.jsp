@@ -24,7 +24,6 @@
                     <form:options items="${listSanPham}" itemLabel="ten" itemValue="id"/>
                 </form:select>
                 <form:label class="form-label" path="sanPham">Sản Phẩm:</form:label>
-
             </div>
             <div class="form-floating mb-3 mt-3">
                 <form:select path="mauSac" class="form-control">

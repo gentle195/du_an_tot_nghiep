@@ -33,7 +33,6 @@ public class DiaChi {
     @Column(name = "id")
     private UUID id;
 
-
     @Column(name = "ma")
     private String ma;
 

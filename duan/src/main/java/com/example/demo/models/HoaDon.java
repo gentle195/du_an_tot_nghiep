@@ -34,15 +34,15 @@ public class HoaDon {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ma")
     private String ma;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "sdt")
     private String sdt;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "tong_tien")
     private BigDecimal tongTien;
 
@@ -62,7 +62,7 @@ public class HoaDon {
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
-    @NotBlank(message = "Không để trống thông tin")
+//    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "ghi_chu")
     private String ghiChu;
 

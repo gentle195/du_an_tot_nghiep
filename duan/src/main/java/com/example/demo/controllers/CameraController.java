@@ -28,6 +28,7 @@ import java.util.UUID;
 public class CameraController {
     @Autowired
     private CameraService cameraService;
+
     @GetMapping("hien-thi")
     public String hienthi(@ModelAttribute("camera") Camera camera, Model model, @RequestParam("num") Optional<Integer> num,
                           @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {

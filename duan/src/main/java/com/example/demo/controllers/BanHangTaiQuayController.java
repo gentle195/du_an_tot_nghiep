@@ -121,6 +121,7 @@ public class BanHangTaiQuayController {
     public String themSanPham(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon,
                               @RequestParam("num") Optional<Integer> num,@RequestParam(name = "size", defaultValue = "20", required = false) Integer size
             , @PathVariable("id") UUID id) {
+        System.out.println("Đã truy cập vào");
         Pageable pageable = PageRequest.of(num.orElse(0), size);
         Page<IMEI> list = imeiService.getAll(pageable);
         model.addAttribute("listImei", list.getContent());

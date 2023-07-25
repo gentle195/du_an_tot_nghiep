@@ -12,6 +12,15 @@
     <title>Bán Hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+            integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+            crossorigin="anonymous"></script>
 </head>
 <body class="container outer-border p-3 border border-secondary">
 <section style="text-align: center">
@@ -22,6 +31,7 @@
     <div class="row">
         <div class="col-8">
             <div class="outer-border p-3 border border-secondary">
+                <h4 style="text-align: center">Hóa đơn</h4>
                 <table class="table">
                     <tr>
                         <form action="/ban-hang/add-hoa-don" method="post">
@@ -77,6 +87,7 @@
             </div>
             <hr>
             <div class="outer-border p-3 border border-secondary">
+                <h4 style="text-align: center">Thông tin sản phẩm</h4>
                 <table class="table">
                     <tr>
                         <form method="post" action="/ban-hang/search-san-pham">
@@ -109,16 +120,60 @@
                             <td>${ctsp.soLuong}</td>
                             <td>${ctsp.tinhTrang}</td>
                             <td class="btn-group">
-                                <button class="btn btn-info"><a href="/ban-hang/them-san-pham/${ctsp.id}"
-                                                                style="text-decoration: none">Thêm Sản Phẩm</a></button>
+                                <button class="btn btn-info"
+                                        type="button">
+                                    <a href="/ban-hang/them-san-pham/${ctsp.id}"
+                                       style="text-decoration: none" data-bs-toggle="modal"
+                                       data-bs-target="#exampleModal">Thêm Sản Phẩm</a></button>
                             </td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Danh sách IMEI</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số IMEI</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${listImei}" var="imei" varStatus="i">
+                                    <tr>
+                                        <td>${i.index+1}</td>
+                                        <td>${imei.chiTietSanPham.sanPham.ten}</td>
+                                        <td>${imei.soImei}</td>
+                                        <td class="btn-group">
+                                            <button class="btn btn-info"><a href="/ban-hang/them-imei/${imei.id}"
+                                                                            style="text-decoration: none">Thêm Sản Phẩm</a></button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr>
             <div class="outer-border p-3 border border-secondary">
+                <h4 style="text-align: center">Hóa đơn chi tiết</h4>
                 <table class="table">
                     <thead>
                     <tr>
@@ -127,24 +182,23 @@
                         <th>Đơn Giá</th>
                         <th>Số Lượng</th>
                         <th>Thành tiền</th>
-                        <th></th>
+                        <th>Chức năng</th>
                     </tr>
                     </thead>
                     <tbody>
-<%--                    <c:forEach items="${listChiTietSanPham}" var="ctsp" varStatus="i">--%>
-<%--                        <tr>--%>
-<%--                            <td>${ctsp.sanPham.ma}</td>--%>
-<%--                            <td>${ctsp.sanPham.ten}</td>--%>
-<%--                            <td>${ctsp.sanPham.hangSanPham.ten}</td>--%>
-<%--                            <td>${ctsp.giaBan}</td>--%>
-<%--                            <td>${ctsp.soLuong}</td>--%>
-<%--                            <td>${ctsp.tinhTrang}</td>--%>
-<%--                            <td class="btn-group">--%>
-<%--                                <button class="btn btn-info"><a href="/ban-hang/them-san-pham/${ctsp.id}"--%>
-<%--                                                                style="text-decoration: none">Thêm Sản Phẩm</a></button>--%>
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                    </c:forEach>--%>
+                    <c:forEach items="${listHoaDonChiTiet}" var="hdct" varStatus="i">
+                        <tr>
+                            <td>${i.index+1}</td>
+                            <td>${hdct.imei.chiTietSanPham.sanPham.ten}</td>
+                            <td>${hdct.donGia}</td>
+                            <td>${hdct.soLuong}</td>
+                            <td>${hdct.donGia * hdct.soLuong}</td>
+                            <td class="btn-group">
+                                <button class="btn btn-info"><a href="/ban-hang/delete-hoa-don-chi-tiet/${hdct.id}"
+                                                                style="text-decoration: none">Xóa sản phẩm</a></button>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface HoaDonChiTietService {
     public Page<HoaDonChiTiet> getAll(Pageable pageable);
 
+    public Page<HoaDonChiTiet> getHoaDonChiTiet(Pageable pageable,UUID id);
+
     public List<HoaDonChiTiet> findAll();
 
     public HoaDonChiTiet findById(UUID id);

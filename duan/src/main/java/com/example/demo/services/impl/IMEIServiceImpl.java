@@ -26,6 +26,11 @@ public class IMEIServiceImpl implements IMEIService {
     }
 
     @Override
+    public List<IMEI> getIMEI(UUID id) {
+        return imeiRepository.getIMEI(id);
+    }
+
+    @Override
     public List<IMEI> findAll() {
         return imeiRepository.findAll();
     }

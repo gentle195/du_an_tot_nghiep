@@ -120,11 +120,11 @@
                             <td>${ctsp.soLuong}</td>
                             <td>${ctsp.tinhTrang}</td>
                             <td class="btn-group">
-                                <button class="btn btn-info"
-                                        type="button">
-                                    <a href="/ban-hang/them-san-pham/${ctsp.id}"
-                                       style="text-decoration: none" data-bs-toggle="modal"
-                                       data-bs-target="#exampleModal">Thêm Sản Phẩm</a></button>
+                                <a href="/ban-hang/them-san-pham/${ctsp.id}"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal" class="btn btn-info">
+                                    Thêm Imel
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

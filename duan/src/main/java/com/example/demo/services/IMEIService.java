@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface IMEIService {
     public Page<IMEI> getAll(Pageable pageable);
 
+    public List<IMEI> getIMEI(UUID id);
+
     public List<IMEI> findAll();
 
     public IMEI findById(UUID id);

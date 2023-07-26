@@ -12,6 +12,8 @@ public interface IMEIService {
 
     public List<IMEI> getIMEI(UUID id);
 
+    public List<IMEI> search(String imei);
+
     public List<IMEI> findAll();
 
     public IMEI findById(UUID id);

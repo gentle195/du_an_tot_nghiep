@@ -45,6 +45,16 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     }
 
     @Override
+    public ChiTietSanPham getChiTiet(UUID id) {
+        return chiTietSanPhamRepository.getChiTiet(id);
+    }
+
+    @Override
+    public ChiTietSanPham getChiTiet2(UUID id) {
+        return chiTietSanPhamRepository.getChiTiet2(id);
+    }
+
+    @Override
     public ChiTietSanPham add(ChiTietSanPham chiTietSanPham) {
         return chiTietSanPhamRepository.save(chiTietSanPham);
     }
@@ -59,6 +69,11 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
             }
         }
         return null;
+    }
+
+    @Override
+    public ChiTietSanPham update1(ChiTietSanPham chiTietSanPham) {
+        return chiTietSanPhamRepository.save(chiTietSanPham);
     }
 
     @Override

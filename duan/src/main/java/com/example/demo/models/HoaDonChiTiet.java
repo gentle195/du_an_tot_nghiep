@@ -32,14 +32,12 @@ public class HoaDonChiTiet {
     @Column(name = "id")
     private UUID id;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "so_luong")
     private int soLuong;
 
     @Column(name = "tinh_trang")
     private int tinhTrang;
 
-    @NotBlank(message = "Không để trống thông tin")
     @Column(name = "don_gia")
     private BigDecimal donGia;
 

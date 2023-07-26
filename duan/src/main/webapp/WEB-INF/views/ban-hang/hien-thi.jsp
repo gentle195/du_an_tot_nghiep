@@ -12,15 +12,6 @@
     <title>Bán Hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-            integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-            crossorigin="anonymous"></script>
 </head>
 <body class="container outer-border p-3 border border-secondary">
 <section style="text-align: center">
@@ -96,6 +87,7 @@
                                 <button type="submit">Tìm kiếm</button>
                             </th>
                         </form>
+                        <h6 style="text-align: center">${thongBao}</h6>
                     </tr>
                 </table>
                 <table class="table">
@@ -118,12 +110,16 @@
                             <td>${ctsp.sanPham.hangSanPham.ten}</td>
                             <td>${ctsp.giaBan}</td>
                             <td>${ctsp.soLuong}</td>
-                            <td>${ctsp.tinhTrang}</td>
+                            <td>
+                                <c:if test="${ctsp.tinhTrang==1}">Còn hàng</c:if>
+                                <c:if test="${ctsp.tinhTrang==0}">Hết hàng</c:if>
+                            </td>
                             <td class="btn-group">
                                 <a href="/ban-hang/them-san-pham/${ctsp.id}"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal" class="btn btn-info">
-                                    Thêm Imel
+                                   class="btn btn-info"
+                                   data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                >
+                                    Thêm IMEI
                                 </a>
                             </td>
                         </tr>
@@ -132,7 +128,7 @@
                 </table>
             </div>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
+                 aria-hidden="true" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -141,29 +137,48 @@
                         </div>
                         <div class="modal-body">
                             <table class="table">
-                                <thead>
                                 <tr>
-                                    <th>STT</th>
-                                    <th>Tên Sản Phẩm</th>
-                                    <th>Số IMEI</th>
-                                    <th>Chức năng</th>
+                                    <form method="post" action="/ban-hang/search-imei">
+                                        <th>Tìm kiếm IMEI: <input type="text" name="search-imei" id="searchInput"
+                                                                  placeholder="Tìm kiếm IMEI"></th>
+                                        <th>
+                                            <button type="submit" id="searchButton" data-dismiss="modal">Tìm kiếm</button>
+                                        </th>
+                                    </form>
+                                    <h6 style="text-align: center">${thongBaoIMEI}</h6>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${listImei}" var="imei" varStatus="i">
-                                    <tr>
-                                        <td>${i.index+1}</td>
-                                        <td>${imei.chiTietSanPham.sanPham.ten}</td>
-                                        <td>${imei.soImei}</td>
-                                        <td class="btn-group">
-                                            <button class="btn btn-info"><a href="/ban-hang/them-imei/${imei.id}"
-                                                                            style="text-decoration: none">Thêm Sản Phẩm</a></button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
                             </table>
-
+                            <div id="imeiList">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Số IMEI</th>
+                                        <th>Trạng Thái</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${listImei}" var="imei" varStatus="i">
+                                        <tr>
+                                            <td>${i.index+1}</td>
+                                            <td>${imei.chiTietSanPham.sanPham.ten}</td>
+                                            <td>${imei.soImei}</td>
+                                            <td>
+                                                <c:if test="${imei.tinhTrang==1}">Chưa bán</c:if>
+                                                <c:if test="${imei.tinhTrang==0}">Đã bán</c:if>
+                                            </td>
+                                            <td class="btn-group">
+                                                <button class="btn btn-info">
+                                                    <a href="/ban-hang/them-imei/${imei.id}"
+                                                                                style="text-decoration: none">Thêm Sản Phẩm</a></button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -299,7 +314,47 @@
             return false;
         }
     }
-
-
 </script>
+<script>
+    $(document).ready(function() {
+        // Bắt sự kiện khi người dùng nhấn nút Tìm kiếm
+        $('#searchButton').on('click', function() {
+            // Lấy giá trị từ ô tìm kiếm
+            var searchText = $('#searchInput').val();
+
+            // Gửi yêu cầu tìm kiếm bằng AJAX
+            $.ajax({
+                url: '/ban-hang/search-imei', // Thay thế bằng URL của controller xử lý tìm kiếm
+                type: 'POST', // Hoặc 'GET' nếu phương thức trong controller là @GetMapping
+                data: $('#searchForm').serialize(), // Gửi dữ liệu từ form tìm kiếm
+                success: function(data) {
+                    // Cập nhật dữ liệu tìm kiếm trong thẻ modal
+                    $('#imeiList').html(data);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    // Bắt sự kiện khi nút Close được bấm
+    $('#exampleModal').on('hide.bs.modal', function (e) {
+        // Lấy nguồn sự kiện khi bấm nút
+        var clickedButton = $(e.relatedTarget);
+
+        // Kiểm tra xem nút bấm có data-dismiss="modal" hay không
+        // Nếu có, chặn sự kiện ẩn modal để giữ modal không bị đóng
+        if (clickedButton.attr('data-dismiss') === 'modal') {
+            e.preventDefault();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
 </html>

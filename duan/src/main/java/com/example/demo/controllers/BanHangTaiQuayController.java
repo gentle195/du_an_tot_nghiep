@@ -53,7 +53,7 @@ public class BanHangTaiQuayController {
 
     @GetMapping("hien-thi")
     public String hienThi(Model model, @RequestParam("num") Optional<Integer> num,
-                          @RequestParam(name = "size", defaultValue = "5", required = false) Integer size,
+                          @RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
                           @ModelAttribute("hoaDon") HoaDon hoaDon) {
 //        Sort sort = Sort.by("ngayTao").ascending();
         Pageable pageable = PageRequest.of(num.orElse(0), size);
@@ -119,14 +119,138 @@ public class BanHangTaiQuayController {
 
     @GetMapping("/them-san-pham/{id}")
     public String themSanPham(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon,
-                              @RequestParam("num") Optional<Integer> num,@RequestParam(name = "size", defaultValue = "20", required = false) Integer size
+                              @RequestParam("num") Optional<Integer> num, @RequestParam(name = "size", defaultValue = "20", required = false) Integer size
             , @PathVariable("id") UUID id) {
         System.out.println("Đã truy cập vào");
         Pageable pageable = PageRequest.of(num.orElse(0), size);
         Page<IMEI> list = imeiService.getAll(pageable);
         model.addAttribute("listImei", list.getContent());
-        System.out.println(list.getContent());
         model.addAttribute("total", list.getTotalPages());
+        return "ban-hang/hien-thi";
+    }
+
+    @GetMapping("/thay-doi-trang-thai/{id}")
+    public String updateTrangThai(Model model, @RequestParam("num") Optional<Integer> num,
+                                  @RequestParam(name = "size", defaultValue = "5", required = false) Integer size,
+                                  @ModelAttribute("hoaDon") HoaDon hoaDon, @PathVariable("id") UUID id) {
+        HoaDon hd = hoaDonService.findById(id);
+        LocalDate ngayCapNhat = LocalDate.now();
+        if (hd.getTinhTrang() == 0) {
+            hoaDonService.update(id, 1, Date.valueOf(ngayCapNhat));
+            return "redirect:/ban-hang/hien-thi";
+        } else {
+            hoaDonService.update(id, 0, Date.valueOf(ngayCapNhat));
+            return "redirect:/ban-hang/hien-thi";
+        }
+    }
+
+    @PostMapping("search-san-pham")
+    public String search(Model model, @RequestParam("search-san-pham") String search,
+                         @ModelAttribute("hoaDon") HoaDon hoaDon,
+                         @RequestParam("num") Optional<Integer> num,
+                         @RequestParam(name = "size", defaultValue = "10", required = false) Integer size) {
+        if (search.isEmpty()) {
+            model.addAttribute("thongBao", "Không để trống thông tin");
+            Pageable pageable = PageRequest.of(num.orElse(0), size);
+            Page<HoaDon> list = hoaDonService.getAll(pageable);
+            model.addAttribute("listHoaDon", list.getContent());
+            model.addAttribute("total", list.getTotalPages());
+            return "ban-hang/hien-thi";
+        } else {
+            List<ChiTietSanPham> listCT = chiTietSanPhamService.search(search);
+            model.addAttribute("listChiTietSanPham", listCT);
+            Pageable pageable = PageRequest.of(num.orElse(0), size);
+            Page<HoaDon> list = hoaDonService.getAll(pageable);
+            model.addAttribute("listHoaDon", list.getContent());
+            model.addAttribute("total", list.getTotalPages());
+            return "ban-hang/hien-thi";
+        }
+    }
+
+    @PostMapping("search-imei")
+    public String searchIMEI(Model model, @RequestParam("search-imei") String search,
+                             @ModelAttribute("hoaDon") HoaDon hoaDon,
+                             @RequestParam("num") Optional<Integer> num,
+                             @RequestParam(name = "size", defaultValue = "10", required = false) Integer size) {
+        if (search.isEmpty()) {
+            model.addAttribute("thongBaoIMEI", "Không để trống thông tin");
+            Pageable pageable = PageRequest.of(num.orElse(0), size);
+            Page<HoaDon> list = hoaDonService.getAll(pageable);
+            model.addAttribute("listHoaDon", list.getContent());
+            model.addAttribute("total", list.getTotalPages());
+            return "ban-hang/hien-thi";
+        } else {
+            List<IMEI> listIMEI = imeiService.search(search);
+            model.addAttribute("listImei", listIMEI);
+            Pageable pageable = PageRequest.of(num.orElse(0), size);
+            Page<HoaDon> list = hoaDonService.getAll(pageable);
+            model.addAttribute("listHoaDon", list.getContent());
+            model.addAttribute("total", list.getTotalPages());
+            return "ban-hang/hien-thi";
+        }
+    }
+
+    @GetMapping("/them-imei/{id}")
+    public String addIMEI(Model model, @PathVariable("id") UUID id,
+                          @ModelAttribute("hoaDon") HoaDon hoaDon,
+                          @RequestParam("num") Optional<Integer> num,
+                          @RequestParam(name = "size", defaultValue = "10", required = false) Integer size) {
+        IMEI imei = imeiService.findById(id);
+        HoaDonChiTiet hdct = new HoaDonChiTiet();
+        hdct.setImei(imei);
+        hdct.setTinhTrang(1);
+        hdct.setDonGia(imei.getChiTietSanPham().getGiaBan());
+        hdct.setSoLuong(1);
+        hoaDonChiTietService.add(hdct);
+        ChiTietSanPham ct = chiTietSanPhamService.getChiTiet(id);
+        ct.setSoLuong(ct.getSoLuong() - 1);
+        long millis = System.currentTimeMillis();
+        Date date = new java.sql.Date(millis);
+        ct.setNgayTao(date);
+        if (ct.getSoLuong() == 0) {
+            ct.setTinhTrang(0);
+            chiTietSanPhamService.update1(ct);
+            List<HoaDonChiTiet> list = hoaDonChiTietService.findAll();
+            model.addAttribute("listHoaDonChiTiet", list);
+            Pageable pageable = PageRequest.of(num.orElse(0), size);
+            Page<HoaDon> listt = hoaDonService.getAll(pageable);
+            model.addAttribute("listHoaDon", listt.getContent());
+            model.addAttribute("total", listt.getTotalPages());
+            return "ban-hang/hien-thi";
+        } else {
+            chiTietSanPhamService.update1(ct);
+            List<HoaDonChiTiet> list = hoaDonChiTietService.findAll();
+            model.addAttribute("listHoaDonChiTiet", list);
+            Pageable pageable = PageRequest.of(num.orElse(0), size);
+            Page<HoaDon> listt = hoaDonService.getAll(pageable);
+            model.addAttribute("listHoaDon", listt.getContent());
+            model.addAttribute("total", listt.getTotalPages());
+            return "ban-hang/hien-thi";
+        }
+    }
+
+    @GetMapping("/delete-hoa-don-chi-tiet/{id}")
+    public String deleteHDCT(Model model, @PathVariable("id") UUID id,
+                             @ModelAttribute("hoaDon") HoaDon hoaDon,
+                             @RequestParam("num") Optional<Integer> num,
+                             @RequestParam(name = "size", defaultValue = "10", required = false) Integer size) {
+        hoaDonChiTietService.delete(id);
+        ChiTietSanPham ct = chiTietSanPhamService.getChiTiet2(id);
+        System.out.println(ct);
+//        ct.setSoLuong(ct.getSoLuong() + 1);
+//        long millis = System.currentTimeMillis();
+//        Date date = new java.sql.Date(millis);
+//        ct.setNgayTao(date);
+//        if (ct.getSoLuong() > 0) {
+//            ct.setTinhTrang(1);
+//        }
+//        chiTietSanPhamService.update1(ct);
+        List<HoaDonChiTiet> list = hoaDonChiTietService.findAll();
+        model.addAttribute("listHoaDonChiTiet", list);
+        Pageable pageable = PageRequest.of(num.orElse(0), size);
+        Page<HoaDon> listt = hoaDonService.getAll(pageable);
+        model.addAttribute("listHoaDon", listt.getContent());
+        model.addAttribute("total", listt.getTotalPages());
         return "ban-hang/hien-thi";
     }
 }

@@ -12,6 +12,8 @@ import java.util.UUID;
 
 @Repository
 public interface IMEIRepository extends JpaRepository<IMEI, UUID> {
-    @Query("select i from IMEI i left join ChiTietSanPham ct on i.chiTietSanPham.id=ct.id where ct.id=: id")
+    @Query("select i from IMEI i left join ChiTietSanPham ct on i.chiTietSanPham.id=ct.id where ct.id=:id")
     List<IMEI> getIMEI(UUID id);
+    @Query("select i from IMEI i where i.soImei like %:imei%")
+    List<IMEI> searchIMEI(String imei);
 }

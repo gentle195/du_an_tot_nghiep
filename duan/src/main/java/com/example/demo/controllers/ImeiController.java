@@ -88,9 +88,7 @@ public class ImeiController {
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("imeiupdate") IMEI imei) {
         model.addAttribute("listCTSP", chiTietSanPhamService.findAll());
         IMEI imei1 = imeiService.findById(id);
-
         model.addAttribute("imeiupdate", imei1);
-
         return "imei/update-imei";
 
     }
@@ -103,7 +101,6 @@ public class ImeiController {
 
             return "imei/update-imei";
         }
-
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
         imei.setNgayCapNhat(date);

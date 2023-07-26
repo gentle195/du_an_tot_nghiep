@@ -31,6 +31,11 @@ public class IMEIServiceImpl implements IMEIService {
     }
 
     @Override
+    public List<IMEI> search(String imei) {
+        return imeiRepository.searchIMEI(imei);
+    }
+
+    @Override
     public List<IMEI> findAll() {
         return imeiRepository.findAll();
     }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,5 +64,10 @@ public class HoaDonServiceImpl implements HoaDonService {
             }
         }
         return false;
+    }
+
+    @Override
+    public void update(UUID id,int tinhTrang, Date ngayCapNhat) {
+        hoaDonRepository.update(id,tinhTrang, ngayCapNhat);
     }
 }

@@ -14,13 +14,19 @@ public interface ChiTietSanPhamService {
 
     public List<ChiTietSanPham> search(String ten);
 
-    public List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin,UUID idChip,UUID moTaMan,UUID moTaCam);
+    public List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin, UUID idChip, UUID moTaMan, UUID moTaCam);
 
     public ChiTietSanPham findById(UUID id);
+
+    public ChiTietSanPham getChiTiet(UUID id);
+
+    public ChiTietSanPham getChiTiet2(UUID id);
 
     public ChiTietSanPham add(ChiTietSanPham chiTietSanPham);
 
     public ChiTietSanPham update(UUID id, ChiTietSanPham chiTietSanPham);
+
+    public ChiTietSanPham update1(ChiTietSanPham chiTietSanPham);
 
     public Boolean delete(UUID id);
 }

@@ -7,9 +7,9 @@
 <head>
     <title>Title</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -20,24 +20,17 @@
     <table class="table" id="myForm">
         <thead>
         <tr>
-
-
             <th scope="col">HO TEN</th>
             <th scope="col">GIOI TINH</th>
             <th scope="col">EMAIL</th>
-
-
         </tr>
         </thead>
         <thead>
         <tr>
-
             <th scope="col">
                 <form:input path="hoTen"></form:input><br>
                 <form:errors path="hoTen" cssClass="error text-danger"/>
             </th>
-
-
             <th scope="col">
                 <form:radiobutton path="gioiTinh" label="nam" value="true"></form:radiobutton><br>
                 <form:radiobutton path="gioiTinh" label="nu" value="false"></form:radiobutton>
@@ -48,22 +41,15 @@
             </th>
         </tr>
         </thead>
-
-
         <thead>
         <tr>
-
             <th scope="col">SDT</th>
             <th scope="col">NGAY SINH</th>
             <th scope="col">TAI KHOAN</th>
-
-
         </tr>
         </thead>
         <thead>
         <tr>
-
-
             <th scope="col">
                 <form:input path="sdt" type="number"></form:input><br>
                 <form:errors path="sdt" cssClass="error text-danger"/>
@@ -112,7 +98,12 @@
 
                 </form:select>
                 <br>
-                <form:errors path="hangKhachHang" cssClass="error text-danger"/>
+                    <form:errors path="hangKhachHang" cssClass="error text-danger"/>
+            <td class="btn-group">
+                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalHangKhachHang">
+                    <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 25px; height: 60%">
+                </a>
+            </td>
             </th>
 
         </tr>
@@ -123,8 +114,6 @@
     </table>
     <BUTTON type="submit" style="margin-left: 5cm" id="bt" onclick="return thongbao()">ADD</BUTTON>
 </form:form>
-
-
 
 
 <table class="table" id="bang">
@@ -162,10 +151,6 @@
             <td>${ht.ngayTao}</td>
             <td>${ht.ngayCapNhat}</td>
             <td>${ht.tt()}</td>
-                <%--            <td>--%>
-                <%--                <c:if test="${ht.tinhTrang == 0}">Yes</c:if>--%>
-                <%--                <c:if test="${ht.tinhTrang == 1}">No</c:if>--%>
-                <%--            </td>--%>
             <td>${ht.diem}</td>
             <td>${ht.hangKhachHang.ten}</td>
 
@@ -180,7 +165,52 @@
     </c:forEach>
 </table>
 <P id="bc" style="color: crimson"></P>
-
+<%--modal--%>
+<div class="modal fade" id="exampleModalHangKhachHang" tabindex="-1" aria-labelledby="exampleModalLabelHangKhachHang"
+     aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelHangKhachHang">Hạng khách hàng</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="imeiList">
+                    <table class="table">
+                        <form:form action="/khach-hang/modal-add-hang-khach-hang" method="post" modelAttribute="hangKhachHang">
+                            <div class="row">
+                                <div class="col">
+                                    <form:label path="ten"><b>Tên:</b></form:label>
+                                    <form:input path="ten" class="form-control"></form:input>
+                                    <form:errors path="ten"></form:errors>
+                                </div>
+                                <div class="col">
+                                    <form:label path="diem_toi_thieu"><b>Điểm tối thiểu:</b></form:label>
+                                    <form:input path="diem_toi_thieu" class="form-control"></form:input>
+                                    <form:errors path="diem_toi_thieu"></form:errors>
+                                </div>
+                                <div class="col">
+                                    <form:label path="moTa"><b>Mô Tả:</b></form:label>
+                                    <form:textarea path="moTa" class="form-control"></form:textarea>
+                                    <form:errors path="moTa"></form:errors>
+                                </div>
+                                <div style="margin-top: 20px; margin-bottom: 20px">
+                                    <button type="submit" class="btn btn-primary"
+                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">
+                                        ADD
+                                    </button>
+                                </div>
+                            </div>
+                        </form:form>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 
 

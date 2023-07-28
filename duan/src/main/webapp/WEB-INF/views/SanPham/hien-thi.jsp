@@ -10,8 +10,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>San Pham</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -185,19 +186,34 @@
             <tbody>
             <tr>
                 <td><form:label path="hangSanPham">Hãng Sản Phẩm</form:label></td>
-                <th><form:select path="hangSanPham" items="${hangsp}" itemValue="id" itemLabel="ten"/></th>
+                <th><form:select path="hangSanPham" items="${listHangSP}" itemValue="id" itemLabel="ten"/></th>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalHangSanPham">
+                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 25px; height: 60%">
+                    </a>
+                </td>
             </tr>
             </tbody>
             <tbody>
             <tr>
                 <td><form:label path="manHinh">Màn Hình</form:label></td>
-                <th><form:select path="manHinh" items="${manHinh}" itemValue="id" itemLabel="thongSo"/></th>
+                <th><form:select path="manHinh" items="${listManHinh}" itemValue="id" itemLabel="thongSo"/></th>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalManHinh">
+                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 25px; height: 60%">
+                    </a>
+                </td>
             </tr>
             </tbody>
             <tbody>
             <tr>
                 <td><form:label path="camera">Camera</form:label></td>
-                <th><form:select path="camera" items="${camera}" itemValue="id" itemLabel="thongSo"/></th>
+                <th><form:select path="camera" items="${listCamera}" itemValue="id" itemLabel="thongSo"/></th>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalCamera">
+                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 25px; height: 60%">
+                    </a>
+                </td>
             </tr>
             </tbody>
             <tr>
@@ -214,6 +230,217 @@
     </form:form>
 </div>
 </body>
+<div class="modal fade" id="exampleModalManHinh" tabindex="-1" aria-labelledby="exampleModalLabelManHinh"
+     aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelManHinh">Màn Hình</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="imeiList">
+                    <table class="table">
+                        <form:form action="/san-pham/modal-add-man-hinh" method="post" modelAttribute="manHinh">
+                            <h1 style="text-align: center">ADD Thông Tin Màn Hình</h1>
+                            <table class="table " style="border: aliceblue 1px">
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="thongSo">Thông số màn hình</form:label></td>
+                                    <th><form:input path="thongSo" id="tent"></form:input></th>
+                                    <th><form:errors path="thongSo" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="loaiCamUng">Loại cảm ứng màn hình</form:label></td>
+                                    <th><form:input path="loaiCamUng" id="tent"></form:input></th>
+                                    <th><form:errors path="loaiCamUng" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="tiLeKhungHinh">Tỉ lệ khung hình</form:label></td>
+                                    <th><form:input path="tiLeKhungHinh" id="tent"></form:input></th>
+                                    <th><form:errors path="tiLeKhungHinh" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="congNghe">Công nghệ màn hình</form:label></td>
+                                    <th><form:input path="congNghe" id="tent"></form:input></th>
+                                    <th><form:errors path="congNghe" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="doPhanGiai">Độ phân giải</form:label></td>
+                                    <th><form:input path="doPhanGiai" id="tent"></form:input></th>
+                                    <th><form:errors path="doPhanGiai" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="tanSoQuet">Tần số quét</form:label></td>
+                                    <th><form:input path="tanSoQuet" id="tent"></form:input></th>
+                                    <th><form:errors path="tanSoQuet" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="tinhTrang">Trạng thái</form:label></td>
+                                    <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"/>
+                                        <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"/>
+                                    </th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="moTa">Mô tả</form:label></td>
+                                    <th><form:textarea path="moTa"></form:textarea></th>
+                                    <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td>
+                                        <button type="submit" style="float: right" class="btn btn-success"
+                                                id="btt" onclick="return myFunction1()">Add
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form:form>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalHangSanPham" tabindex="-1" aria-labelledby="exampleModalLabelHangSanPham"
+     aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelHangSanPham">Hãng SP</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="imeiList">
+                    <table class="table">
+                        <form:form action="/san-pham/modal-add-hang-sp" method="post" modelAttribute="hangSP">
+                            <h1 style="text-align: center">Add Hãng Sản Phẩm</h1>
+
+                            <table class="table " style="border: aliceblue 1px">
+                                <tbody>
+                                <tr>
+                                    <td> Tên:</td>
+                                    <th><form:input path="ten" id="tent"></form:input></th>
+                                    <td><form:errors path="ten" cssClass="error text-danger"/></td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td> Xuất Sứ:</td>
+                                    <th><form:input path="xuatSu" id="tent"></form:input></th>
+                                    <td><form:errors path="xuatSu" cssClass="error text-danger"/></td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td> Trang thai:</td>
+                                    <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"></form:radiobutton>
+                                        <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"></form:radiobutton>
+                                    </th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td>Mo ta:</td>
+                                    <th><form:textarea path="moTa"></form:textarea></th>
+                                    <td><form:errors path="moTa" cssClass="error text-danger"/></td>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td>
+
+                                        <button type="submit" style="float: right" class="btn btn-success"
+                                                id="btt" onclick="return myFunction1()">Add
+                                        </button>
+                                    </td>
+                                    <th></th>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </form:form>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalCamera" tabindex="-1" aria-labelledby="exampleModalLabelCamera"
+     aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabelCamera">Camera</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="imeiList">
+                    <table class="table">
+                        <form:form action="/san-pham/modal-add-camera" method="post" modelAttribute="camera">
+                            <h1 style="text-align: center">ADD Thông Tin Camera</h1>
+                            <table class="table " style="border: aliceblue 1px">
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="thongSo">Thông số camera</form:label></td>
+                                    <th><form:input path="thongSo" id="tent"></form:input></th>
+                                    <th><form:errors path="thongSo" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="tinhTrang">Trạng thái</form:label></td>
+                                    <th><form:radiobutton path="tinhTrang" value="0" label="Hoạt động"/>
+                                        <form:radiobutton path="tinhTrang" value="1" label="Ngừng hoạt động"/>
+                                    </th>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td><form:label path="moTa">Mô tả</form:label></td>
+                                    <th><form:textarea path="moTa"></form:textarea></th>
+                                    <th><form:errors path="moTa" cssClass="error text-danger"></form:errors></th>
+                                </tr>
+                                </tbody>
+                                <tr>
+                                    <td>
+                                        <button type="submit" style="float: right" class="btn btn-success"
+                                                id="btt" onclick="return myFunction1()">Add
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form:form>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     function myFunction1() {
         let text = "Bạn chắc chắn muốn thêm";

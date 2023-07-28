@@ -56,7 +56,7 @@ public class RamController {
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
         ram.setNgayTao(date);
-        ram.setNgayCapNhat(date);
+//        ram.setNgayCapNhat(date);
         ram.setTinhTrang(0);
         System.out.println(ram.toString());
         ramService.add(ram);

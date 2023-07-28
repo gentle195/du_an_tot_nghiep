@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.DiaChi;
+import com.example.demo.models.HangKhachHang;
+import com.example.demo.models.KhachHang;
 import com.example.demo.services.DiaChiService;
 import com.example.demo.services.KhachHangService;
 import jakarta.validation.Valid;
@@ -29,7 +31,10 @@ public class DiaChiController {
     @GetMapping("/hien-thi")
     public String hienThi(
             Model model,
-            @ModelAttribute("dc") DiaChi diaChi
+            @ModelAttribute("dc") DiaChi diaChi,
+                        @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang,
+                        @ModelAttribute("khachHang") HangKhachHang khachHang
+
     ) {
         diaChi.setTinhTrang(0);
         model.addAttribute("dulieu", diaChiService.getAll0());
@@ -91,7 +96,11 @@ public class DiaChiController {
 
     @PostMapping("/add")
     public String updateadd(Model model,
-                            @ModelAttribute("dc") @Valid DiaChi diaChi
+                            @ModelAttribute("dc") @Valid DiaChi diaChi,
+                            @ModelAttribute("hangKhachHang")@Valid HangKhachHang hangKhachHang,
+                            @ModelAttribute("KhachHang")@Valid KhachHang khachHang
+
+
             , BindingResult bindingResult
     ) {
         long millis = System.currentTimeMillis();

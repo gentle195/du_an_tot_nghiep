@@ -39,29 +39,36 @@ public class SanPhamController {
     CameraService cameraService;
 
     @GetMapping("hien-thi")
-    public String hienthi(@ModelAttribute("dulieuxem") SanPham dulieuxem, Model model, @RequestParam("num") Optional<Integer> num,
+    public String hienthi(@ModelAttribute("dulieuxem") SanPham dulieuxem,
+                          @ModelAttribute("manHinh") ManHinh manHinh,
+                          @ModelAttribute("hangSP") HangSanPham hangSanPham,
+                          @ModelAttribute("camera") Camera camera,
+                          Model model, @RequestParam("num") Optional<Integer> num,
                           @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
         Pageable pageable = PageRequest.of(num.orElse(0), size);
         Page<SanPham> list = sanPhamService.getAll(pageable);
+        model.addAttribute("listManHinh", manHinhService.findAll());
+        model.addAttribute("listHangSP", hangSanPhamService.findAll());
+        model.addAttribute("listCamera", cameraService.findAll());
         model.addAttribute("hsp", list.getContent());
         model.addAttribute("total", list.getTotalPages());
         return "SanPham/hien-thi";
     }
 
-    @ModelAttribute("hangsp")
-    public List<HangSanPham> hsp() {
-        return hangSanPhamService.findAll();
-    }
-
-    @ModelAttribute("manHinh")
-    public List<ManHinh> manHinh() {
-        return manHinhService.findAll();
-    }
-
-    @ModelAttribute("camera")
-    public List<Camera> camera() {
-        return cameraService.findAll();
-    }
+//    @ModelAttribute("hangsp")
+//    public List<HangSanPham> hsp() {
+//        return hangSanPhamService.findAll();
+//    }
+//
+//    @ModelAttribute("manHinh")
+//    public List<ManHinh> manHinh() {
+//        return manHinhService.findAll();
+//    }
+//
+//    @ModelAttribute("camera")
+//    public List<Camera> camera() {
+//        return cameraService.findAll();
+//    }
 
     @GetMapping("/view-update/{id}")
     public String viewupdate(Model model, @PathVariable("id") UUID id) {
@@ -71,7 +78,9 @@ public class SanPhamController {
     }
 
     @PostMapping("/add")
-    public String add(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem, BindingResult bindingResult, @RequestParam("num") Optional<Integer> num,
+    public String add(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem,
+                      @ModelAttribute("manHinh") @Valid ManHinh manHinh,
+                      BindingResult bindingResult, @RequestParam("num") Optional<Integer> num,
                       @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("content", "SanPham/hien-thi.jsp");

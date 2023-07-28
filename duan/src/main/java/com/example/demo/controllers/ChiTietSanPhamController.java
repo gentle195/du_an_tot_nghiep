@@ -1,6 +1,12 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.ChiTietSanPham;
+import com.example.demo.models.Chip;
+import com.example.demo.models.MauSac;
+import com.example.demo.models.Pin;
+import com.example.demo.models.Ram;
+import com.example.demo.models.Rom;
+import com.example.demo.models.SanPham;
 import com.example.demo.services.CameraService;
 import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.ChipService;
@@ -41,7 +47,6 @@ public class ChiTietSanPhamController {
     ChiTietSanPhamService chiTietSanPhamService;
     @Autowired
     SanPhamService sanPhamService;
-
     @Autowired
     MauSacService mauSacService;
     @Autowired
@@ -76,27 +81,41 @@ public class ChiTietSanPhamController {
         model.addAttribute("listChip", chipService.findAll());
         model.addAttribute("listRam", ramService.findAll());
         model.addAttribute("listRom", romService.findAll());
-        model.addAttribute("listPin", dungLuongPinService.findAll());
+        model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         model.addAttribute("listManHinh", manHinhService.findAll());
         model.addAttribute("listCamera", cameraService.findAll());
         return "chi-tiet-san-pham/index";
     }
 
     @GetMapping("/add")
-    public String viewadd(Model model) {
+    public String viewadd(Model model,
+                          @ModelAttribute(name = "Pin") Pin pin,
+                          @ModelAttribute(name = "chip") Chip chip,
+                          @ModelAttribute(name = "ram")Ram ram,
+                          @ModelAttribute(name = "mauSac") MauSac mauSac,
+                          @ModelAttribute(name = "rom")Rom rom,
+                          @ModelAttribute(name = "sanPham") SanPham sanPham,
+                          @ModelAttribute(name = "chitietsanpham") ChiTietSanPham chiTietSanPham
+    ) {
         model.addAttribute("listSanPham", sanPhamService.findAll());
         model.addAttribute("listMauSac", mauSacService.findAll());
         model.addAttribute("listChip", chipService.findAll());
         model.addAttribute("listRam", ramService.findAll());
         model.addAttribute("listRom", romService.findAll());
         model.addAttribute("listPin", pinService.findAll());
+        model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         model.addAttribute("chitietsanpham", new ChiTietSanPham());
         return "chi-tiet-san-pham/add-chi-tiet-san-pham";
-
     }
 
     @PostMapping("/add")
     public String add(@Valid @ModelAttribute(name = "chitietsanpham") ChiTietSanPham chiTietSanPham,
+                      @Valid @ModelAttribute(name = "Pin") Pin pin,
+                      @Valid @ModelAttribute(name = "chip") Chip chip,
+                      @Valid @ModelAttribute(name = "ram") Ram ram,
+                      @Valid @ModelAttribute(name = "mauSac") MauSac mauSac,
+                      @Valid @ModelAttribute(name = "rom") Rom rom,
+                      @Valid @ModelAttribute(name = "sanPham") SanPham sanPham,
                       BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("listSanPham", sanPhamService.findAll());
@@ -105,7 +124,7 @@ public class ChiTietSanPhamController {
             model.addAttribute("listRam", ramService.findAll());
             model.addAttribute("listRom", romService.findAll());
             model.addAttribute("listPin", pinService.findAll());
-
+            model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
             return "chi-tiet-san-pham/add-chi-tiet-san-pham";
         }
         LocalDate localDate = LocalDate.now();
@@ -124,6 +143,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("listRam", ramService.findAll());
         model.addAttribute("listRom", romService.findAll());
         model.addAttribute("listPin", pinService.findAll());
+        model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         ChiTietSanPham chiTietSanPham1 = chiTietSanPhamService.findById(id);
         ngay = Date.valueOf(chiTietSanPham1.getNgayTao().toString());
         System.out.println(chiTietSanPham1.getNgayTao());
@@ -143,6 +163,7 @@ public class ChiTietSanPhamController {
             model.addAttribute("listRam", ramService.findAll());
             model.addAttribute("listRom", romService.findAll());
             model.addAttribute("listPin", pinService.findAll());
+            model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
             ChiTietSanPham chiTietSanPham1 = chiTietSanPhamService.findById(id);
 //            model.addAttribute("chitietsanphamupdate",chiTietSanPham1);
             return "chi-tiet-san-pham/update-chi-tiet-san-pham";
@@ -161,7 +182,6 @@ public class ChiTietSanPhamController {
 
     @GetMapping("/remove/{id}")
     public String remove(@PathVariable("id") UUID id) {
-
         chiTietSanPhamService.delete(id);
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
@@ -179,7 +199,7 @@ public class ChiTietSanPhamController {
                       @RequestParam(value = "chip", required = false) UUID chip,
                       @RequestParam(value = "manHinh", required = false) UUID moTaMan,
                       @RequestParam(value = "camera", required = false) UUID moTaCam) {
-        List<ChiTietSanPham> list = chiTietSanPhamService.loc(hang, ram, rom, dungLuongPin,chip,moTaMan,moTaCam);
+        List<ChiTietSanPham> list = chiTietSanPhamService.loc(hang, ram, rom, dungLuongPin, chip, moTaMan, moTaCam);
         model.addAttribute("listCTSP", list);
         model.addAttribute("listHang", hangSanPhamService.findAll());
         model.addAttribute("listMauSac", mauSacService.findAll());
@@ -189,6 +209,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("listPin", dungLuongPinService.findAll());
         model.addAttribute("listManHinh", manHinhService.findAll());
         model.addAttribute("listCamera", cameraService.findAll());
+        model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         return "/chi-tiet-san-pham/index";
     }
 

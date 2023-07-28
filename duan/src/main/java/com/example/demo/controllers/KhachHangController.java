@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.HangKhachHang;
 import com.example.demo.models.KhachHang;
 import com.example.demo.services.HangKhachHangService;
 import com.example.demo.services.KhachHangService;
@@ -31,8 +32,8 @@ public class KhachHangController {
     @GetMapping("/hien-thi")
     public String hienThi(
             Model model,
-            @ModelAttribute("kh") KhachHang khachHang
-
+            @ModelAttribute("kh") KhachHang khachHang,
+            @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang
 
     ) {
 
@@ -41,7 +42,7 @@ public class KhachHangController {
 
 
         model.addAttribute("dulieu", khachHangService.getALL0());
-        model.addAttribute("hkh",hangKhachHangService.getALL0());
+        model.addAttribute("hkh", hangKhachHangService.getALL0());
         model.addAttribute("tong", khachHangService.getALL0().size());
         return "khach-hang/khach-hang";
     }
@@ -53,7 +54,7 @@ public class KhachHangController {
                          @PathVariable("id") UUID id
 
     ) {
-        KhachHang khachHang=khachHangService.findById(id);
+        KhachHang khachHang = khachHangService.findById(id);
         khachHang.setTinhTrang(1);
         khachHangService.add(khachHang);
         return "redirect:/khach-hang/hien-thi";
@@ -64,27 +65,21 @@ public class KhachHangController {
 
     public String viewUpdate(Model model,
                              @PathVariable("id") UUID id,
-                             @ModelAttribute("kh")KhachHang khachHang
+                             @ModelAttribute("kh") KhachHang khachHang
 
     ) {
         khachHang.setTinhTrang(0);
         khachHang.setGioiTinh(true);
         model.addAttribute("kh", khachHangService.findById(id));
-        model.addAttribute("hkh",hangKhachHangService.getALL0());
+        model.addAttribute("hkh", hangKhachHangService.getALL0());
         return "khach-hang/khach-hang-update";
     }
 
 
     @PostMapping("/update")
-    public String updateDongSP(Model model,
-
-                               @ModelAttribute("kh")@Valid KhachHang khachHang, BindingResult bindingResult
-    ) {
-
-
-
-        if(bindingResult.hasErrors()){
-            khachHang=khachHangService.findById(khachHang.getId());
+    public String updateDongSP(Model model, @ModelAttribute("kh") @Valid KhachHang khachHang, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            khachHang = khachHangService.findById(khachHang.getId());
             return "khach-hang/khach-hang-update";
         }
 
@@ -100,29 +95,25 @@ public class KhachHangController {
     }
 
 
-
-
-
     @PostMapping("/add")
     public String updateadd(Model model,
-                            @ModelAttribute("kh")@Valid KhachHang khachHang,
+                            @ModelAttribute("kh") @Valid KhachHang khachHang,
+                            @ModelAttribute("hangKhachHang") @Valid HangKhachHang hangKhachHang,
                             BindingResult bindingResult
     ) {
 
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
 
             khachHang.setGioiTinh(true);
-
-
             model.addAttribute("dulieu", khachHangService.getALL0());
-            model.addAttribute("hkh",hangKhachHangService.getALL0());
+            model.addAttribute("hkh", hangKhachHangService.getALL0());
             return "khach-hang/khach-hang";
         }
 
-        Integer sl= khachHangService.findAll().size()+1;
+        Integer sl = khachHangService.findAll().size() + 1;
 
         String mhd = "MKH" + sl;
         khachHang.setMa(mhd);

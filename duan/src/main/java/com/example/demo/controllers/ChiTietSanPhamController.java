@@ -81,6 +81,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("listChip", chipService.findAll());
         model.addAttribute("listRam", ramService.findAll());
         model.addAttribute("listRom", romService.findAll());
+//        model.addAttribute("listPin", pinService.findAll());
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         model.addAttribute("listManHinh", manHinhService.findAll());
         model.addAttribute("listCamera", cameraService.findAll());
@@ -110,12 +111,6 @@ public class ChiTietSanPhamController {
 
     @PostMapping("/add")
     public String add(@Valid @ModelAttribute(name = "chitietsanpham") ChiTietSanPham chiTietSanPham,
-                      @Valid @ModelAttribute(name = "Pin") Pin pin,
-                      @Valid @ModelAttribute(name = "chip") Chip chip,
-                      @Valid @ModelAttribute(name = "ram") Ram ram,
-                      @Valid @ModelAttribute(name = "mauSac") MauSac mauSac,
-                      @Valid @ModelAttribute(name = "rom") Rom rom,
-                      @Valid @ModelAttribute(name = "sanPham") SanPham sanPham,
                       BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("listSanPham", sanPhamService.findAll());
@@ -135,7 +130,7 @@ public class ChiTietSanPhamController {
 
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/view-update/{id}")
     public String viewupdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("chitietsanphamupdate") ChiTietSanPham chiTietSanPham) {
         model.addAttribute("listSanPham", sanPhamService.findAll());
         model.addAttribute("listMauSac", mauSacService.findAll());
@@ -170,7 +165,6 @@ public class ChiTietSanPhamController {
         }
         ChiTietSanPham chiTietSanPham1 = chiTietSanPhamService.findById(id);
         BeanUtils.copyProperties(chiTietSanPham, chiTietSanPham1);
-
         LocalDate localDate = LocalDate.now();
         chiTietSanPham1.setNgayCapNhat(Date.valueOf(localDate));
         chiTietSanPham1.setNgayTao(ngay);

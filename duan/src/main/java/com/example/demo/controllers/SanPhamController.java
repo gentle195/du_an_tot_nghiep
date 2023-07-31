@@ -79,18 +79,24 @@ public class SanPhamController {
 
     @PostMapping("/add")
     public String add(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem,
-                      @ModelAttribute("manHinh") @Valid ManHinh manHinh,
                       BindingResult bindingResult, @RequestParam("num") Optional<Integer> num,
-                      @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
+                      @RequestParam(name = "size", defaultValue = "5", required = false) Integer size,
+                      @ModelAttribute("hangSP") HangSanPham hangSanPham,
+                      @ModelAttribute("camera") Camera camera) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("content", "SanPham/hien-thi.jsp");
             Sort sort = Sort.by("ngayTao").ascending();
             Pageable pageable = PageRequest.of(num.orElse(0), size, sort);
             Page<SanPham> list = sanPhamService.getAll(pageable);
+            model.addAttribute("listManHinh", manHinhService.findAll());
+            model.addAttribute("listHangSP", hangSanPhamService.findAll());
+            model.addAttribute("listCamera", cameraService.findAll());
             model.addAttribute("hsp", list.getContent());
             model.addAttribute("total", list.getTotalPages());
+
             return "SanPham/hien-thi";
         }
+
         dulieuxem.setNgayTao(Date.valueOf(LocalDate.now()));
         dulieuxem.setMa("SP" + String.valueOf(hangSanPhamService.findAll().size() + 1));
         sanPhamService.add(dulieuxem);
@@ -99,7 +105,11 @@ public class SanPhamController {
     }
 
     @PostMapping("/update/{id}")
-    public String update(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem, BindingResult bindingResult, @PathVariable("id") UUID id) {
+    public String update(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem,
+                         BindingResult bindingResult, @PathVariable("id") UUID id,
+                         @ModelAttribute("manHinh") ManHinh manHinh,
+                         @ModelAttribute("hangSP") HangSanPham hangSanPham,
+                         @ModelAttribute("camera") Camera camera) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("content", "SanPham/update.jsp");
             return "SanPham/update";

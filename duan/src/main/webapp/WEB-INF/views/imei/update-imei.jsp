@@ -25,20 +25,27 @@
                 <form:label class="form-label" path="chiTietSanPham">San Pham:</form:label>
 
             </div>
-
+            <div class="form-floating mb-3 mt-3">
+                <form:input class="form-control" placeholder="" path="ma" readonly="true"/>
+                <form:label class="form-label" path="ma">Ma:</form:label>
+                <form:errors path="ma" cssStyle="color: red"></form:errors>
+            </div>
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="soImei"/>
                 <form:label class="form-label" path="soImei">Imei:</form:label>
                 <form:errors path="soImei" cssStyle="color: red"></form:errors>
             </div>
-
-
+            <div class="form-floating mb-3 mt-3" style="display: none">
+                <form:input class="form-control" placeholder="" path="ngayTao"/>
+                <form:label class="form-label" path="ngayTao">Ngày Tạo:</form:label>
+                <form:errors path="soImei" cssStyle="color: red"></form:errors>
+            </div>
         </div>
         <div class="col">
             <div class="form-check mb-3 mt-3">
                 <form:label class="form-label" path="tinhTrang">Tình Trạng:</form:label>
-                <form:radiobutton path="tinhTrang" value="0"/>Không hoạt động
-                <form:radiobutton path="tinhTrang" value="1" checked="true"/> Hoạt động
+                <form:radiobutton path="tinhTrang" value="0" label="Chưa bán" checked="true"/>
+                <form:radiobutton path="tinhTrang" value="1" label="Đã bán"/>
                 <form:errors path="tinhTrang" cssStyle="color: red"></form:errors>
             </div>
             <div class="form-floating mb-3 mt-3">
@@ -46,15 +53,10 @@
                 <form:label class="form-label" path="moTa">Mota:</form:label>
                 <form:errors path="moTa" cssStyle="color: red"></form:errors>
             </div>
-
-
         </div>
     </div>
-
     <form:button type="submit" class="btn btn-primary"
                  onclick="if(!(confirm('Bạn có muốn cap nhat ? ')))return false;else return true">Update</form:button>
-
-
 </form:form>
 
 </body>

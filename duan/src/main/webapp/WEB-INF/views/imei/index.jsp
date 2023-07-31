@@ -46,11 +46,11 @@
 
                 <td>${imei.ngayTao}</td>
                 <td>${imei.ngayCapNhat}</td>
-                <td>${imei.tinhTrang==1?"con ban":"Ngung ban"}</td>
+                <td>${imei.tinhTrang==0?"Chưa bán":"Đã bán"}</td>
 
                 <td>${imei.moTa}</td>
                 <td>
-                    <a href="/imei/update/${imei.id}" class="btn btn-success">Update</a>
+                    <a href="/imei/view-update/${imei.id}" class="btn btn-success">Update</a>
                     <a href="#" onclick="remove('/imei/remove/${imei.id}')" class="btn btn-danger">Delete</a>
 
                 </td>
@@ -62,7 +62,7 @@
         <li class="page-item"><a class="page-link" href="/imei/hien-thi?pageNum=0">First</a></li>
         <c:forEach begin="1" end="${total}" varStatus="status">
             <li class="page-item">
-                <a href="${pageContext.request.contextPath}/imei/hien-thi?pageNum=${status.index -1}"
+                <a href="/imei/hien-thi?pageNum=${status.index -1}"
                    class="page-link">${status.index}</a>
             </li>
         </c:forEach>

@@ -81,8 +81,7 @@
                     <td style="text-align: center" colspan="1">
                         <select name="dungLuongPin">
                             <option selected disabled>Dung Lượng Pin</option>
-                            <c:forEach items="${listPin}" var="pin" varStatus="i">
-
+                            <c:forEach items="${dungLuongPin}" var="pin" varStatus="i">
                                 <option value="${pin.id}">${pin.thongSo}</option>
                             </c:forEach>
                         </select>
@@ -180,7 +179,7 @@
                     <td>${ctsp.soLuong}</td>
                     <td>${ctsp.moTa}</td>
                     <td>
-                        <a href="/chi-tiet-san-pham/update/${ctsp.id}" class="btn btn-success">Update</a>
+                        <a href="/chi-tiet-san-pham/view-update/${ctsp.id}" class="btn btn-success">Update</a>
                         <a href="#" onclick="remove('/chi-tiet-san-pham/remove/${ctsp.id}')" class="btn btn-danger">Delete</a>
 
                     </td>

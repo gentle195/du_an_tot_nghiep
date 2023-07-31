@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +19,6 @@ public class IMEIServiceImpl implements IMEIService {
 
     @Autowired
     IMEIRepository imeiRepository;
-
 
     @Override
     public Page<IMEI> getAll(Pageable pageable) {
@@ -63,6 +63,11 @@ public class IMEIServiceImpl implements IMEIService {
     }
 
     @Override
+    public IMEI updateI(IMEI imei) {
+        return imeiRepository.save(imei);
+    }
+
+    @Override
     public Boolean delete(UUID id) {
         if (id != null) {
             IMEI imei = imeiRepository.findById(id).orElse(null);
@@ -72,5 +77,10 @@ public class IMEIServiceImpl implements IMEIService {
             }
         }
         return false;
+    }
+
+    @Override
+    public void updatImei(Date date, UUID id) {
+        imeiRepository.updateImei(date,id);
     }
 }

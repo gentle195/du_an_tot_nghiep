@@ -32,8 +32,8 @@ public class DiaChiController {
     public String hienThi(
             Model model,
             @ModelAttribute("dc") DiaChi diaChi,
-                        @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang,
-                        @ModelAttribute("khachHang") HangKhachHang khachHang
+            @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang,
+            @ModelAttribute("khachHang") HangKhachHang khachHang
 
     ) {
         diaChi.setTinhTrang(0);
@@ -50,7 +50,7 @@ public class DiaChiController {
     ) {
 
 
-        DiaChi diaChi=diaChiService.findById(id);
+        DiaChi diaChi = diaChiService.findById(id);
         diaChi.setTinhTrang(1);
         diaChiService.add(diaChi);
         return "redirect:/dia-chi/hien-thi";
@@ -62,10 +62,6 @@ public class DiaChiController {
                              @ModelAttribute("dc") DiaChi diaChi
 
     ) {
-
-
-
-
         model.addAttribute("dc", diaChiService.findById(id));
         model.addAttribute("kh", khachHangService.getALL0());
         return "dia-chi/dia-chi-update";
@@ -78,7 +74,7 @@ public class DiaChiController {
             , BindingResult bindingResult
     ) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
 
             return "dia-chi/dia-chi-update";
         }
@@ -96,9 +92,9 @@ public class DiaChiController {
 
     @PostMapping("/add")
     public String updateadd(Model model,
-                            @ModelAttribute("dc") @Valid DiaChi diaChi,
-                            @ModelAttribute("hangKhachHang")@Valid HangKhachHang hangKhachHang,
-                            @ModelAttribute("KhachHang")@Valid KhachHang khachHang
+                            @ModelAttribute("dc") @Valid DiaChi diaChi
+//                            @ModelAttribute("hangKhachHang")@Valid HangKhachHang hangKhachHang,
+//                            @ModelAttribute("KhachHang")@Valid KhachHang khachHang
 
 
             , BindingResult bindingResult
@@ -106,17 +102,13 @@ public class DiaChiController {
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
 
-        if(bindingResult.hasErrors()){
-
-
-
-
+        if (bindingResult.hasErrors()) {
             model.addAttribute("dulieu", diaChiService.getAll0());
-            model.addAttribute("kh",khachHangService.getALL0());
+            model.addAttribute("kh", khachHangService.getALL0());
             return "dia-chi/dia-chi";
         }
 
-       Integer sl= khachHangService.findAll().size()+1;
+        Integer sl = khachHangService.findAll().size() + 1;
 
         String mhd = "MDC" + sl;
         diaChi.setMa(mhd);

@@ -1,9 +1,11 @@
 package com.example.demo.controllers;
 
+import com.example.demo.models.ChiTietSanPham;
 import com.example.demo.models.IMEI;
 import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.IMEIService;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,15 +32,10 @@ public class ImeiController {
     @Autowired
     ChiTietSanPhamService chiTietSanPhamService;
 
-
-
-
     @GetMapping("/hien-thi")
-    public String hienThi(Model model, @RequestParam(value = "page", defaultValue = "0", required = false) Integer pageNum) {
+    public String hienThi(Model model, @RequestParam(value = "pageNum", defaultValue = "0", required = false) Integer pageNum) {
         Pageable pageable = PageRequest.of(pageNum, 5);
-
         Page<IMEI> imeiPage = imeiService.getAll(pageable);
-
         model.addAttribute("total", imeiPage.getTotalPages());
         model.addAttribute("listImei", imeiPage.getContent());
         model.addAttribute("size", imeiPage.getSize());
@@ -84,7 +81,7 @@ public class ImeiController {
 
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/view-update/{id}")
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("imeiupdate") IMEI imei) {
         model.addAttribute("listCTSP", chiTietSanPhamService.findAll());
         IMEI imei1 = imeiService.findById(id);
@@ -98,13 +95,19 @@ public class ImeiController {
                          BindingResult result) {
         if (result.hasErrors()) {
             model.addAttribute("listCTSP", chiTietSanPhamService.findAll());
-
             return "imei/update-imei";
         }
-        long millis = System.currentTimeMillis();
-        Date date = new java.sql.Date(millis);
-        imei.setNgayCapNhat(date);
-        imeiService.update(id, imei);
+        IMEI imei1 = imeiService.findById(id);
+        imei1.setMa(imei.getMa());
+        imei1.setNgayTao(imei.getNgayTao());
+        imei1.setChiTietSanPham(imei.getChiTietSanPham());
+        imei1.setSoImei(imei.getSoImei());
+        imei1.setMoTa(imei.getMoTa());
+        LocalDate localDate = LocalDate.now();
+        imei1.setNgayCapNhat(Date.valueOf(localDate));
+        imei1.setNgayTao(imei.getNgayTao());
+        imei1.setTinhTrang(imei.getTinhTrang());
+        imeiService.update(id,imei1);
         return "redirect:/imei/hien-thi";
 
 

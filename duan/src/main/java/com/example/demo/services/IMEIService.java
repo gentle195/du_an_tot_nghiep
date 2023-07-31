@@ -4,6 +4,7 @@ import com.example.demo.models.IMEI;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,11 @@ public interface IMEIService {
 
     public IMEI update(UUID id, IMEI imei);
 
+    public IMEI updateI(IMEI imei);
+
     public Boolean delete(UUID id);
+
+    public void updatImei(Date date, UUID id);
 }
 
 

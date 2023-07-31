@@ -33,6 +33,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
+    public List<HoaDon> find() {
+        return hoaDonRepository.find();
+    }
+
+    @Override
     public HoaDon findById(UUID id) {
         return hoaDonRepository.findById(id).orElse(null);
     }
@@ -52,6 +57,11 @@ public class HoaDonServiceImpl implements HoaDonService {
             }
         }
         return null;
+    }
+
+    @Override
+    public HoaDon thanhToan(HoaDon hoaDon) {
+        return hoaDonRepository.save(hoaDon);
     }
 
     @Override

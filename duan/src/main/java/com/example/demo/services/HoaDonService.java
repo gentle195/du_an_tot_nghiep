@@ -14,15 +14,19 @@ public interface HoaDonService {
 
     public List<HoaDon> findAll();
 
+    public List<HoaDon> find();
+
     public HoaDon findById(UUID id);
 
     public HoaDon add(HoaDon hoaDon);
 
     public HoaDon update(UUID id, HoaDon hoaDon);
 
+    public HoaDon thanhToan(HoaDon hoaDon);
+
     public Boolean delete(UUID id);
 
-    public void update(UUID id,int tinhTrang, Date ngayCapNhat);
+    public void update(UUID id, int tinhTrang, Date ngayCapNhat);
 }
 
 

@@ -37,9 +37,9 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
     )
     List<ChiTietSanPham> loc(UUID idHang, UUID idRam, UUID idRom, UUID idDLPin, UUID idChip, UUID moTaMan, UUID moTaCam);
 
-    @Query("select ct from ChiTietSanPham  ct left join IMEI  i on ct.id=i.chiTietSanPham.id where i.id=:id")
+    @Query("select ct from ChiTietSanPham ct left join IMEI  i on ct.id=i.chiTietSanPham.id where i.id=:id")
     ChiTietSanPham getChiTiet(UUID id);
 
-    @Query("select ct from ChiTietSanPham ct left  join IMEI  i on ct.id=i.chiTietSanPham.id left join HoaDonChiTiet hd on i.id=hd.imei.id where hd.id=:id")
+    @Query("select ct from ChiTietSanPham ct left join IMEI  i on ct.id=i.chiTietSanPham.id left join HoaDonChiTiet hd on i.id=hd.imei.id where i.id=:id")
     ChiTietSanPham getChiTiet2(UUID id);
 }

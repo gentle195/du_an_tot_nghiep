@@ -14,11 +14,12 @@ import java.util.UUID;
 
 @Repository
 public interface HoaDonRepository extends JpaRepository<HoaDon, UUID> {
-    //    @Query("select hd.ma,hd.khachHang.hoTen from HoaDon hd left join HoaDonChiTiet hdct on ")
-//    List<HoaDon> find();
+    @Query("select hd from HoaDon hd where hd.tinhTrang=0")
+    List<HoaDon> find();
+
     @Transactional
     @Modifying
     @Query("update HoaDon hd set hd.tinhTrang=:tinhTrang,hd.ngayCapNhat =:ngayCapNhat where hd.id=:id")
-    void update(UUID id,int tinhTrang, Date ngayCapNhat);
+    void update(UUID id, int tinhTrang, Date ngayCapNhat);
 
 }

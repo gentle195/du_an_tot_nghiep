@@ -23,7 +23,12 @@ public interface IMEIRepository extends JpaRepository<IMEI, UUID> {
 
     @Transactional
     @Modifying
-    @Query("update IMEI i set i.tinhTrang= 1,i.ngayCapNhat=:date where i.id= " +
-            "(select hdct.imei.id from HoaDonChiTiet  hdct left join HoaDon hd on hdct.hoaDon.id=hd.id where hd.id=:id)")
+    @Query("update IMEI i set i.tinhTrang= 1,i.ngayCapNhat=:date where i.id=:id")
     void updateImei(Date date, UUID id);
+
+    @Transactional
+    @Modifying
+    @Query("update IMEI i set i.tinhTrang= 0,i.ngayCapNhat=:date where i.id= " +
+            "(select hdct.imei.id from HoaDonChiTiet  hdct where hdct.id=:id)")
+    void updateImei1(Date date, UUID id);
 }

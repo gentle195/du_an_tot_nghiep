@@ -19,6 +19,7 @@ CREATE TABLE hang_dien_thoai(
 --select ct.* from chi_tiet_san_pham ct left  join imei  i on ct.id=i.id_chi_tiet_san_pham left join hoa_don_chi_tiet hd on i.id=hd.id_imei where hd.id='96E06F89-7177-43E8-A95B-133FFB18529C'
 select * from imei
 --select*from imei where id_chi_tiet_san_pham = 'AD9DD38E-12DB-4314-BA18-50AE7C292626'
+select*from hoa_don_chi_tiet
 delete from hoa_don
 SET ANSI_NULLS ON
 GO

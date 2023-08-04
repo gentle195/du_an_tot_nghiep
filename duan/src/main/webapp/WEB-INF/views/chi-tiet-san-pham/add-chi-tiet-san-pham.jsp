@@ -9,81 +9,117 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
     <title>Document</title>
 </head>
 <body>
 <h3 style="color: black; text-align: center"><b>Thêm Chi Tiết Sản Phẩm</b></h3>
 <form:form action="/chi-tiet-san-pham/add" class="container" method="post" modelAttribute="chitietsanpham">
     <div class="row">
-        <div class="col">
-            <div class="form-floating mb-3 mt-3">
-                <form:select path="sanPham" class="form-control">
-                    <form:options items="${listSanPham}" itemLabel="ten" itemValue="id"/>
-                </form:select>
-                <form:label class="form-label" path="sanPham">Sản Phẩm:</form:label>
-
-                <td class="btn-group">
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalSanPham">
-                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 15px; height: 7%">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-8">
+                    <form:select path="sanPham" class="form-control" id="selectSanPham"
+                                 cssStyle="font-weight: bold; width: 100%">
+                        <option selected disabled>Sản phẩm</option>
+                        <form:options items="${listSanPham}" itemLabel="ten" itemValue="id"/>
+                    </form:select>
+                </div>
+                <div class="col-4">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSanPham">
+                        <img src="/img/plus.png">
                     </a>
-                </td>
+                </div>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <form:select path="mauSac" class="form-control">
-                    <form:options items="${listMauSac}" itemLabel="ten" itemValue="id"/>
-                </form:select>
-                <form:label class="form-label" path="mauSac">Màu Sắc:</form:label>
-                <td class="btn-group">
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalMauSac">
-                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 15px; height: 7%">
-                    </a>
-                </td>
+                <div class="row">
+                    <div class="col-8">
+                        <form:select path="mauSac" class="form-control" id="selectMauSac"
+                                     cssStyle="font-weight: bold; width: 100%">
+                            <option selected disabled>Màu sắc</option>
+                            <form:options items="${listMauSac}" itemLabel="ten" itemValue="id"/>
+                        </form:select>
+                    </div>
+                    <div class="col-4">
+                        <td class="btn-group">
+                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalMauSac">
+                                <img src="/img/plus.png">
+                            </a>
+                        </td>
+                    </div>
+                </div>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <form:select path="chip" class="form-control">
-                    <form:options items="${listChip}" itemLabel="ten" itemValue="id"/>
-                </form:select>
-                <form:label class="form-label" path="chip">Chip:</form:label>
-                <td class="btn-group">
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalChip">
-                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 15px; height: 7%">
-                    </a>
-                </td>
+                <div class="row">
+                    <div class="col-8">
+                        <form:select path="chip" class="form-control" id="selectChip"
+                                     cssStyle="font-weight: bold; width: 100%">
+                            <option selected disabled>Chip</option>
+                            <form:options items="${listChip}" itemLabel="ten" itemValue="id"/>
+                        </form:select>
+                    </div>
+                    <div class="col-4">
+                        <td class="btn-group">
+                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalChip">
+                                <img src="/img/plus.png">
+                            </a>
+                        </td>
+                    </div>
+                </div>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <form:select path="ram" class="form-control">
-                    <form:options items="${listRam}" itemLabel="dungLuong" itemValue="id"/>
-                </form:select>
-                <form:label class="form-label" path="ram">Ram:</form:label>
-                <td class="btn-group">
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalRam">
-                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 15px; height: 7%">
-                    </a>
-                </td>
+                <div class="row">
+                    <div class="col-8">
+                        <form:select path="ram" class="form-control" id="selectRam"
+                                     cssStyle="font-weight: bold; width: 100%">
+                            <option selected disabled>Dung lượng bộ nhớ</option>
+                            <form:options items="${listRam}" itemLabel="dungLuong" itemValue="id"/>
+                        </form:select>
+                    </div>
+                    <div class="col-4">
+                        <td class="btn-group">
+                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalRam">
+                                <img src="/img/plus.png">
+                            </a>
+                        </td>
+                    </div>
+                </div>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <form:select path="rom" class="form-control">
-                    <form:options items="${listRom}" itemLabel="dungLuong" itemValue="id"/>
-                </form:select>
-                <form:label class="form-label" path="rom">Rom:</form:label>
-                <td class="btn-group">
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalRom">
-                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 15px; height: 7%">
-                    </a>
-                </td>
+                <div class="row">
+                    <div class="col-8">
+                        <form:select path="rom" class="form-control" id="selectRom"
+                                     cssStyle="font-weight: bold; width: 100%">
+                            <option selected disabled>Dung lượng lưu trữ</option>
+                            <form:options items="${listRom}" itemLabel="dungLuong" itemValue="id"/>
+                        </form:select>
+                    </div>
+                    <div class="col-4">
+                        <td class="btn-group">
+                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalRom">
+                                <img src="/img/plus.png">
+                            </a>
+                        </td>
+                    </div>
+                </div>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <form:select path="pin" class="form-control">
-                    <form:options items="${listPin}" itemLabel="dungLuongPin.thongSo" itemValue="id"/>
-                </form:select>
-                <form:label class="form-label" path="pin">Pin:</form:label>
-                <td class="btn-group">
-                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalPin">
-                        <img src="https://emojigraph.org/media/twitter/plus_2795.png" style="width: 15px; height: 7%">
-                    </a>
-                </td>
+                <div class="row">
+                    <div class="col-8">
+                        <form:select path="pin" class="form-control" id="selectPin"
+                                     cssStyle="font-weight: bold; width: 100%">
+                            <option selected disabled>Pin</option>
+                            <form:options items="${listPin}" itemLabel="dungLuongPin.thongSo" itemValue="id"/>
+                        </form:select>
+                    </div>
+                    <div class="col-4">
+                        <td class="btn-group">
+                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalPin">
+                                <img src="/img/plus.png">
+                            </a>
+                        </td>
+                    </div>
+                </div>
             </div>
 
             <div class="form-floating mb-3 mt-3">
@@ -93,7 +129,7 @@
             </div>
 
         </div>
-        <div class="col">
+        <div class="col-6">
             <div class="form-floating mb-3 mt-3">
                 <form:input class="form-control" placeholder="" path="giaNhap"/>
                 <form:label class="form-label" path="giaNhap">Giá nhấp:</form:label>
@@ -228,7 +264,8 @@
                                 </div>
                                 <div style="margin-top: 20px;margin-bottom: 20px">
                                     <button type="submit" class="btn btn-primary"
-                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD
+                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">
+                                        ADD
                                     </button>
                                 </div>
                             </div>
@@ -269,7 +306,8 @@
                                 </div>
                                 <div style="margin-top: 20px;margin-bottom: 20px">
                                     <button type="submit" class="btn btn-primary"
-                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD
+                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">
+                                        ADD
                                     </button>
                                 </div>
                             </div>
@@ -306,7 +344,8 @@
                                     <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
                                     <br>
                                     <form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>
-                                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton>
+                                    <form:radiobutton path="tinhTrang" label="Không còn dùng"
+                                                      value="1"></form:radiobutton>
                                 </div>
                                 <div class="col">
                                     <form:label path="moTa"><b>Mô Tả:</b></form:label>
@@ -315,7 +354,8 @@
                                 </div>
                                 <div style="margin-top: 20px;margin-bottom: 20px">
                                     <button type="submit" class="btn btn-primary"
-                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD
+                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">
+                                        ADD
                                     </button>
                                 </div>
                             </div>
@@ -351,7 +391,8 @@
                                     <form:label path="tinhTrang"><b>Tình Trạng:</b></form:label>
                                     <br>
                                     <form:radiobutton path="tinhTrang" label="Còn dùng" value="0"></form:radiobutton>
-                                    <form:radiobutton path="tinhTrang" label="Không còn dùng" value="1"></form:radiobutton>
+                                    <form:radiobutton path="tinhTrang" label="Không còn dùng"
+                                                      value="1"></form:radiobutton>
                                 </div>
                                 <div class="col">
                                     <form:label path="moTa"><b>Mô Tả:</b></form:label>
@@ -360,7 +401,8 @@
                                 </div>
                                 <div style="margin-top: 20px;margin-bottom: 20px">
                                     <button type="submit" class="btn btn-primary"
-                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">ADD
+                                            onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">
+                                        ADD
                                     </button>
                                 </div>
                             </div>
@@ -384,7 +426,8 @@
             </div>
             <div class="modal-body">
                 <div id="imeiList">
-                    <table class="table">   <form:form action="/chi-tiet-san-pham/modal-add-san-pham" method="post" modelAttribute="sanPham">
+                    <table class="table"><form:form action="/chi-tiet-san-pham/modal-add-san-pham" method="post"
+                                                    modelAttribute="sanPham">
                         <h1 style="text-align: center">Add Sản Phẩm</h1>
 
                         <table class="table " style="border: aliceblue 1px">
@@ -476,19 +519,22 @@
                             <tbody>
                             <tr>
                                 <td><form:label path="hangSanPham">Hãng Sản Phẩm</form:label></td>
-                                <th><form:select path="hangSanPham" items="${hangsp}" itemValue="id" itemLabel="ten"/></th>
+                                <th><form:select path="hangSanPham" items="${hangsp}" itemValue="id"
+                                                 itemLabel="ten"/></th>
                             </tr>
                             </tbody>
                             <tbody>
                             <tr>
                                 <td><form:label path="manHinh">Màn Hình</form:label></td>
-                                <th><form:select path="manHinh" items="${manHinh}" itemValue="id" itemLabel="thongSo"/></th>
+                                <th><form:select path="manHinh" items="${manHinh}" itemValue="id"
+                                                 itemLabel="thongSo"/></th>
                             </tr>
                             </tbody>
                             <tbody>
                             <tr>
                                 <td><form:label path="camera">Camera</form:label></td>
-                                <th><form:select path="camera" items="${camera}" itemValue="id" itemLabel="thongSo"/></th>
+                                <th><form:select path="camera" items="${camera}" itemValue="id"
+                                                 itemLabel="thongSo"/></th>
                             </tr>
                             </tbody>
                             <tr>
@@ -513,4 +559,27 @@
     </div>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#selectSanPham').select2();
+    });
+    $(document).ready(function () {
+        $('#selectRam').select2();
+    });
+    $(document).ready(function () {
+        $('#selectRom').select2();
+    });
+    $(document).ready(function () {
+        $('#selectPin').select2();
+    });
+    $(document).ready(function () {
+        $('#selectMauSac').select2();
+    });
+    $(document).ready(function () {
+        $('#selectChip').select2();
+    });
+</script>
 </html>

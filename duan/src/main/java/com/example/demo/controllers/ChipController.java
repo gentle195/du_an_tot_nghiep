@@ -24,14 +24,13 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/chip")
 public class ChipController {
 
     @Autowired
     private ChipService chipService;
 
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/chip/hien-thi")
     public String hienThi(Model model, @ModelAttribute("Chip") Chip chip,
                           @RequestParam("pageNum") Optional<Integer> pageNum,
                           @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
@@ -39,10 +38,12 @@ public class ChipController {
         Sort sort = Sort.by("ngayTao").descending();
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         Page<Chip> page = chipService.getAll(pageable);
+        model.addAttribute("contentPage","chip/chip.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-        return "chip/chip";
+
+        return "layout";
     }
 
     @PostMapping("/add-chip")
@@ -53,10 +54,11 @@ public class ChipController {
         Page<Chip> page = chipService.getAll(pageable);
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("contentPage","chip/chip.jsp");
             model.addAttribute("list", page.getContent());
             model.addAttribute("page", page.getNumber());
             model.addAttribute("total", page.getTotalPages());
-            return "chip/chip";
+            return "layout";
         }
 
         long millis = System.currentTimeMillis();
@@ -66,6 +68,7 @@ public class ChipController {
         chip.setNgayTao(date);
         chip.setTinhTrang(0);
         chipService.add(chip);
+        model.addAttribute("contentPage","chip/chip.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
@@ -94,10 +97,11 @@ public class ChipController {
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         chipService.delete(id);
         Page<Chip> page = chipService.getAll(pageable);
+        model.addAttribute("contentPage","chip/chip.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-        return "chip/chip";
+        return "layout";
     }
 
     @GetMapping("/detail-chip/{id}")
@@ -108,10 +112,11 @@ public class ChipController {
         Sort sort = Sort.by("ngayTao").ascending();
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         Page<Chip> page = chipService.getAll(pageable);
+        model.addAttribute("contentPage","chip/chip.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-        return "chip/chip";
+        return "layout";
     }
 
     @GetMapping("/view-update-chip/{id}")

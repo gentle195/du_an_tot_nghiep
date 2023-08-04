@@ -4,16 +4,36 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="icon" href="../../images/favicon.ico" type="image/ico" />
+
+    <title>Gentelella Alela!</title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../build/css/custom.min.css" rel="stylesheet">
 </head>
 <body>
-<h3 style="color: red; text-align: center"><b>Pin</b></h3>
-<hr>
-<form:form action="/chip/add-chip" method="post" modelAttribute="Chip">
+<form:form action="/add-chip" method="post" modelAttribute="Chip">
     <div class="row">
         <div class="col">
             <form:label path="ten"><b>Tên:</b></form:label>
@@ -47,69 +67,146 @@
             </button>
         </div>
     </div>
-
 </form:form>
-<c:if test="${list.isEmpty()}">
-    <div class="container">
-        <h4>Không có sản phẩm !</h4>
-    </div>
-</c:if>
-<c:if test="${not list.isEmpty()}">
-    <form action="">
-        <table class="table table-bordered border-dark">
-            <tr style="text-align: center">
-                <th scope="col">Mã</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Loại Chip</th>
-                <th scope="col">Số Nhân</th>
-                <th scope="col">Ngày Tạo</th>
-                <th scope="col">Ngày Cập Nhật</th>
-                <th scope="col">Tình Trạng</th>
-                <th scope="col">Mô Tả</th>
-                <th scope="col">Action</th>
-            </tr>
-            <c:forEach items="${list}" var="chip">
-                <tr>
-                    <td>${chip.ma}</td>
-                    <td>${chip.ten}</td>
-                    <td>${chip.loaiChip}</td>
-                    <td>${chip.soNhan}</td>
-                    <td>${chip.ngayTao}</td>
-                    <td>${chip.ngayCapNhat}</td>
-                    <td>
-                        <c:if test="${chip.tinhTrang == 0}">Thế hệ mới</c:if>
-                        <c:if test="${chip.tinhTrang == 1}">Thế hệ cũ</c:if>
-                    </td>
-                    <td>${chip.moTa}</td>
-                    <td>
-                        <a href="/chip/detail-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
-                           role="button"
-                           onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Detail</a>
-                        <a href="/chip/remove-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
-                           role="button"
-                           onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Delete</a>
-                        <a href="/chip/view-update-chip/${chip.id}" class="btn btn-outline-primary" tabindex="-1"
-                           role="button">Update</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </form>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center pagination-lg">
-            <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=0">First</a></li>
-            <c:forEach begin="1" end="${total}" varStatus="status">
-                <li class="page-item">
-                    <a href="${pageContext.request.contextPath}/chip/hien-thi?pageNum=${status.index -1}"
-                       class="page-link">${status.index}</a>
-                </li>
-            </c:forEach>
-            <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=${total-1}">Last</a></li>
-        </ul>
-    </nav>
-</c:if>
+<%--cần copy--%>
+<div class="">
+    <div class="clearfix"></div>
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Responsive example<small>Users</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i
+                                class="fa fa-wrench"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Settings 1</a>
+                            <a class="dropdown-item" href="#">Settings 2</a>
+                        </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                            <p class="text-muted font-13 m-b-30">
+                                Responsive is an extension for DataTables that resolves that problem by optimising the
+                                table's layout for different screen sizes through the dynamic insertion and removal of
+                                columns from the table.
+                            </p>
+                            <table id="datatable-responsive"
+                                   class="table table-striped table-bordered dt-responsive nowrap"
+                                   cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Tên</th>
+                                    <th>Loại Chip</th>
+                                    <th>Số Nhân</th>
+                                    <th>Ngày Tạo</th>
+                                    <th>Ngày Cập Nhật</th>
+                                    <th>Tình Trạng</th>
+                                    <th>Mô Tả</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${list}" var="chip">
+                                    <tr>
+                                        <td>${chip.ma}</td>
+                                        <td>${chip.ten}</td>
+                                        <td>${chip.loaiChip}</td>
+                                        <td>${chip.soNhan}</td>
+                                        <td>${chip.ngayTao}</td>
+                                        <td>${chip.ngayCapNhat}</td>
+                                        <td>
+                                            <c:if test="${chip.tinhTrang == 0}">Thế hệ mới</c:if>
+                                            <c:if test="${chip.tinhTrang == 1}">Thế hệ cũ</c:if>
+                                        </td>
+                                        <td>${chip.moTa}</td>
+                                        <td>
+                                            <a href="/detail-chip/${chip.id}" class="btn btn-outline-primary"
+                                               tabindex="-1"
+                                               role="button"
+                                               onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Detail</a>
+                                            <a href="/remove-chip/${chip.id}" class="btn btn-outline-primary"
+                                               tabindex="-1"
+                                               role="button"
+                                               onclick="if(!(confirm('Bạn có muốn thực hiện thao tác này không ? ')))return false;">Delete</a>
+                                            <a href="/view-update-chip/${chip.id}" class="btn btn-outline-primary"
+                                               tabindex="-1"
+                                               role="button">Update</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%--hết--%>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pagination-lg">
+                <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=0">First</a></li>
+                <c:forEach begin="1" end="${total}" varStatus="status">
+                    <li class="page-item">
+                        <a href="${pageContext.request.contextPath}/chip/hien-thi?pageNum=${status.index -1}"
+                           class="page-link">${status.index}</a>
+                    </li>
+                </c:forEach>
+                <li class="page-item"><a class="page-link" href="/chip/hien-thi?pageNum=${total-1}">Last</a></li>
+            </ul>
+        </nav>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+<!-- gauge.js -->
+<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../vendors/iCheck/icheck.min.js"></script>
+<!-- Skycons -->
+<script src="../vendors/skycons/skycons.js"></script>
+<!-- Flot -->
+<script src="../vendors/Flot/jquery.flot.js"></script>
+<script src="../vendors/Flot/jquery.flot.pie.js"></script>
+<script src="../vendors/Flot/jquery.flot.time.js"></script>
+<script src="../vendors/Flot/jquery.flot.stack.js"></script>
+<script src="../vendors/Flot/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="../vendors/DateJS/build/date.js"></script>
+<!-- JQVMap -->
+<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../vendors/moment/min/moment.min.js"></script>
+<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="../../build/js/custom.min.js"></script>
+
 </html>

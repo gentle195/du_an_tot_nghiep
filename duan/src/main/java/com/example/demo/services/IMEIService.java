@@ -28,6 +28,8 @@ public interface IMEIService {
     public Boolean delete(UUID id);
 
     public void updatImei(Date date, UUID id);
+
+    public void updatImei1(Date date, UUID id);
 }
 
 

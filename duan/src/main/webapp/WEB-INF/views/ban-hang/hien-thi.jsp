@@ -20,63 +20,134 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-8">
+        <div class="col-3">
             <div class="outer-border p-3 border border-secondary">
-                <h4 style="text-align: center">Hóa đơn</h4>
-                <table class="table">
-                    <tr>
-                        <form action="/ban-hang/add-hoa-don" method="post">
-                            <button type="submit">Tạo hóa đơn</button>
-                        </form>
-                    </tr>
-                    <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Mã hóa đơn</th>
-                        <th>Ngày tạo</th>
-                        <th>Tình trạng</th>
-                        <th>Chức năng</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${listHoaDon}" var="hd" varStatus="i">
-                        <tr>
-                            <td>${i.index+1}</td>
-                            <td>${hd.ma}</td>
-                            <td>${hd.ngayTao}</td>
-                            <td>
-                                <c:if test="${hd.tinhTrang==0}">Chờ Thanh Toán</c:if>
-                                <c:if test="${hd.tinhTrang==1}">Đã Thanh Toán</c:if>
-                            </td>
-                            <td class="btn-group">
-                                <button class="btn btn-info"><a href="/ban-hang/thong-tin-hoa-don/${hd.id}"
-                                                                style="text-decoration: none;color: black">Xem thông
-                                    tin</a></button>
-                                <button class="btn btn-info"><a href="/ban-hang/thay-doi-trang-thai/${hd.id}"
-                                                                style="text-decoration: none;color: black">Thay đổi
-                                    trạng thái</a></button>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                <form action="/ban-hang/add-hoa-don" method="post">
+                    <button type="submit"><img src="/img/plus.png"></button>
+                </form>
             </div>
-            <hr>
+            <p style="color: red">${thongBaoHoaDon}</p>
+        </div>
+        <c:forEach items="${listHoaDon}" var="hd" varStatus="i">
+            <div class="col-3">
+                <div class="outer-border p-3 border border-secondary">
+                    <a href="/ban-hang/thong-tin-hoa-don/${hd.id}" class="btn btn-info">${hd.ma}</a></div>
+            </div>
+        </c:forEach>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-8">
             <div class="outer-border p-3 border border-secondary">
                 <h4 style="text-align: center">Thông tin sản phẩm</h4>
                 <table class="table">
                     <tr>
                         <form method="post" action="/ban-hang/search-san-pham">
-                            <th>Tìm kiếm sản phẩm: <input type="text" name="search-san-pham"></th>
-                            <th>
+                            <th><input type="text" name="search-san-pham" placeholder="Tìm kiếm sản phẩm">
                                 <button type="submit">Tìm kiếm</button>
-                            </th>
-                            <th>
-
                             </th>
                         </form>
                         <h6 style="text-align: center;color: red">${thongBao}</h6>
                     </tr>
+                </table>
+                <table class="table">
+                    <form action="/ban-hang/loc" method="post"
+                          onsubmit="return checkLoc()">
+                        <tr>
+                            <td style="text-align: center" colspan="1">Hãng Điện Thoại
+                            </td>
+                            <td style="text-align: center" colspan="1">Ram</td>
+                            <td style="text-align: center" colspan="1">Dung Lượng Bộ
+                                Nhớ
+                            </td>
+                            <td style="text-align: center" colspan="1">Dung Lượng Pin
+                            </td>
+                            <td style="text-align: center" colspan="1">Chip</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" colspan="1">
+                                <select name="hang">
+                                    <option selected disabled>Hãng</option>
+                                    <c:forEach items="${listHang}" var="hang"
+                                               varStatus="i">
+                                        <option value="${hang.id}">${hang.ten}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td style="text-align: center" colspan="1">
+                                <select name="ram">
+                                    <option selected disabled>Ram</option>
+                                    <c:forEach items="${listRam}" var="ram"
+                                               varStatus="i">
+                                        <option value="${ram.id}">${ram.dungLuong}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td style="text-align: center" colspan="1">
+                                <select name="rom">
+                                    <option selected disabled>Rom</option>
+                                    <c:forEach items="${listRom}" var="rom"
+                                               varStatus="i">
+                                        <option value="${rom.id}">${rom.dungLuong}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td style="text-align: center" colspan="1">
+                                <select name="dungLuongPin">
+                                    <option selected disabled>Dung Lượng Pin</option>
+                                    <c:forEach items="${dungLuongPin}" var="pin"
+                                               varStatus="i">
+                                        <option value="${pin.id}">${pin.thongSo}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td style="text-align: center" colspan="1">
+                                <select name="chip">
+                                    <option selected disabled>Chip</option>
+                                    <c:forEach items="${listChip}" var="chip"
+                                               varStatus="i">
+                                        <option value="${chip.id}">${chip.ten}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" colspan="2">Màn Hình</td>
+                            <td style="text-align: center" colspan="1">Camera</td>
+                            <td style="text-align: center" colspan="1">Giá Bán Min</td>
+                            <td style="text-align: center" colspan="1">Giá bán Max</td>
+                        </tr>
+                        <tr>
+
+                            <td style="text-align: center" colspan="2">
+                                <select name="manHinh">
+                                    <option selected disabled>Màn Hình</option>
+                                    <c:forEach items="${listManHinh}" var="man"
+                                               varStatus="i">
+                                        <option value="${man.id}">${man.thongSo}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td style="text-align: center" colspan="1">
+                                <select name="camera">
+                                    <option selected disabled>Camera</option>
+                                    <c:forEach items="${listCamera}" var="cam"
+                                               varStatus="i">
+                                        <option value="${cam.id}">${cam.thongSo}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td style="text-align: center" colspan="1"><input
+                                    type="number" name="giaBanMin"></td>
+                            <td style="text-align: center" colspan="1"><input
+                                    type="number" name="giaBanMin"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" colspan="7">
+                                <button class="btn btn-secondary">Lọc</button>
+                            </td>
+                        </tr>
+                    </form>
                 </table>
                 <table class="table">
                     <thead>
@@ -106,9 +177,7 @@
                                 <a href="/ban-hang/them-san-pham/${ctsp.id}"
                                    class="btn btn-info"
                                    data-bs-toggle="modal" data-bs-target="#nhapImei_${ctsp.id}"
-                                >
-                                    Nhập IMEI
-                                </a>
+                                > Nhập IMEI</a>
                                 <div class="modal fade" id="nhapImei_${ctsp.id}" tabindex="-1"
                                      aria-labelledby="exampleModalLabel"
                                      aria-hidden="true" data-backdrop="static">
@@ -116,8 +185,6 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Danh sách IMEI</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <table class="table">
@@ -136,7 +203,7 @@
                                                     </tr>
                                                 </table>
                                                 <div>
-                                                    <table class="table">
+                                                    <table class="table" id="table_id">
                                                         <thead>
                                                         <tr>
                                                             <th>STT</th>
@@ -145,9 +212,9 @@
                                                             <th>Chức năng</th>
                                                         </tr>
                                                         </thead>
-                                                        <tbody id="listImei_${ctsp.id}" class="imei-search">
+                                                        <tbody id="listImei_${ctsp.id}" class="imei_search">
                                                         </tbody>
-<%--                                                        <tbody id="imei-search"></tbody>--%>
+                                                            <%--                                                        <tbody id="imei_search"></tbody>--%>
                                                     </table>
                                                 </div>
                                             </div>
@@ -216,13 +283,77 @@
                             </form:select>
                             <form:label class="form-label" path="nhanVien">Nhân Viên:</form:label>
                         </div>
-
-                        <div class="form-floating mb-3 mt-3">
-                            <form:select path="khachHang" class="form-control">
-                                <form:options items="${listKhachHang}" itemLabel="hoTen" itemValue="id"/>
-                            </form:select>
-                            <form:label class="form-label" path="khachHang">Khách Hàng:</form:label>
+                        <div class="row">
+                            <div class="form-floating mb-3 mt-3 col-8">
+                                <form:select path="khachHang" class="form-control">
+                                    <form:options items="${listKhachHang}" itemLabel="hoTen" itemValue="id"/>
+                                </form:select>
+                                <form:label class="form-label" path="khachHang">Khách Hàng:</form:label>
+                            </div>
+                            <div class="form-floating mb-3 mt-3 col-4">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#newKhachHang">
+                                    Thêm khách hàng
+                                </button>
+                            </div>
+                            <div class="modal fade" id="newKhachHang" tabindex="-1" aria-labelledby="khachHangLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog col-md-2 ms-auto">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        </div>
+                                        <div class="modal-body modal-dialog-centered">
+                                            <form:form modelAttribute="modalAddKhachHang" action="/ban-hang/add-khach-hang" method="post">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:input class="form-control" placeholder="" path="hoTen"/>
+                                                            <form:label class="form-label" path="hoTen">Họ Tên Khách Hàng:</form:label>
+                                                            <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:radiobutton class="form-control" path="gioiTinh" value="true" label="Nam" checked="true"/>
+                                                            <form:radiobutton class="form-control" path="gioiTinh" value="false" label="Nữ"/>
+                                                            <form:label class="form-label" path="gioiTinh">Giới Tính:</form:label>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:input class="form-control" placeholder="" path="email"/>
+                                                            <form:label class="form-label" path="email">Email:</form:label>
+                                                            <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:input class="form-control" placeholder="" path="sdt"/>
+                                                            <form:label class="form-label" path="sdt">SĐT:</form:label>
+                                                            <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:input class="form-control" placeholder="" path="hoTen"/>
+                                                            <form:label class="form-label" path="hoTen">Họ Tên Khách Hàng:</form:label>
+                                                            <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:input class="form-control" placeholder="" path="taiKhoan"/>
+                                                            <form:label class="form-label" path="taiKhoan">Tài Khoản:</form:label>
+                                                            <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
+                                                        </div>
+                                                        <div class="form-floating mb-3 mt-3">
+                                                            <form:input class="form-control" placeholder="" path="matKhau"/>
+                                                            <form:label class="form-label" path="matKhau">Mật Khẩu:</form:label>
+                                                            <form:errors path="urlAnh" cssStyle="color: red"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form:form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
 
                         <div class="form-floating mb-3 mt-3">
                             <form:select path="diaChi" class="form-control">
@@ -239,7 +370,8 @@
                         <div class="form-floating mb-3 mt-3">
                             <form:input class="form-control" path="tongTien" readonly="true" value="${tong}"
                                         id="tienCanThanhToan"/>
-                            <form:label class="form-label" path="tongTien" for="tienCanThanhToan">Tổng tiền:</form:label>
+                            <form:label class="form-label" path="tongTien"
+                                        for="tienCanThanhToan">Tổng tiền:</form:label>
                         </div>
 
                         <div class="form-floating mb-3 mt-3">
@@ -257,7 +389,8 @@
                             <form:label class="form-label" path="ghiChu">Ghi Chú:</form:label>
                         </div>
                         <div class="form-floating mb-3 mt-3">
-                            <form:button type="submit" class="btn btn-primary">Thanh Toán</form:button>
+                            <button type="submit" class="btn btn-primary" onclick="return myFunction4()">Thanh Toán
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -308,7 +441,19 @@
             return false;
         }
     }
-    document.getElementById("tienKhachDua").addEventListener("keyup", function() {
+
+    function myFunction4() {
+        let text = "Bạn chắc chắn muốn thanh toán không";
+        let kt = confirm(text);
+        if (kt == true) {
+            confirm("Thanh toán thành công");
+            return true
+        } else {
+            return false;
+        }
+    }
+
+    document.getElementById("tienKhachDua").addEventListener("keyup", function () {
         tinhTienThua();
     });
 
@@ -319,7 +464,7 @@
 
         var ketQuaElement = document.getElementById("ketQua");
         if (tienThua >= 0) {
-            ketQuaElement.value =  tienThua.toFixed(2);
+            ketQuaElement.value = tienThua.toFixed(2);
         } else {
             ketQuaElement.value = "Khách đưa không đủ tiền.";
         }
@@ -361,7 +506,7 @@
                 <tr>
                     <td>` + (i + 1) + `</td>
                     <td>` + imei.soImei + `</td>
-                    <td>` + imei.tinhTrang + `</td>
+                    <td>` + (imei.tinhTrang == 0 ? "Chưa bán" : "Đã bán") + `</td>
                     <td><a href="/ban-hang/them-imei/` + imei.id + `">Thêm IMEI</a></td>
                 </tr>
                 `;
@@ -376,10 +521,10 @@
 </script>
 <script>
     $('button[id^="searchImei"]').on('click', async function (e) {
-        // const idImei = e.currentTarget.id.split("_")[1];
-        // const ctspId = e.currentTarget.id.split("_")[1];
-        const search=$("#imeiSearchInput").val();
-        const url = "http://localhost:8080/ban-hang/search-imei?search-imei="+search;
+        const btn = $(this);
+        const parentModal = btn.closest('.modal'); // Lấy modal cha gần nhất của nút "Tìm kiếm" được nhấn
+        const search = parentModal.find("#imeiSearchInput").val();
+        const url = "http://localhost:8080/ban-hang/search-imei?search-imei=" + search;
         try {
             const resp = await fetch(url);
             const data = await resp.json();
@@ -388,22 +533,20 @@
             for (let i = 0; i < data.length; i++) {
                 const imei = data[i];
                 const tr = `
-                <tr>
-                    <td>` + (i + 1) + `</td>
-                    <td>` + imei.soImei + `</td>
-                    <td>` + imei.tinhTrang + `</td>
-                    <td><a href="/ban-hang/them-imei/` + imei.id + `">Thêm IMEI</a></td>
-                </tr>
-                `;
+            <tr>
+                <td>` + (i + 1) + `</td>
+                <td>` + imei.soImei + `</td>
+                <td>` + (imei.tinhTrang == 0 ? "Chưa bán" : "Đã bán") + `</td>
+                <td><a href="/ban-hang/them-imei/` + imei.id + `">Thêm IMEI</a></td>
+            </tr>
+            `;
                 html += tr;
             }
-            $(".imei-search").html(html);
+            parentModal.find(".imei_search").html(html);
         } catch (err) {
             console.error(err)
         }
     });
-
-
 </script>
 
 </html>

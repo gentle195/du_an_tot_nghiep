@@ -57,12 +57,9 @@ public class ImeiController {
     public String add(@Valid @ModelAttribute(name = "imei") IMEI imei,
                       BindingResult result, Model model) {
         if (result.hasErrors()) {
-
             model.addAttribute("listCTSP", chiTietSanPhamService.findAll());
-
             return "imei/add-imei";
         }
-
         String ma = "IMEI"+ imeiService.findAll().size();
         imei.setMa(ma);
         LocalDate localDate = LocalDate.now();
@@ -75,10 +72,8 @@ public class ImeiController {
 
     @GetMapping("/remove/{id}")
     public String remove(@PathVariable("id") UUID id) {
-
         imeiService.delete(id);
         return "redirect:/imei/hien-thi";
-
     }
 
     @GetMapping("/view-update/{id}")

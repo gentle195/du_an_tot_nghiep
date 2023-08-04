@@ -27,99 +27,65 @@
                 </div>
                 <div class="col-4">
                     <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModalSanPham">
-                        <img src="/img/plus.png">
+                        <img src="../img/plus.png">
                     </a>
                 </div>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <div class="row">
-                    <div class="col-8">
-                        <form:select path="mauSac" class="form-control" id="selectMauSac"
-                                     cssStyle="font-weight: bold; width: 100%">
-                            <option selected disabled>Màu sắc</option>
-                            <form:options items="${listMauSac}" itemLabel="ten" itemValue="id"/>
-                        </form:select>
-                    </div>
-                    <div class="col-4">
-                        <td class="btn-group">
-                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalMauSac">
-                                <img src="/img/plus.png">
-                            </a>
-                        </td>
-                    </div>
-                </div>
+                <div class="row"></div>
+                <form:select path="mauSac" class="form-control" id="selectMauSac"
+                             cssStyle="font-weight: bold; width: 100%">
+                    <option selected disabled>Màu sắc</option>
+                    <form:options items="${listMauSac}" itemLabel="ten" itemValue="id"/>
+                </form:select>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalMauSac">
+                        <img src="../img/plus.png">
+                    </a>
+                </td>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <div class="row">
-                    <div class="col-8">
-                        <form:select path="chip" class="form-control" id="selectChip"
-                                     cssStyle="font-weight: bold; width: 100%">
-                            <option selected disabled>Chip</option>
-                            <form:options items="${listChip}" itemLabel="ten" itemValue="id"/>
-                        </form:select>
-                    </div>
-                    <div class="col-4">
-                        <td class="btn-group">
-                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalChip">
-                                <img src="/img/plus.png">
-                            </a>
-                        </td>
-                    </div>
-                </div>
+                <form:select path="chip" class="form-control" id="selectChip" cssStyle="font-weight: bold; width: 100%">
+                    <option selected disabled>Chip</option>
+                    <form:options items="${listChip}" itemLabel="ten" itemValue="id"/>
+                </form:select>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalChip">
+                        <img src="../img/plus.png">
+                    </a>
+                </td>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <div class="row">
-                    <div class="col-8">
-                        <form:select path="ram" class="form-control" id="selectRam"
-                                     cssStyle="font-weight: bold; width: 100%">
-                            <option selected disabled>Dung lượng bộ nhớ</option>
-                            <form:options items="${listRam}" itemLabel="dungLuong" itemValue="id"/>
-                        </form:select>
-                    </div>
-                    <div class="col-4">
-                        <td class="btn-group">
-                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalRam">
-                                <img src="/img/plus.png">
-                            </a>
-                        </td>
-                    </div>
-                </div>
+                <form:select path="ram" class="form-control" id="selectRam" cssStyle="font-weight: bold; width: 100%">
+                    <option selected disabled>Dung lượng bộ nhớ</option>
+                    <form:options items="${listRam}" itemLabel="dungLuong" itemValue="id"/>
+                </form:select>
+                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalRam">
+                    <img src="../img/plus.png">
+                </a>
+                </td>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <div class="row">
-                    <div class="col-8">
-                        <form:select path="rom" class="form-control" id="selectRom"
-                                     cssStyle="font-weight: bold; width: 100%">
-                            <option selected disabled>Dung lượng lưu trữ</option>
-                            <form:options items="${listRom}" itemLabel="dungLuong" itemValue="id"/>
-                        </form:select>
-                    </div>
-                    <div class="col-4">
-                        <td class="btn-group">
-                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalRom">
-                                <img src="/img/plus.png">
-                            </a>
-                        </td>
-                    </div>
-                </div>
+                <form:select path="rom" class="form-control" id="selectRom" cssStyle="font-weight: bold; width: 100%">
+                    <option selected disabled>Dung lượng lưu trữ</option>
+                    <form:options items="${listRom}" itemLabel="dungLuong" itemValue="id"/>
+                </form:select>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalRom">
+                        <img src="../img/plus.png">
+                    </a>
+                </td>
             </div>
             <div class="form-floating mb-3 mt-3">
-                <div class="row">
-                    <div class="col-8">
-                        <form:select path="pin" class="form-control" id="selectPin"
-                                     cssStyle="font-weight: bold; width: 100%">
-                            <option selected disabled>Pin</option>
-                            <form:options items="${listPin}" itemLabel="dungLuongPin.thongSo" itemValue="id"/>
-                        </form:select>
-                    </div>
-                    <div class="col-4">
-                        <td class="btn-group">
-                            <a class="button" data-bs-toggle="modal" data-bs-target="#exampleModalPin">
-                                <img src="/img/plus.png">
-                            </a>
-                        </td>
-                    </div>
-                </div>
+                <form:select path="pin" class="form-control" id="selectPin" cssStyle="font-weight: bold; width: 100%">
+                    <option selected disabled>Pin</option>
+                    <form:options items="${listPin}" itemLabel="dungLuongPin.thongSo" itemValue="id"/>
+                </form:select>
+                <td class="btn-group">
+                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalPin">
+                        <img src="../img/plus.png">
+                    </a>
+                </td>
             </div>
 
             <div class="form-floating mb-3 mt-3">

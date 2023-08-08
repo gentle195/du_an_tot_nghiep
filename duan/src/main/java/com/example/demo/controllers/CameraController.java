@@ -37,14 +37,16 @@ public class CameraController {
         Page<Camera> list = cameraService.getAll(pageable);
         model.addAttribute("listCamera", list.getContent());
         model.addAttribute("total", list.getTotalPages());
-        return "camera/hien-thi";
+        model.addAttribute("contentPage", "camera/hien-thi.jsp");
+        return "layout";
     }
 
     @GetMapping("/view-update/{id}")
     public String viewupdate(Model model, @PathVariable("id") UUID id) {
         Camera hsp = cameraService.findById(id);
         model.addAttribute("camera", hsp);
-        return "camera/update";
+        model.addAttribute("contentPage", "camera/hien-thi.jsp");
+        return "layout";
     }
 
     @PostMapping("/add")
@@ -57,7 +59,8 @@ public class CameraController {
             Page<Camera> list = cameraService.getAll(pageable);
             model.addAttribute("listCamera", list.getContent());
             model.addAttribute("total", list.getTotalPages());
-            return "camera/hien-thi";
+            model.addAttribute("contentPage", "camera/hien-thi.jsp");
+            return "layout";
         }
         camera.setNgayTao(Date.valueOf(LocalDate.now()));
         camera.setMa("MH" + String.valueOf(cameraService.findAll().size() + 1));
@@ -97,7 +100,7 @@ public class CameraController {
         Page<Camera> list = cameraService.getAll(pageable);
         model.addAttribute("listCamera", list.getContent());
         model.addAttribute("total", list.getTotalPages());
-        return "camera/hien-thi";
-
+        model.addAttribute("contentPage", "camera/hien-thi.jsp");
+        return "layout";
     }
 }

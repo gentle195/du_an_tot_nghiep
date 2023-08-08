@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.ChiTietSanPham;
 import com.example.demo.models.DiaChi;
+import com.example.demo.models.HangKhachHang;
 import com.example.demo.models.HoaDon;
 import com.example.demo.models.HoaDonChiTiet;
 import com.example.demo.models.IMEI;
@@ -12,6 +13,7 @@ import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.ChipService;
 import com.example.demo.services.DiaChiService;
 import com.example.demo.services.DungLuongPinService;
+import com.example.demo.services.HangKhachHangService;
 import com.example.demo.services.HangSanPhamService;
 import com.example.demo.services.HoaDonChiTietService;
 import com.example.demo.services.HoaDonService;
@@ -74,6 +76,8 @@ public class BanHangTaiQuayController {
     @Autowired
     private HangSanPhamService hangSanPhamService;
     @Autowired
+    private HangKhachHangService hangKhachHangService;
+    @Autowired
     private DungLuongPinService dungLuongPinService;
     @Autowired
     private ManHinhService manHinhService;
@@ -82,8 +86,10 @@ public class BanHangTaiQuayController {
 
     private HoaDon hoaDonnn = new HoaDon();
     private BigDecimal total = BigDecimal.ZERO;
+
     @GetMapping("hien-thi")
-    public String hienThi(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon) {
+    public String hienThi(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
+        hoaDonnn=null;
         List<HoaDon> list = hoaDonService.find();
         model.addAttribute("listHoaDon", list);
         model.addAttribute("listHang", hangSanPhamService.findAll());
@@ -98,13 +104,18 @@ public class BanHangTaiQuayController {
         model.addAttribute("listNhanVien", nhanVienService.findAll());
         model.addAttribute("listKhachHang", khachHangService.findAll());
         model.addAttribute("listDiaChi", diaChiService.findAll());
-        return "ban-hang/hien-thi";
+        model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+        model.addAttribute("hoaDon",hoaDonnn);
+        model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+        return "layout";
     }
 
     @PostMapping("/add-hoa-don")
-    public String addHoaDon(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon) {
+    public String addHoaDon(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
         List<HoaDon> list = hoaDonService.find();
         if (list.size() >= 3) {
+            hoaDonnn=null;
+            model.addAttribute("hoaDon",hoaDonnn);
             model.addAttribute("thongBaoHoaDon", "Đã quá số lượng hóa đơn chờ");
             model.addAttribute("listHoaDon", list);
             model.addAttribute("listHang", hangSanPhamService.findAll());
@@ -119,7 +130,9 @@ public class BanHangTaiQuayController {
             model.addAttribute("listNhanVien", nhanVienService.findAll());
             model.addAttribute("listKhachHang", khachHangService.findAll());
             model.addAttribute("listDiaChi", diaChiService.findAll());
-            return "ban-hang/hien-thi";
+            model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+            model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+            return "layout";
         }
         HoaDon hd = new HoaDon();
         hd.setMa("HD" + String.valueOf(hoaDonService.findAll().size() + 1));
@@ -130,7 +143,7 @@ public class BanHangTaiQuayController {
     }
 
     @GetMapping("/thong-tin-hoa-don/{id}")
-    public String thongTin(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @PathVariable("id") UUID id) {
+    public String thongTin(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @PathVariable("id") UUID id, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
         HoaDon hd = hoaDonService.findById(id);
         model.addAttribute("hoaDon", hd);
         hoaDonnn = hd;
@@ -150,14 +163,15 @@ public class BanHangTaiQuayController {
         model.addAttribute("listNhanVien", nhanVienService.findAll());
         model.addAttribute("listKhachHang", khachHangService.findAll());
         model.addAttribute("listDiaChi", diaChiService.findAll());
-        model.addAttribute("tong", String.valueOf(total));
-        return "ban-hang/hien-thi";
+        model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+        model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+        return "layout";
     }
 
     @ResponseBody
     @GetMapping("/them-san-pham/{id}")
     public List<IMEI> themSanPham(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon,
-                                  @PathVariable("id") UUID id) {
+                                  @PathVariable("id") UUID id, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
         if (hoaDonnn.getMa() == null) {
             model.addAttribute("thongBao", "Chưa chọn hóa đơn");
             List<HoaDon> list = hoaDonService.find();
@@ -165,10 +179,29 @@ public class BanHangTaiQuayController {
         }
         model.addAttribute("hoaDon", hoaDonnn);
         List<IMEI> list = imeiService.getIMEI(id);
+        System.out.println(list);
         return list;
 
     }
 
+    @GetMapping("/hien-thi-san-pham")
+    public String hienThiSanPham(Model model) {
+        model.addAttribute("listHang", hangSanPhamService.findAll());
+        model.addAttribute("listMauSac", mauSacService.findAll());
+        model.addAttribute("listChip", chipService.findAll());
+        model.addAttribute("listRam", ramService.findAll());
+        model.addAttribute("listRom", romService.findAll());
+        model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
+        model.addAttribute("listManHinh", manHinhService.findAll());
+        model.addAttribute("listCamera", cameraService.findAll());
+        model.addAttribute("listChiTietSanPham", chiTietSanPhamService.findAll());
+        model.addAttribute("listNhanVien", nhanVienService.findAll());
+        model.addAttribute("listKhachHang", khachHangService.findAll());
+        model.addAttribute("listDiaChi", diaChiService.findAll());
+        model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+        model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+        return "layout";
+    }
 //    @GetMapping("/thay-doi-trang-thai/{id}")
 //    public String updateTrangThai(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @PathVariable("id") UUID id) {
 //        HoaDon hd = hoaDonService.findById(id);
@@ -184,7 +217,7 @@ public class BanHangTaiQuayController {
 
     @PostMapping("search-san-pham")
     public String search(Model model, @RequestParam("search-san-pham") String search,
-                         @ModelAttribute("hoaDon") HoaDon hoaDon
+                         @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang
     ) {
         if (search.isEmpty()) {
             model.addAttribute("thongBao", "Không để trống thông tin");
@@ -202,7 +235,9 @@ public class BanHangTaiQuayController {
             model.addAttribute("listNhanVien", nhanVienService.findAll());
             model.addAttribute("listKhachHang", khachHangService.findAll());
             model.addAttribute("listDiaChi", diaChiService.findAll());
-            return "ban-hang/hien-thi";
+            model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+            model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+            return "layout";
         } else {
             List<ChiTietSanPham> listCT = chiTietSanPhamService.search(search);
             model.addAttribute("listChiTietSanPham", listCT);
@@ -216,18 +251,19 @@ public class BanHangTaiQuayController {
             model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
             model.addAttribute("listManHinh", manHinhService.findAll());
             model.addAttribute("listCamera", cameraService.findAll());
-            model.addAttribute("listChiTietSanPham", chiTietSanPhamService.findAll());
             model.addAttribute("listNhanVien", nhanVienService.findAll());
             model.addAttribute("listKhachHang", khachHangService.findAll());
             model.addAttribute("listDiaChi", diaChiService.findAll());
-            return "ban-hang/hien-thi";
+            model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+            model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+            return "layout";
         }
     }
 
     @ResponseBody
     @GetMapping("search-imei")
     public List<IMEI> searchIMEI(Model model, @RequestParam("search-imei") String search,
-                                 @ModelAttribute("hoaDon") HoaDon hoaDon) {
+                                 @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
 //        if (search.isEmpty()) {
 //            model.addAttribute("thongBaoIMEI", "Không để trống thông tin");
 //            model.addAttribute("hoaDon", hoaDonnn);
@@ -247,7 +283,7 @@ public class BanHangTaiQuayController {
 
     @GetMapping("/them-imei/{id}")
     public String addIMEI(Model model, @PathVariable("id") UUID id,
-                          @ModelAttribute("hoaDon") HoaDon hoaDon) {
+                          @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
 //        if(hoaDonnn.getMa().isEmpty()){
 //            model.addAttribute("thongBaoImei","Chưa chọn hóa đơn");
 //            model.addAttribute("hoaDon", hoaDonnn);
@@ -296,7 +332,9 @@ public class BanHangTaiQuayController {
             model.addAttribute("listNhanVien", nhanVienService.findAll());
             model.addAttribute("listKhachHang", khachHangService.findAll());
             model.addAttribute("listDiaChi", diaChiService.findAll());
-            return "ban-hang/hien-thi";
+            model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+            model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+            return "layout";
         } else {
             chiTietSanPhamService.update1(ct);
             List<HoaDonChiTiet> list = hoaDonChiTietService.getHoaDonChiTiet(hoaDonnn.getId());
@@ -322,13 +360,15 @@ public class BanHangTaiQuayController {
             model.addAttribute("listNhanVien", nhanVienService.findAll());
             model.addAttribute("listKhachHang", khachHangService.findAll());
             model.addAttribute("listDiaChi", diaChiService.findAll());
-            return "ban-hang/hien-thi";
+            model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+            model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+            return "layout";
         }
     }
 
     @GetMapping("/delete-hoa-don-chi-tiet/{id}")
     public String deleteHDCT(Model model, @PathVariable("id") UUID id,
-                             @ModelAttribute("hoaDon") HoaDon hoaDon) {
+                             @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
         HoaDonChiTiet hd = hoaDonChiTietService.findById(id);
         ChiTietSanPham ct = chiTietSanPhamService.getChiTiet(hd.getImei().getId());
         ct.setSoLuong(ct.getSoLuong() + 1);
@@ -363,11 +403,13 @@ public class BanHangTaiQuayController {
         model.addAttribute("listNhanVien", nhanVienService.findAll());
         model.addAttribute("listKhachHang", khachHangService.findAll());
         model.addAttribute("listDiaChi", diaChiService.findAll());
-        return "ban-hang/hien-thi";
+        model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+        model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+        return "layout";
     }
 
     @PostMapping("/thanh-toan/{id}")
-    public String thanhToan(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @PathVariable("id") UUID id) {
+    public String thanhToan(Model model, @ModelAttribute("hoaDon") HoaDon hoaDon, @PathVariable("id") UUID id, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
 //        if(hoaDon.getMa().isEmpty()){
 //            model.addAttribute("thongBaoThanhToan","Chưa chọn hóa đơn");
 //            model.addAttribute("hoaDon", hoaDonnn);
@@ -399,7 +441,7 @@ public class BanHangTaiQuayController {
                       @RequestParam(value = "chip", required = false) UUID chip,
                       @RequestParam(value = "manHinh", required = false) UUID moTaMan,
                       @RequestParam(value = "camera", required = false) UUID moTaCam,
-                      @ModelAttribute("hoaDon") HoaDon hoaDon) {
+                      @ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang) {
         List<ChiTietSanPham> list = chiTietSanPhamService.loc(hang, ram, rom, dungLuongPin, chip, moTaMan, moTaCam);
         model.addAttribute("listChiTietSanPham", list);
         model.addAttribute("listHoaDon", hoaDonService.find());
@@ -414,7 +456,23 @@ public class BanHangTaiQuayController {
         model.addAttribute("listNhanVien", nhanVienService.findAll());
         model.addAttribute("listKhachHang", khachHangService.findAll());
         model.addAttribute("listDiaChi", diaChiService.findAll());
-        return "/ban-hang/hien-thi";
+        model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+        model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+        return "layout";
     }
 
+    @GetMapping("modal-khach-hang")
+    public String modalKhachHang(Model model,@ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang){
+        model.addAttribute("listHangKhachHang",hangKhachHangService.findAll());
+        model.addAttribute("contentPage", "ban-hang/hien-thi.jsp");
+        return "layout";
+    }
+    @PostMapping("add-khach-hang")
+    public String addKhachHang(Model model,@ModelAttribute("hoaDon") HoaDon hoaDon, @ModelAttribute("modalAddKhachHang") KhachHang khachHang){
+        khachHang.setMa("KH"+ String.valueOf(khachHangService.findAll().size())+1);
+        khachHang.setNgayTao(Date.valueOf(LocalDate.now()));
+        khachHang.setTinhTrang(1);
+        khachHangService.add(khachHang);
+        return "redirect:/ban-hang/hien-thi";
+    }
 }

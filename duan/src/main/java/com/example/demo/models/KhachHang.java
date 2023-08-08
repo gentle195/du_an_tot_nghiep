@@ -84,7 +84,7 @@ public class KhachHang {
     @Column(name = "diem")
     private Integer diem;
 
-    @NotNull(message = "Không để trống thông tin")
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hang_khach_hang")
     private HangKhachHang hangKhachHang;
@@ -99,8 +99,8 @@ public class KhachHang {
 
     public String tt() {
         if (tinhTrang == 0) {
-            return "Còn dùng";
+            return "Khách hàng cũ";
         }
-        return "Không còn dùng";
+        return "Khách hàng mới";
     }
 }

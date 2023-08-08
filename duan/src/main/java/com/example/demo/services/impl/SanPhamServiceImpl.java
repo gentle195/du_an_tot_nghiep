@@ -53,6 +53,11 @@ public class SanPhamServiceImpl implements SanPhamService {
     }
 
     @Override
+    public SanPham update(SanPham sanPham) {
+        return sanPhamRepository.save(sanPham);
+    }
+
+    @Override
     public Boolean delete(UUID id) {
         if (id != null) {
             SanPham sanPham = sanPhamRepository.findById(id).orElse(null);

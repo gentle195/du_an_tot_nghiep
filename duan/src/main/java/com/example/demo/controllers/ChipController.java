@@ -42,7 +42,6 @@ public class ChipController {
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-
         return "layout";
     }
 

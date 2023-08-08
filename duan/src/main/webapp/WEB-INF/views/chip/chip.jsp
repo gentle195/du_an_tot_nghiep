@@ -10,9 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../../images/favicon.ico" type="image/ico" />
-
-    <title>Gentelella Alela!</title>
-
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -74,33 +71,13 @@
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Responsive example<small>Users</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false"><i
-                                class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
+                <h2>Thông tin Chip</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
-                            <p class="text-muted font-13 m-b-30">
-                                Responsive is an extension for DataTables that resolves that problem by optimising the
-                                table's layout for different screen sizes through the dynamic insertion and removal of
-                                columns from the table.
-                            </p>
                             <table id="datatable-responsive"
                                    class="table table-striped table-bordered dt-responsive nowrap"
                                    cellspacing="0" width="100%">

@@ -97,9 +97,9 @@ public class SanPham {
     @JoinColumn(name = "id_hang")
     private HangSanPham hangSanPham;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_anh")
-    private Anh anh;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id_anh")
+//    private Anh anh;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_man_hinh")

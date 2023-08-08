@@ -41,6 +41,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/chi-tiet-san-pham")
 public class ChiTietSanPhamController {
     @Autowired
     ChiTietSanPhamService chiTietSanPhamService;
@@ -67,7 +68,7 @@ public class ChiTietSanPhamController {
 
     private Date ngay;
 
-    @GetMapping("/chi-tiet-sp")
+    @GetMapping("/hien-thi")
     public String hienThi(Model model, @RequestParam("pageNum") Optional<Integer> pageNum) {
         Pageable pageable = PageRequest.of(pageNum.orElse(0), 5);
         Page<ChiTietSanPham> chiTietSanPhamPage = chiTietSanPhamService.getAll(pageable);
@@ -83,7 +84,7 @@ public class ChiTietSanPhamController {
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         model.addAttribute("listManHinh", manHinhService.findAll());
         model.addAttribute("listCamera", cameraService.findAll());
-        return "production/tables_dynamic";
+        return "chi-tiet-san-pham/index";
     }
 
     @GetMapping("/add")

@@ -71,9 +71,14 @@ public class SanPhamController {
 //    }
 
     @GetMapping("/view-update/{id}")
-    public String viewupdate(Model model, @PathVariable("id") UUID id) {
+    public String viewupdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("manHinh") ManHinh manHinh,
+                             @ModelAttribute("hangSP") HangSanPham hangSanPham,
+                             @ModelAttribute("camera") Camera camera) {
         SanPham hsp = sanPhamService.findById(id);
         model.addAttribute("dulieuxem", hsp);
+        model.addAttribute("listManHinh", manHinhService.findAll());
+        model.addAttribute("listHangSP", hangSanPhamService.findAll());
+        model.addAttribute("listCamera", cameraService.findAll());
         return "SanPham/update";
     }
 
@@ -98,7 +103,7 @@ public class SanPhamController {
         }
 
         dulieuxem.setNgayTao(Date.valueOf(LocalDate.now()));
-        dulieuxem.setMa("SP" + String.valueOf(hangSanPhamService.findAll().size() + 1));
+        dulieuxem.setMa("SP" + String.valueOf(sanPhamService.findAll().size() + 1));
         sanPhamService.add(dulieuxem);
         return "redirect:/san-pham/hien-thi";
         // Tiếp tục xử lý và trả về view tương ứng
@@ -106,33 +111,32 @@ public class SanPhamController {
 
     @PostMapping("/update/{id}")
     public String update(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem,
-                         BindingResult bindingResult, @PathVariable("id") UUID id,
-                         @ModelAttribute("manHinh") ManHinh manHinh,
-                         @ModelAttribute("hangSP") HangSanPham hangSanPham,
-                         @ModelAttribute("camera") Camera camera) {
+                         BindingResult bindingResult, @PathVariable("id") UUID id) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("content", "SanPham/update.jsp");
             return "SanPham/update";
         }
-        SanPham hsp = sanPhamService.findById(id);
-        Date ngayTao = hsp.getNgayTao();
-        hsp.setTen(dulieuxem.getTen());
-        hsp.setHeDieuHanh(dulieuxem.getHeDieuHanh());
-        hsp.setSoSim(dulieuxem.getSoSim());
-        hsp.setBluetooth(dulieuxem.getBluetooth());
-        hsp.setHoTroMang(dulieuxem.getHoTroMang());
-        hsp.setCongGiaoTiep(dulieuxem.getCongGiaoTiep());
-        hsp.setThongSoWifi(dulieuxem.getThongSoWifi());
-        hsp.setKichThuoc(dulieuxem.getKichThuoc());
-        hsp.setTrongLuong(dulieuxem.getTrongLuong());
-        hsp.setChatLieu(dulieuxem.getChatLieu());
-        hsp.setNgayTao(ngayTao);
-        hsp.setHangSanPham(dulieuxem.getHangSanPham());
+        SanPham sp = sanPhamService.findById(id);
+        Date ngayTao = sp.getNgayTao();
+        sp.setTen(dulieuxem.getTen());
+        sp.setHeDieuHanh(dulieuxem.getHeDieuHanh());
+        sp.setSoSim(dulieuxem.getSoSim());
+        sp.setBluetooth(dulieuxem.getBluetooth());
+        sp.setHoTroMang(dulieuxem.getHoTroMang());
+        sp.setCongGiaoTiep(dulieuxem.getCongGiaoTiep());
+        sp.setThongSoWifi(dulieuxem.getThongSoWifi());
+        sp.setKichThuoc(dulieuxem.getKichThuoc());
+        sp.setTrongLuong(dulieuxem.getTrongLuong());
+        sp.setChatLieu(dulieuxem.getChatLieu());
+        sp.setNgayTao(ngayTao);
+        sp.setHangSanPham(dulieuxem.getHangSanPham());
+        sp.setManHinh(dulieuxem.getManHinh());
+        sp.setCamera(dulieuxem.getCamera());
         // Gán ngày hiện tại
-        hsp.setNgayCapNhat(Date.valueOf(LocalDate.now()));
-        hsp.setTinhTrang(dulieuxem.getTinhTrang());
-        hsp.setMoTa(dulieuxem.getMoTa());
-        sanPhamService.update(id, hsp);
+        sp.setNgayCapNhat(Date.valueOf(LocalDate.now()));
+        sp.setTinhTrang(dulieuxem.getTinhTrang());
+        sp.setMoTa(dulieuxem.getMoTa());
+        sanPhamService.update(sp);
         return "redirect:/san-pham/hien-thi";
     }
 

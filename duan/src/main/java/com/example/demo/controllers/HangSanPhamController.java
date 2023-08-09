@@ -19,30 +19,31 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/hang-san-pham")
+//@RequestMapping("/hang-san-pham")
 public class HangSanPhamController {
     @Autowired
     HangSanPhamService hangSanPhamService;
 
-    @GetMapping("hien-thi")
+    @GetMapping("/hang-san-pham/hien-thi")
     public String hienthi(@ModelAttribute("dulieuxem") HangSanPham dulieuxem, Model model, @RequestParam("num") Optional<Integer> num,
                           @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
         Sort sort = Sort.by("ngayTao").ascending();
         Pageable pageable = PageRequest.of(num.orElse(0), size, sort);
         Page<HangSanPham> list = hangSanPhamService.getAll(pageable);
+        model.addAttribute("contentPage","HangSanPham/hien-thi.jsp");
         model.addAttribute("hsp", list.getContent());
         model.addAttribute("total", list.getTotalPages());
-        return "HangSanPham/hien-thi";
+        return "layout";
     }
 
-    @GetMapping("/view-update/{id}")
+    @GetMapping("/view-update-hsp/{id}")
     public String viewupdate(Model model, @PathVariable("id") UUID id) {
         HangSanPham hsp = hangSanPhamService.findById(id);
         model.addAttribute("dulieuxem", hsp);
         return "HangSanPham/update";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-hsp")
     public String add(Model model, @ModelAttribute("dulieuxem") @Valid HangSanPham dulieuxem, BindingResult bindingResult, @RequestParam("num") Optional<Integer> num,
                       @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
         if (bindingResult.hasErrors()) {
@@ -50,6 +51,7 @@ public class HangSanPhamController {
             Sort sort = Sort.by("ngayTao").ascending();
             Pageable pageable = PageRequest.of(num.orElse(0), size, sort);
             Page<HangSanPham> list = hangSanPhamService.getAll(pageable);
+            model.addAttribute("contentPage","HangSanPham/hien-thi.jsp");
             model.addAttribute("hsp", list.getContent());
             model.addAttribute("total", list.getTotalPages());
             return "HangSanPham/hien-thi";
@@ -64,7 +66,7 @@ public class HangSanPhamController {
         // Tiếp tục xử lý và trả về view tương ứng
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/update-hsp/{id}")
     public String update(Model model, @ModelAttribute("dulieuxem") @Valid HangSanPham dulieuxem, BindingResult bindingResult, @PathVariable("id") UUID id) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("content", "HangSanPham/update.jsp");
@@ -81,18 +83,19 @@ public class HangSanPhamController {
         hsp.setMoTa(dulieuxem.getMoTa());
         hsp.setXuatSu(dulieuxem.getXuatSu());
         hangSanPhamService.update(id,hsp);
-        return "redirect:/hang-san-pham/hien-thi";
+        return "layout";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete-hsp/{id}")
     public String delete(Model model, @ModelAttribute("dulieuxem") HangSanPham dulieuxem, @PathVariable("id") UUID id, @RequestParam("num") Optional<Integer> num,
                          @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
         hangSanPhamService.delete(id);
         Pageable pageable = PageRequest.of(num.orElse(0), size);
         Page<HangSanPham> list = hangSanPhamService.getAll(pageable);
+        model.addAttribute("contentPage","HangSanPham/hien-thi.jsp");
         model.addAttribute("hsp", list.getContent());
         model.addAttribute("total", list.getTotalPages());
-        return "HangSanPham/hien-thi";
+        return "layout";
 
     }
 }

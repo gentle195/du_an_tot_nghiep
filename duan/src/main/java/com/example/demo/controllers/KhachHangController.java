@@ -19,7 +19,7 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/khach-hang")
+//@RequestMapping("/khach-hang")
 public class KhachHangController {
 
 
@@ -29,7 +29,7 @@ public class KhachHangController {
     HangKhachHangService hangKhachHangService;
 
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/khach-hang/hien-thi")
     public String hienThi(
             Model model,
             @ModelAttribute("kh") KhachHang khachHang,
@@ -44,43 +44,64 @@ public class KhachHangController {
         model.addAttribute("dulieu", khachHangService.getALL0());
         model.addAttribute("hkh", hangKhachHangService.getALL0());
         model.addAttribute("tong", khachHangService.getALL0().size());
-        return "khach-hang/khach-hang";
+        model.addAttribute("contentPage","khach-hang/khach-hang.jsp");
+        return "layout";
+
     }
 
 
-    @GetMapping("/remove/{id}")
+    @GetMapping("/khach-hang/remove/{id}")
 
     public String remove(Model model,
-                         @PathVariable("id") UUID id
+                         @PathVariable("id") UUID id,
+                         @ModelAttribute("kh") KhachHang khachHang,
+                         @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang
 
     ) {
-        KhachHang khachHang = khachHangService.findById(id);
+        KhachHang khachHang1 = khachHangService.findById(id);
         khachHang.setTinhTrang(1);
-        khachHangService.add(khachHang);
-        return "redirect:/khach-hang/hien-thi";
+        khachHangService.add(khachHang1);
+
+
+        khachHang.setGioiTinh(true);
+
+
+        model.addAttribute("dulieu", khachHangService.getALL0());
+        model.addAttribute("hkh", hangKhachHangService.getALL0());
+        model.addAttribute("tong", khachHangService.getALL0().size());
+        model.addAttribute("contentPage","khach-hang/khach-hang.jsp");
+        return "layout";
+
     }
 
 
-    @GetMapping("/view-update/{id}")
+    @GetMapping("/khach-hang/view-update/{id}")
 
     public String viewUpdate(Model model,
                              @PathVariable("id") UUID id,
                              @ModelAttribute("kh") KhachHang khachHang
+
 
     ) {
         khachHang.setTinhTrang(0);
         khachHang.setGioiTinh(true);
         model.addAttribute("kh", khachHangService.findById(id));
         model.addAttribute("hkh", hangKhachHangService.getALL0());
-        return "khach-hang/khach-hang-update";
+
+
+        model.addAttribute("contentPage","khach-hang/khach-hang-update.jsp");
+        return "layout";
     }
 
 
-    @PostMapping("/update")
-    public String updateDongSP(Model model, @ModelAttribute("kh") @Valid KhachHang khachHang, BindingResult bindingResult) {
+    @PostMapping("/khach-hang/update")
+    public String updateDongSP(Model model, @ModelAttribute("kh") @Valid KhachHang khachHang,
+                               BindingResult bindingResult,
+                               @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang) {
         if (bindingResult.hasErrors()) {
             khachHang = khachHangService.findById(khachHang.getId());
-            return "khach-hang/khach-hang-update";
+            model.addAttribute("contentPage","khach-hang/khach-hang-update.jsp");
+            return "layout";
         }
 
 
@@ -91,15 +112,22 @@ public class KhachHangController {
         khachHangService.add(khachHang);
 
 
-        return "redirect:/khach-hang/hien-thi";
+        khachHang.setGioiTinh(true);
+
+
+        model.addAttribute("dulieu", khachHangService.getALL0());
+        model.addAttribute("hkh", hangKhachHangService.getALL0());
+        model.addAttribute("tong", khachHangService.getALL0().size());
+        model.addAttribute("contentPage","khach-hang/khach-hang.jsp");
+        return "layout";
     }
 
 
-    @PostMapping("/add")
+    @PostMapping("/khach-hang/add")
     public String updateadd(Model model,
                             @ModelAttribute("kh") @Valid KhachHang khachHang,
-                            @ModelAttribute("hangKhachHang") @Valid HangKhachHang hangKhachHang,
-                            BindingResult bindingResult
+                            BindingResult bindingResult,
+                            @ModelAttribute("hangKhachHang")  HangKhachHang hangKhachHang
     ) {
 
         long millis = System.currentTimeMillis();
@@ -110,7 +138,9 @@ public class KhachHangController {
             khachHang.setGioiTinh(true);
             model.addAttribute("dulieu", khachHangService.getALL0());
             model.addAttribute("hkh", hangKhachHangService.getALL0());
-            return "khach-hang/khach-hang";
+            model.addAttribute("tong", khachHangService.getALL0().size());
+            model.addAttribute("contentPage","khach-hang/khach-hang.jsp");
+            return "layout";
         }
 
         Integer sl = khachHangService.findAll().size() + 1;
@@ -122,7 +152,14 @@ public class KhachHangController {
         khachHang.setTinhTrang(0);
         khachHangService.add(khachHang);
 //        model.addAttribute("hkh",hangKhachHangService.getALL0());
-        return "redirect:/khach-hang/hien-thi";
+        khachHang.setGioiTinh(true);
+
+
+        model.addAttribute("dulieu", khachHangService.getALL0());
+        model.addAttribute("hkh", hangKhachHangService.getALL0());
+        model.addAttribute("tong", khachHangService.getALL0().size());
+        model.addAttribute("contentPage","khach-hang/khach-hang.jsp");
+        return "layout";
     }
 
 }

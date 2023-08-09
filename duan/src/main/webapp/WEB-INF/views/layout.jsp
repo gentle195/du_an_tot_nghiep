@@ -74,10 +74,10 @@
                                     <li><a>Quản lý Acount<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="#level2_1">Nhân Viên</a></li>
-                                            <li><a href="#level2_2">Khách Hàng</a></li>
-                                            <li><a href="#level2_2">Hạng Khách Hàng</a></li>
+                                            <li><a href="/khach-hang/hien-thi">Khách Hàng</a></li>
+                                            <li><a href="/hang-khach-hang/hien-thi">Hạng Khách Hàng</a></li>
                                             <li><a href="#level2_2">Chức Vụ</a></li>
-                                            <li><a href="#level2_2">Địa Chỉ</a></li>
+                                            <li><a href="/dia-chi/hien-thi">Địa Chỉ</a></li>
                                         </ul>
                                     </li>
                                     <li><a>Quản Lý Sản Phẩm<span class="fa fa-chevron-down"></span></a>

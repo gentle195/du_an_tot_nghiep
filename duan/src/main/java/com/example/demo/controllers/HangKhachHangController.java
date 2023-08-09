@@ -17,40 +17,44 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/hang-khach-hang")
+//@RequestMapping("/hang-khach-hang")
 public class HangKhachHangController {
     @Autowired
     HangKhachHangService hangKhachHangService;
 
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/hang-khach-hang/hien-thi")
     public String hienThi(
             Model model,
             @ModelAttribute("hkh") HangKhachHang hangKhachHang
 
 
     ) {
+        model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang.jsp");
         model.addAttribute("dulieu", hangKhachHangService.getALL0());
         model.addAttribute("tong", hangKhachHangService.getALL0().size());
-        return "hang-khach-hang/hang-khach-hang";
+        return "layout";
     }
 
 
-    @GetMapping("/remove/{id}")
+    @GetMapping("/hang-khach-hang/remove/{id}")
 
     public String remove(Model model,
-                         @PathVariable("id") UUID id
+                         @PathVariable("id") UUID id,
+                         @ModelAttribute("hkh") HangKhachHang hangKhachHang
 
     ) {
-        HangKhachHang hangKhachHang = hangKhachHangService.findById(id);
-        hangKhachHang.setTinhTrang(1);
-        hangKhachHangService.add(hangKhachHang);
-        return "redirect:/hang-khach-hang/hien-thi";
+        HangKhachHang hangKhachHang1 = hangKhachHangService.findById(id);
+        hangKhachHang1.setTinhTrang(1);
+        hangKhachHangService.add(hangKhachHang1);
+        model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang.jsp");
+        model.addAttribute("dulieu", hangKhachHangService.getALL0());
+        model.addAttribute("tong", hangKhachHangService.getALL0().size());
+        return "layout";
     }
 
 
-    @GetMapping("/view-update/{id}")
-
+    @GetMapping("/hang-khach-hang/view-update/{id}")
     public String viewUpdate(Model model,
                              @PathVariable("id") UUID id,
                              @ModelAttribute("hkh") HangKhachHang hangKhachHang
@@ -58,17 +62,19 @@ public class HangKhachHangController {
     ) {
 
         model.addAttribute("hkh", hangKhachHangService.findById(id));
-        return "hang-khach-hang/hang-khach-hang-update";
+        model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang-update.jsp");
+        return "layout";
     }
 
 
-    @PostMapping("/update")
+    @PostMapping("/hang-khach-hang/update")
     public String updateDongSP(Model model,
                                @ModelAttribute("hkh") @Valid HangKhachHang hangKhachHang,
                                BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
-            return "hang-khach-hang/hang-khach-hang-update";
+            model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang-update.jsp");
+            return "layout";
         }
 
 
@@ -76,11 +82,14 @@ public class HangKhachHangController {
         java.sql.Date date = new java.sql.Date(millis);
         hangKhachHang.setNgayCapNhat(date);
         hangKhachHangService.add(hangKhachHang);
-        return "redirect:/hang-khach-hang/hien-thi";
+        model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang.jsp");
+        model.addAttribute("dulieu", hangKhachHangService.getALL0());
+        model.addAttribute("tong", hangKhachHangService.getALL0().size());
+        return "layout";
     }
 
 
-    @PostMapping("/add")
+    @PostMapping("/hang-khach-hang/add")
     public String updateadd(Model model,
                             @ModelAttribute("hkh") @Valid HangKhachHang hangKhachHang,
                             BindingResult bindingResult
@@ -89,7 +98,8 @@ public class HangKhachHangController {
         Date date = new java.sql.Date(millis);
         if (bindingResult.hasErrors()) {
             model.addAttribute("dulieu", hangKhachHangService.getALL0());
-            return "hang-khach-hang/hang-khach-hang";
+            model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang.jsp");
+            return "layout";
         }
         Integer sl = hangKhachHangService.findAll().size() + 1;
         String mhd = "MHKH" + sl;
@@ -98,7 +108,10 @@ public class HangKhachHangController {
         hangKhachHang.setNgayCapNhat(date);
         hangKhachHang.setTinhTrang(0);
         hangKhachHangService.add(hangKhachHang);
-        return "redirect:/hang-khach-hang/hien-thi";
+        model.addAttribute("contentPage","hang-khach-hang/hang-khach-hang.jsp");
+        model.addAttribute("dulieu", hangKhachHangService.getALL0());
+        model.addAttribute("tong", hangKhachHangService.getALL0().size());
+        return "layout";
     }
 
 }

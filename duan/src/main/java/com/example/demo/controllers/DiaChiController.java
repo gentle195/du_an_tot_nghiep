@@ -20,7 +20,7 @@ import java.sql.Date;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/dia-chi")
+//@RequestMapping("/dia-chi")
 public class DiaChiController {
     @Autowired
     DiaChiService diaChiService;
@@ -28,7 +28,7 @@ public class DiaChiController {
     KhachHangService khachHangService;
 
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/dia-chi/hien-thi")
     public String hienThi(
             Model model,
             @ModelAttribute("dc") DiaChi diaChi,
@@ -40,23 +40,33 @@ public class DiaChiController {
         model.addAttribute("dulieu", diaChiService.getAll0());
         model.addAttribute("kh", khachHangService.getALL0());
         model.addAttribute("tong", diaChiService.getAll0().size());
-        return "dia-chi/dia-chi";
+        model.addAttribute("contentPage","dia-chi/dia-chi.jsp");
+        return "layout";
     }
 
 
-    @GetMapping("/remove/{id}")
+    @GetMapping("/dia-chi/remove/{id}")
     public String remove(Model model,
-                         @PathVariable("id") UUID id
+                         @PathVariable("id") UUID id,
+                         @ModelAttribute("dc") DiaChi diaChi,
+                         @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang,
+                         @ModelAttribute("khachHang") HangKhachHang khachHang
     ) {
 
 
-        DiaChi diaChi = diaChiService.findById(id);
-        diaChi.setTinhTrang(1);
-        diaChiService.add(diaChi);
-        return "redirect:/dia-chi/hien-thi";
+        DiaChi diaChi1 = diaChiService.findById(id);
+        diaChi1.setTinhTrang(1);
+        diaChiService.add(diaChi1);
+
+        diaChi.setTinhTrang(0);
+        model.addAttribute("dulieu", diaChiService.getAll0());
+        model.addAttribute("kh", khachHangService.getALL0());
+        model.addAttribute("tong", diaChiService.getAll0().size());
+        model.addAttribute("contentPage","dia-chi/dia-chi.jsp");
+        return "layout";
     }
 
-    @GetMapping("/view-update/{id}")
+    @GetMapping("/dia-chi/view-update/{id}")
     public String viewUpdate(Model model,
                              @PathVariable("id") UUID id,
                              @ModelAttribute("dc") DiaChi diaChi
@@ -64,19 +74,23 @@ public class DiaChiController {
     ) {
         model.addAttribute("dc", diaChiService.findById(id));
         model.addAttribute("kh", khachHangService.getALL0());
-        return "dia-chi/dia-chi-update";
+        model.addAttribute("contentPage","dia-chi/dia-chi-update.jsp");
+        return "layout";
     }
 
 
-    @PostMapping("/update")
+    @PostMapping("/dia-chi/update")
     public String updateDongSP(Model model,
                                @ModelAttribute("dc") @Valid DiaChi diaChi
-            , BindingResult bindingResult
+            , BindingResult bindingResult,
+                               @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang,
+                               @ModelAttribute("khachHang") HangKhachHang khachHang
     ) {
 
         if (bindingResult.hasErrors()) {
 
-            return "dia-chi/dia-chi-update";
+            model.addAttribute("contentPage","dia-chi/dia-chi-update.jsp");
+            return "layout";
         }
 
 
@@ -86,18 +100,25 @@ public class DiaChiController {
 
         diaChiService.add(diaChi);
 
-        return "redirect:/dia-chi/hien-thi";
+        diaChi.setTinhTrang(0);
+        model.addAttribute("dulieu", diaChiService.getAll0());
+        model.addAttribute("kh", khachHangService.getALL0());
+        model.addAttribute("tong", diaChiService.getAll0().size());
+        model.addAttribute("contentPage","dia-chi/dia-chi.jsp");
+        return "layout";
     }
 
 
-    @PostMapping("/add")
+    @PostMapping("/dia-chi/add")
     public String updateadd(Model model,
                             @ModelAttribute("dc") @Valid DiaChi diaChi
 //                            @ModelAttribute("hangKhachHang")@Valid HangKhachHang hangKhachHang,
 //                            @ModelAttribute("KhachHang")@Valid KhachHang khachHang
 
 
-            , BindingResult bindingResult
+            , BindingResult bindingResult,
+                            @ModelAttribute("hangKhachHang") HangKhachHang hangKhachHang,
+                            @ModelAttribute("khachHang") HangKhachHang khachHang
     ) {
         long millis = System.currentTimeMillis();
         Date date = new java.sql.Date(millis);
@@ -105,7 +126,12 @@ public class DiaChiController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("dulieu", diaChiService.getAll0());
             model.addAttribute("kh", khachHangService.getALL0());
-            return "dia-chi/dia-chi";
+            diaChi.setTinhTrang(0);
+            model.addAttribute("dulieu", diaChiService.getAll0());
+            model.addAttribute("kh", khachHangService.getALL0());
+            model.addAttribute("tong", diaChiService.getAll0().size());
+            model.addAttribute("contentPage","dia-chi/dia-chi.jsp");
+            return "layout";
         }
 
         Integer sl = khachHangService.findAll().size() + 1;
@@ -116,6 +142,11 @@ public class DiaChiController {
         diaChi.setNgayCapNhat(date);
         diaChi.setTinhTrang(0);
         diaChiService.add(diaChi);
-        return "redirect:/dia-chi/hien-thi";
+        diaChi.setTinhTrang(0);
+        model.addAttribute("dulieu", diaChiService.getAll0());
+        model.addAttribute("kh", khachHangService.getALL0());
+        model.addAttribute("tong", diaChiService.getAll0().size());
+        model.addAttribute("contentPage","dia-chi/dia-chi.jsp");
+        return "layout";
     }
 }

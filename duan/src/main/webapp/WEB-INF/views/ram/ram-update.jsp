@@ -63,11 +63,26 @@
         </thead>
         <thead>
         <tr>
-            <button type="submit" class="btn btn-primary">UPDATE</button>
+            <button type="submit" class="btn btn-primary" onclick="validateForm()">UPDATE</button>
         </tr>
         </thead>
     </table>
 </form:form>
 </body>
+<script>
+    function validateForm() {
+        var tenValue = document.querySelector('input[name="dungLuong"]').value;
+        var moTaValue = document.querySelector('textarea[name="moTa"]').value;
 
+        if (tenValue.trim() === '') {
+            alert('Vui lòng không để trống trường dung lượng');
+            return false;
+        }
+
+        if (moTaValue.trim() === '') {
+            alert('Vui lòng không để trống trường Mô tả');
+            return false;
+        }
+    }
+</script>
 </html>

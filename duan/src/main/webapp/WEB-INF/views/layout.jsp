@@ -12,7 +12,10 @@
     <link rel="icon" href="/images/favicon.ico" type="image/ico"/>
 
     <title>Gentelella Alela!</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+    <link rel="icon" href="/images/favicon.ico" type="image/ico"/>
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -40,7 +43,7 @@
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="production/index.jsp" class="site_title"><i class="fa fa-paw"></i>
-                        <span>Đạt đẹp trai ! <br></span></a>
+                        <span>GPhoneS <br></span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -79,7 +82,7 @@
                                     </li>
                                     <li><a>Quản Lý Sản Phẩm<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="/chi-tiet-sp">Chi Tiết Sản Phẩm</a></li>
+                                            <li><a href="/chi-tiet-san-pham/hien-thi">Chi Tiết Sản Phẩm</a></li>
                                             <li><a href="#level2_2">Sản Phẩm</a></li>
                                             <li><a href="#level2_2">Hãng</a></li>
                                             <li><a href="#level2_2">Màu Sắc</a></li>
@@ -237,10 +240,7 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-<!-- jQuery -->
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -311,6 +311,30 @@
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<%--<script src="https://code.jquery.com/jquery-3.7.0.min.js"--%>
+<%--        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>--%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $('#selectSanPham').select2();
+    });
+    $(document).ready(function () {
+        $('#selectRam').select2();
+    });
+    $(document).ready(function () {
+        $('#selectRom').select2();
+    });
+    $(document).ready(function () {
+        $('#selectPin').select2();
+    });
+    $(document).ready(function () {
+        $('#selectMauSac').select2();
+    });
+    $(document).ready(function () {
+        $('#selectChip').select2();
+    });
+</script>
 </body>
 </html>

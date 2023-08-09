@@ -4,12 +4,14 @@ import com.example.demo.models.ChiTietSanPham;
 import com.example.demo.models.IMEI;
 import com.example.demo.services.ChiTietSanPhamService;
 import com.example.demo.services.IMEIService;
+import com.example.demo.services.SanPhamService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -32,15 +35,23 @@ public class ImeiController {
     @Autowired
     ChiTietSanPhamService chiTietSanPhamService;
 
+    @Autowired
+    SanPhamService sanPhamService;
+
     @GetMapping("/hien-thi")
-    public String hienThi(Model model, @RequestParam(value = "pageNum", defaultValue = "0", required = false) Integer pageNum) {
-        Pageable pageable = PageRequest.of(pageNum, 5);
+    public String hienThi(Model model, @RequestParam(value = "pageNum") Optional<Integer> pageNum) {
+        Pageable pageable = PageRequest.of(pageNum.orElse(0), 5);
+        Sort sort = Sort.by("ngayTao").descending();
+
         Page<IMEI> imeiPage = imeiService.getAll(pageable);
         model.addAttribute("total", imeiPage.getTotalPages());
         model.addAttribute("listImei", imeiPage.getContent());
         model.addAttribute("size", imeiPage.getSize());
+        model.addAttribute("size", imeiPage.getSize());
+        model.addAttribute("contentPage", "imei/index.jsp");
 
-        return "imei/index";
+
+        return "layout";
 
     }
 

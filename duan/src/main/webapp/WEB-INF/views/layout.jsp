@@ -87,8 +87,8 @@
                                             <li><a href="/hang-san-pham/hien-thi">Hãng</a></li>
                                             <li><a href="/mau-sac/hien-thi">Màu Sắc</a></li>
                                             <li><a href="/camera/hien-thi">Camera</a></li>
-                                            <li><a href="#level2_2">Dung Lượng Pin</a></li>
-                                            <li><a href="#level2_2">Pin</a></li>
+                                            <li><a href="/dung-luong-pin/hien-thi">Dung Lượng Pin</a></li>
+                                            <li><a href="/pin/hien-thi">Pin</a></li>
                                             <li><a href="/man-hinh/hien-thi">Màn Hình</a></li>
                                             <li><a href="/ram/hien-thi">Ram</a></li>
                                             <li><a href="/rom/hien-thi">Rom</a></li>

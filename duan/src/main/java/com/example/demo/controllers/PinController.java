@@ -24,7 +24,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/pin")
 public class PinController {
 
     @Autowired
@@ -33,7 +32,7 @@ public class PinController {
     @Autowired
     private DungLuongPinService dungLuongPinService;
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/pin/hien-thi")
     public String hienThi(Model model, @ModelAttribute("Pin") Pin pin,
                           @RequestParam("pageNum") Optional<Integer> pageNum,
                           @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
@@ -42,10 +41,11 @@ public class PinController {
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         Page<Pin> page = pinService.getAll(pageable);
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
+        model.addAttribute("contentPage","pin/pin.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-        return "pin/pin";
+        return "layout";
     }
 
     @PostMapping("/add-pin")
@@ -56,11 +56,11 @@ public class PinController {
         Page<Pin> page = pinService.getAll(pageable);
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("contentPage","pin/pin.jsp");
             model.addAttribute("list", page.getContent());
             model.addAttribute("page", page.getNumber());
             model.addAttribute("total", page.getTotalPages());
-            model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
-            return "pin/pin";
+            return "layout";
         }
 
         long millis = System.currentTimeMillis();
@@ -74,6 +74,7 @@ public class PinController {
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
+        model.addAttribute("contentPage","pin/pin.jsp");
         return "redirect:/pin/hien-thi";
     }
 
@@ -103,10 +104,11 @@ public class PinController {
         pinService.delete(id);
         Page<Pin> page = pinService.getAll(pageable);
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
+        model.addAttribute("contentPage","pin/pin.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-        return "pin/pin";
+        return "layout";
     }
 
     @GetMapping("/detail-pin/{id}")
@@ -118,10 +120,11 @@ public class PinController {
         Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
         Page<Pin> page = pinService.getAll(pageable);
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
+        model.addAttribute("contentPage","pin/pin.jsp");
         model.addAttribute("list", page.getContent());
         model.addAttribute("page", page.getNumber());
         model.addAttribute("total", page.getTotalPages());
-        return "/pin/pin";
+        return "layout";
     }
 
     @GetMapping("/view-update-pin/{id}")
@@ -129,6 +132,7 @@ public class PinController {
         Pin sp = pinService.findById(id);
         model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
         model.addAttribute("Pin", sp);
-        return "/pin/pin-update";
+        model.addAttribute("contentPage","pin/pin-update.jsp");
+        return "layout";
     }
 }

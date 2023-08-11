@@ -23,13 +23,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/ram")
-
 public class RamController {
     @Autowired
     RamService ramService;
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/ram/hien-thi")
     public String hienThi(Model model, @ModelAttribute("r") Ram ram,
                           @RequestParam("num") Optional<Integer> num,
                           @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu) {
@@ -77,7 +75,7 @@ public class RamController {
                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             ram = ramService.findById(ram.getId());
-            model.addAttribute("contentPage","ram/ram-update.jsp");
+            model.addAttribute("contentPage","ram/ram.jsp");
             return "layout";
         }
 

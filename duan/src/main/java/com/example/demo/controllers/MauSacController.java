@@ -23,14 +23,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/mau-sac")
-
-
 public class MauSacController {
     @Autowired
     MauSacService mauSacService;
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/mau-sac/hien-thi")
     public String hienThi(Model model, @ModelAttribute("ms") MauSac mauSac,
                           @RequestParam("num") Optional<Integer> num,// lần lượt làm di làm đi
                           @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu) {
@@ -88,7 +85,7 @@ public class MauSacController {
         if (bindingResult.hasErrors()) {
             mauSac = mauSacService.findById(mauSac.getId());
 
-            model.addAttribute("contentPage","mau-sac/mau-sac-update.jsp");
+            model.addAttribute("contentPage","mau-sac/mau-sac.jsp");
             return "layout";
         }
 

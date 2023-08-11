@@ -13,7 +13,7 @@
 <body>
 <h3 style="color: red; text-align: center"><b>Pin</b></h3>
 <hr>
-<form:form action="/dung-luong-pin/update-dung-luong-pin/${DungLuongPin.id}" method="post" modelAttribute="DungLuongPin">
+<form:form action="/update-dung-luong-pin/${DungLuongPin.id}" method="post" modelAttribute="DungLuongPin">
     <div class="row">
         <div class="col" style="display: none">
             <form:label path="ma"><b>Mã:</b></form:label>
@@ -51,4 +51,6 @@
     </div>
 </form:form>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </html>

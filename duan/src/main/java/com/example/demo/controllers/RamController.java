@@ -23,13 +23,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/ram")
-
 public class RamController {
     @Autowired
     RamService ramService;
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/ram/hien-thi")
     public String hienThi(Model model, @ModelAttribute("r") Ram ram,
                           @RequestParam("num") Optional<Integer> num,
                           @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu) {
@@ -39,7 +37,8 @@ public class RamController {
         Page<Ram> list = ramService.getAll(pageable);
         model.addAttribute("tongSoTrang", list.getTotalPages());
         model.addAttribute("duLieu", list.getContent());
-        return "ram/ram";
+        model.addAttribute("contentPage","ram/ram.jsp");
+        return "layout";
     }
 
 
@@ -49,7 +48,8 @@ public class RamController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", ramService.getAll0());
-            return "ram/ram";
+            model.addAttribute("contentPage","ram/ram.jsp");
+            return "layout";
         }
         String maR = "R" + ramService.findAll().size();
         ram.setMa(maR);
@@ -66,7 +66,8 @@ public class RamController {
     @GetMapping("/view-update-ram/{id}")
     public String viewUpdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("r") Ram ram) {
         model.addAttribute("r", ramService.findById(id));
-        return "/ram/ram-update";
+        model.addAttribute("contentPage","ram/ram-update.jsp");
+        return "layout";
     }
 
     @PostMapping("/update-ram")
@@ -74,7 +75,8 @@ public class RamController {
                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             ram = ramService.findById(ram.getId());
-            return "ram/ram-update";
+            model.addAttribute("contentPage","ram/ram.jsp");
+            return "layout";
         }
 
         long millis = System.currentTimeMillis();

@@ -122,6 +122,8 @@ public class ChipController {
     public String viewUpdate(Model model, @PathVariable("id") UUID id) {
         Chip sp = chipService.findById(id);
         model.addAttribute("Chip", sp);
-        return "chip/chip-update";
+        model.addAttribute("contentPage","chip/chip-update.jsp");
+        return "layout";
+
     }
 }

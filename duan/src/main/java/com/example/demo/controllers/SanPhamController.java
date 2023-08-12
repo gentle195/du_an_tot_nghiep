@@ -27,7 +27,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/san-pham")
+//@RequestMapping("/san-pham")
 public class SanPhamController {
     @Autowired
     SanPhamService sanPhamService;
@@ -38,7 +38,7 @@ public class SanPhamController {
     @Autowired
     CameraService cameraService;
 
-    @GetMapping("hien-thi")
+    @GetMapping("/san-pham/hien-thi")
     public String hienthi(@ModelAttribute("dulieuxem") SanPham dulieuxem,
                           @ModelAttribute("manHinh") ManHinh manHinh,
                           @ModelAttribute("hangSP") HangSanPham hangSanPham,
@@ -50,9 +50,10 @@ public class SanPhamController {
         model.addAttribute("listManHinh", manHinhService.findAll());
         model.addAttribute("listHangSP", hangSanPhamService.findAll());
         model.addAttribute("listCamera", cameraService.findAll());
+        model.addAttribute("contentPage","SanPham/hien-thi.jsp");
         model.addAttribute("hsp", list.getContent());
         model.addAttribute("total", list.getTotalPages());
-        return "SanPham/hien-thi";
+        return "layout";
     }
 
 //    @ModelAttribute("hangsp")
@@ -70,19 +71,14 @@ public class SanPhamController {
 //        return cameraService.findAll();
 //    }
 
-    @GetMapping("/view-update/{id}")
-    public String viewupdate(Model model, @PathVariable("id") UUID id, @ModelAttribute("manHinh") ManHinh manHinh,
-                             @ModelAttribute("hangSP") HangSanPham hangSanPham,
-                             @ModelAttribute("camera") Camera camera) {
+    @GetMapping("/view-update-sp/{id}")
+    public String viewupdate(Model model, @PathVariable("id") UUID id) {
         SanPham hsp = sanPhamService.findById(id);
         model.addAttribute("dulieuxem", hsp);
-        model.addAttribute("listManHinh", manHinhService.findAll());
-        model.addAttribute("listHangSP", hangSanPhamService.findAll());
-        model.addAttribute("listCamera", cameraService.findAll());
         return "SanPham/update";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-sp")
     public String add(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem,
                       BindingResult bindingResult, @RequestParam("num") Optional<Integer> num,
                       @RequestParam(name = "size", defaultValue = "5", required = false) Integer size,
@@ -96,6 +92,7 @@ public class SanPhamController {
             model.addAttribute("listManHinh", manHinhService.findAll());
             model.addAttribute("listHangSP", hangSanPhamService.findAll());
             model.addAttribute("listCamera", cameraService.findAll());
+            model.addAttribute("contentPage","SanPham/hien-thi.jsp");
             model.addAttribute("hsp", list.getContent());
             model.addAttribute("total", list.getTotalPages());
 
@@ -103,52 +100,54 @@ public class SanPhamController {
         }
 
         dulieuxem.setNgayTao(Date.valueOf(LocalDate.now()));
-        dulieuxem.setMa("SP" + String.valueOf(sanPhamService.findAll().size() + 1));
+        dulieuxem.setMa("SP" + String.valueOf(hangSanPhamService.findAll().size() + 1));
         sanPhamService.add(dulieuxem);
         return "redirect:/san-pham/hien-thi";
         // Tiếp tục xử lý và trả về view tương ứng
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/update-sp/{id}")
     public String update(Model model, @ModelAttribute("dulieuxem") @Valid SanPham dulieuxem,
-                         BindingResult bindingResult, @PathVariable("id") UUID id) {
+                         BindingResult bindingResult, @PathVariable("id") UUID id,
+                         @ModelAttribute("manHinh") ManHinh manHinh,
+                         @ModelAttribute("hangSP") HangSanPham hangSanPham,
+                         @ModelAttribute("camera") Camera camera) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("content", "SanPham/update.jsp");
             return "SanPham/update";
         }
-        SanPham sp = sanPhamService.findById(id);
-        Date ngayTao = sp.getNgayTao();
-        sp.setTen(dulieuxem.getTen());
-        sp.setHeDieuHanh(dulieuxem.getHeDieuHanh());
-        sp.setSoSim(dulieuxem.getSoSim());
-        sp.setBluetooth(dulieuxem.getBluetooth());
-        sp.setHoTroMang(dulieuxem.getHoTroMang());
-        sp.setCongGiaoTiep(dulieuxem.getCongGiaoTiep());
-        sp.setThongSoWifi(dulieuxem.getThongSoWifi());
-        sp.setKichThuoc(dulieuxem.getKichThuoc());
-        sp.setTrongLuong(dulieuxem.getTrongLuong());
-        sp.setChatLieu(dulieuxem.getChatLieu());
-        sp.setNgayTao(ngayTao);
-        sp.setHangSanPham(dulieuxem.getHangSanPham());
-        sp.setManHinh(dulieuxem.getManHinh());
-        sp.setCamera(dulieuxem.getCamera());
+        SanPham hsp = sanPhamService.findById(id);
+        Date ngayTao = hsp.getNgayTao();
+        hsp.setTen(dulieuxem.getTen());
+        hsp.setHeDieuHanh(dulieuxem.getHeDieuHanh());
+        hsp.setSoSim(dulieuxem.getSoSim());
+        hsp.setBluetooth(dulieuxem.getBluetooth());
+        hsp.setHoTroMang(dulieuxem.getHoTroMang());
+        hsp.setCongGiaoTiep(dulieuxem.getCongGiaoTiep());
+        hsp.setThongSoWifi(dulieuxem.getThongSoWifi());
+        hsp.setKichThuoc(dulieuxem.getKichThuoc());
+        hsp.setTrongLuong(dulieuxem.getTrongLuong());
+        hsp.setChatLieu(dulieuxem.getChatLieu());
+        hsp.setNgayTao(ngayTao);
+        hsp.setHangSanPham(dulieuxem.getHangSanPham());
         // Gán ngày hiện tại
-        sp.setNgayCapNhat(Date.valueOf(LocalDate.now()));
-        sp.setTinhTrang(dulieuxem.getTinhTrang());
-        sp.setMoTa(dulieuxem.getMoTa());
-        sanPhamService.update(sp);
+        hsp.setNgayCapNhat(Date.valueOf(LocalDate.now()));
+        hsp.setTinhTrang(dulieuxem.getTinhTrang());
+        hsp.setMoTa(dulieuxem.getMoTa());
+        sanPhamService.update(id, hsp);
         return "redirect:/san-pham/hien-thi";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete-sp/{id}")
     public String delete(Model model, @ModelAttribute("dulieuxem") SanPham dulieuxem, @PathVariable("id") UUID id, @RequestParam("num") Optional<Integer> num,
                          @RequestParam(name = "size", defaultValue = "5", required = false) Integer size) {
         sanPhamService.delete(id);
         Pageable pageable = PageRequest.of(num.orElse(0), size);
         Page<SanPham> list = sanPhamService.getAll(pageable);
+        model.addAttribute("contentPage","SanPham/hien-thi.jsp");
         model.addAttribute("hsp", list.getContent());
         model.addAttribute("total", list.getTotalPages());
-        return "SanPham/hien-thi";
+        return "layout";
 
     }
 }

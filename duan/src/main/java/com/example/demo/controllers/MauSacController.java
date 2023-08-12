@@ -23,14 +23,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/mau-sac")
-
-
 public class MauSacController {
     @Autowired
     MauSacService mauSacService;
 
-    @GetMapping("/hien-thi")
+    @GetMapping("/mau-sac/hien-thi")
     public String hienThi(Model model, @ModelAttribute("ms") MauSac mauSac,
                           @RequestParam("num") Optional<Integer> num,// lần lượt làm di làm đi
                           @RequestParam(name = "tongDuLieu", required = false, defaultValue = "5") Integer tongDuLieu) {
@@ -43,7 +40,8 @@ public class MauSacController {
         model.addAttribute("tongSoTrang", list.getTotalPages());
         model.addAttribute("duLieu", list.getContent());
 
-        return "mau-sac/mau-sac";
+        model.addAttribute("contentPage","mau-sac/mau-sac.jsp");
+        return "layout";
     }
 
     @PostMapping("/add-mau-sac")
@@ -52,7 +50,9 @@ public class MauSacController {
     ) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("duLieu", mauSacService.getAll0());
-            return "mau-sac/mau-sac";
+
+            model.addAttribute("contentPage","mau-sac/mau-sac.jsp");
+            return "layout";
         }
 
         String maMS = "MMS" + mauSacService.findAll().size();
@@ -74,7 +74,9 @@ public class MauSacController {
 
         model.addAttribute("ms", mauSacService.findById(id));
 
-        return "mau-sac/mau-sac-update";
+
+        model.addAttribute("contentPage","mau-sac/mau-sac-update.jsp");
+        return "layout";
     }
 
     @PostMapping("/update-mau-sac")
@@ -82,7 +84,9 @@ public class MauSacController {
                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             mauSac = mauSacService.findById(mauSac.getId());
-            return "mau-sac/mau-sac-update";
+
+            model.addAttribute("contentPage","mau-sac/mau-sac.jsp");
+            return "layout";
         }
 
 

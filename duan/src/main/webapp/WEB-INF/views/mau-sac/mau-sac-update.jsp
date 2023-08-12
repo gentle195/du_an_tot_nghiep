@@ -4,14 +4,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rom</title>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"--%>
+    <%--          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">--%>
+    <!-- Bootstrap -->
+    <link rel="icon" href="/images/favicon.ico" type="image/ico"/>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Gentelella Alela!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+    <link rel="icon" href="/images/favicon.ico" type="image/ico"/>
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
+    <!-- bootstrap-progressbar -->
+    <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 <body>
-<form:form action="/mau-sac/update-mau-sac" method="post" modelAttribute="ms">
+<form:form action="/update-mau-sac" method="post" modelAttribute="ms">
     <table class="tb">
 
         <thead>
@@ -47,15 +75,6 @@
             <th><form:input path="ngayCapNhat" type="date"></form:input></th>
         </tr>
         </thead>
-            <%--        <thead>--%>
-            <%--        <tr>--%>
-            <%--            <th><form:label path="tinhTrang">Tình trạng</form:label></th>--%>
-            <%--            <th><form:radiobutton path="tinhTrang" label="Không hoạt động" value="0"></form:radiobutton>--%>
-            <%--                <form:radiobutton path="tinhTrang" label="Còn hoạt động" value="1"></form:radiobutton>--%>
-            <%--            </th>--%>
-
-            <%--        </tr>--%>
-            <%--        </thead>--%>
         <thead>
 
         <tr>
@@ -68,27 +87,34 @@
 
         <thead>
         <tr>
-            <button type="submit" class="btn btn-primary" onclick="confirmUpdate(event)">
+            <button type="submit" class="btn btn-primary" onclick="validateForm()">
                 UPDATE
             </button>
         </tr>
         </thead>
 
     </table>
-    r>
+
 </form:form>
 
-<%--<script>--%>
-<%--    function confirmUpdate(event) {--%>
-<%--       event.preventDefault(); // Prevents the default action of the link--%>
+<script>
 
-<%--        if (confirm("Bạn chắc chắn muốn Update không?")) {--%>
-<%--            window.location.href = event.target.href; // Redirect to the delete URL--%>
-<%--        } else {--%>
-<%--            // Do nothing or perform any desired action--%>
-<%--        }--%>
-<%--    }--%>
+    function validateForm() {
+        var tenValue = document.querySelector('input[name="ten"]').value;
+        var moTaValue = document.querySelector('textarea[name="moTa"]').value;
+
+        if (tenValue.trim() === '') {
+            alert('Vui lòng không để trống trường ten');
+            return false;
+        }
+
+        if (moTaValue.trim() === '') {
+            alert('Vui lòng không để trống trường Mô tả');
+            return false;
+        }
+    }
 </script>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </html>

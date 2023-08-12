@@ -83,15 +83,15 @@
                                     <li><a>Quản Lý Sản Phẩm<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/chi-tiet-san-pham/hien-thi">Chi Tiết Sản Phẩm</a></li>
-                                            <li><a href="#level2_2">Sản Phẩm</a></li>
-                                            <li><a href="#level2_2">Hãng</a></li>
-                                            <li><a href="#level2_2">Màu Sắc</a></li>
+                                            <li><a href="/san-pham/hien-thi">Sản Phẩm</a></li>
+                                            <li><a href="/hang-san-pham/hien-thi">Hãng</a></li>
+                                            <li><a href="/mau-sac/hien-thi">Màu Sắc</a></li>
                                             <li><a href="/camera/hien-thi">Camera</a></li>
-                                            <li><a href="#level2_2">Dung Lượng Pin</a></li>
-                                            <li><a href="#level2_2">Pin</a></li>
+                                            <li><a href="/dung-luong-pin/hien-thi">Dung Lượng Pin</a></li>
+                                            <li><a href="/pin/hien-thi">Pin</a></li>
                                             <li><a href="/man-hinh/hien-thi">Màn Hình</a></li>
-                                            <li><a href="#level2_2">Ram</a></li>
-                                            <li><a href="#level2_2">Rom</a></li>
+                                            <li><a href="/ram/hien-thi">Ram</a></li>
+                                            <li><a href="/rom/hien-thi">Rom</a></li>
                                             <li><a href="/chip/hien-thi">Chip</a></li>
                                             <li><a href="/imei/hien-thi">Imei</a></li>
                                         </ul>

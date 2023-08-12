@@ -22,7 +22,7 @@
                     <form:select path="sanPham" class="form-control" id="selectSanPham"
                                  cssStyle="font-weight: bold; width: 100%">
                         <option selected disabled>Sản phẩm</option>
-                        <form:options items="${listSanPham}" itemLabel="ten" itemValue="id"/>
+                        <form:options items="${listSP}" itemLabel="ten" itemValue="id"/>
                     </form:select>
                 </div>
                 <div class="col-4">

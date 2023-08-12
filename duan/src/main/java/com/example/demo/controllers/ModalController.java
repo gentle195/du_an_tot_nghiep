@@ -258,6 +258,39 @@ public class ModalController {
         hangKhachHangService.add(hangKhachHang);
         return "redirect:/khach-hang/hien-thi";
     }
+    @PostMapping("/chi-tiet-san-pham/modal-add-chi-tiet-san-pham")
+    public String addCTSP(@Valid @ModelAttribute(name = "chitietsanpham") ChiTietSanPham chiTietSanPham,
+                      BindingResult result, Model model, @RequestParam("pageNum") Optional<Integer> pageNum,
+                      @RequestParam(name = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
+        Sort sort = Sort.by("ngayTao").ascending();
+        Pageable pageable = PageRequest.of(pageNum.orElse(0), pageSize, sort);
+        Page<ChiTietSanPham> page = chiTietSanPhamService.getAll(pageable);
+        if (result.hasErrors()) {
+            model.addAttribute("total", page.getTotalPages());
+            model.addAttribute("list", page.getContent());
+            model.addAttribute("size", page.getSize());
+            model.addAttribute("listSanPham", sanPhamService.findAll());
+            model.addAttribute("listMauSac", mauSacService.findAll());
+            model.addAttribute("listChip", chipService.findAll());
+            model.addAttribute("listRam", ramService.findAll());
+            model.addAttribute("listRom", romService.findAll());
+            model.addAttribute("listHang", hangSanPhamService.findAll());
+            model.addAttribute("dungLuongPin", dungLuongPinService.findAll());
+            model.addAttribute("listPin", pinService.findAll());
+            model.addAttribute("listManHinh", manHinhService.findAll());
+            model.addAttribute("listCamera", cameraService.findAll());
+            model.addAttribute("contentPage", "chi-tiet-san-pham/index.jsp");
+            model.addAttribute("page", page.getNumber());
+            return "layout";
+        }
+        LocalDate localDate = LocalDate.now();
+        chiTietSanPham.setNgayTao(Date.valueOf(localDate));
+        chiTietSanPham.setTinhTrang(1);
+        chiTietSanPhamService.add(chiTietSanPham);
+        return "redirect:/imei/hien-thi";
+
+
+    }
 
     @PostMapping("/san-pham/modal-add-man-hinh")
     public String addManHinh(Model model, @ModelAttribute("manHinh") @Valid ManHinh manHinh, BindingResult bindingResult,
